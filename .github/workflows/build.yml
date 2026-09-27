@@ -27,7 +27,7 @@ jobs:
       - name: Verify APK integrity
         run: |
           set -e
-          APK="$(find app/build/outputs/apk -type f -name '*.apk' | grep -i 'generic' | head -n 1)"
+          APK="$(find app/build/outputs/apk -type f -name '*.apk' | head -n 1)"
           test -n "$APK"
           echo "Using APK: $APK"
           ls -lh "$APK"
