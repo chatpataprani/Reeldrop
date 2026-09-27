@@ -160,7 +160,7 @@ object DownloadUtil {
                     if (proxy) {
                         enableProxy(proxyUrl)
                     }
-                    if (forceIpv4 || playlistURL.contains("instagram.com", ignoreCase = true)) {
+                    if (forceIpv4 || url.contains("instagram.com", ignoreCase = true)) {
                         addOption("-4")
                     }
                     /*            if (debug) {
