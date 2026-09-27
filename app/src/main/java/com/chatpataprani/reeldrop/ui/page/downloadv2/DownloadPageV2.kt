@@ -224,16 +224,9 @@ fun DownloadPageV2(
                 FIRST_RUN_SETUP.updateBoolean(true)
                 showQuickSetup = false
             },
-            title = { Text("Quick setup") },
+            title = { Text(stringResource(R.string.quick_setup_title)) },
             text = {
-                Text(
-                    "Use simple defaults so tapping Download starts immediately:\n\n" +
-                        "• Video download\n" +
-                        "• Auto format / best available quality\n" +
-                        "• Wi-Fi only\n" +
-                        "• No extra processing\n" +
-                        "• Battery stays system-optimized"
-                )
+                Text(stringResource(R.string.quick_setup_message))
             },
             confirmButton = {
                 Button(
@@ -247,7 +240,7 @@ fun DownloadPageV2(
                         showQuickSetup = false
                     }
                 ) {
-                    Text("Use defaults")
+                    Text(stringResource(R.string.use_defaults))
                 }
             },
             dismissButton = {
@@ -257,7 +250,7 @@ fun DownloadPageV2(
                         showQuickSetup = false
                     }
                 ) {
-                    Text("Customize later")
+                    Text(stringResource(R.string.customize_later))
                 }
             },
         )
