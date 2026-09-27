@@ -182,7 +182,6 @@ object DownloadUtil {
                     addOption("--retries", "5")
                     addOption("--fragment-retries", "5")
                     addOption("--extractor-retries", "5")
-                    addOption("--retry-sleep", "exponential:1:8")
                     addOption("--no-playlist")
                     addOption("--socket-timeout", "20")
                 }
