@@ -66,9 +66,11 @@ jobs:
         run: |
           set -e
           TAG="yawr-latest"
+          VERSION="$(grep -oE 'versionMajor = [0-9]+, versionMinor = [0-9]+, versionPatch = [0-9]+(, versionBuild = [0-9]+)?' buildSrc/src/main/kotlin/Version.kt | head -1 | sed -E 's/versionMajor = ([0-9]+), versionMinor = ([0-9]+), versionPatch = ([0-9]+), versionBuild = ([0-9]+)/\\1.\\2.\\3-alpha.\\4/; s/versionMajor = ([0-9]+), versionMinor = ([0-9]+), versionPatch = ([0-9]+)/\\1.\\2.\\3/')"
           if ! gh release view "$TAG" >/dev/null 2>&1; then
-            gh release create "$TAG" yawr.apk               --title "yawr Latest Build"               --notes "Automatically published from the latest successful main-branch build."               --prerelease
+            gh release create "$TAG" yawr.apk               --title "$VERSION"               --notes "Automatically published from the latest successful main-branch build."               --latest
           else
+            gh release edit "$TAG" --title "$VERSION" --prerelease=false --latest
             gh release upload "$TAG" yawr.apk --clobber
           fi
 
