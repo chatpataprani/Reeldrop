@@ -163,13 +163,14 @@ object UpdateUtil {
 
             val targetAsset =
                 release.assets
-                    ?.firstOrNull {
+                    ?.filter {
                         it.name?.endsWith(".apk", ignoreCase = true) == true &&
                             it.name.contains(preferredArch, ignoreCase = true)
                     }
-                    ?: release.assets?.firstOrNull {
-                        it.name?.endsWith(".apk", ignoreCase = true) == true
-                    }
+                    ?.maxByOrNull { it.updatedAt ?: it.createdAt ?: "" }
+                    ?: release.assets
+                        ?.filter { it.name?.endsWith(".apk", ignoreCase = true) == true }
+                        ?.maxByOrNull { it.updatedAt ?: it.createdAt ?: "" }
                     ?: return@withContext emptyFlow()
 
             val targetUrl = targetAsset.browserDownloadUrl ?: return@withContext emptyFlow()
