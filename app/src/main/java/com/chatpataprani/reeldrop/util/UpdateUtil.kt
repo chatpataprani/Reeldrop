@@ -177,18 +177,24 @@ object UpdateUtil {
 
             val request = Request.Builder().url(targetUrl).build()
             try {
-                client.newCall(request).execute().use { response ->
-                    if (!response.isSuccessful) {
-                        throw Exception("Update download failed: HTTP ${response.code}")
-                    }
-                    val responseBody =
-                        response.body ?: throw Exception("Update download returned an empty body")
-                    responseBody.downloadFileWithProgress(latestApk).flowOn(Dispatchers.IO)
-                        .collect { }
-                    return@withContext flow<DownloadStatus> {
-                        emit(DownloadStatus.Finished(latestApk))
-                    }
+                val response = client.newCall(request).execute()
+                if (!response.isSuccessful) {
+                    response.close()
+                    throw Exception("Update download failed: HTTP ${response.code}")
                 }
+                val responseBody =
+                    response.body ?: run {
+                        response.close()
+                        throw Exception("Update download returned an empty body")
+                    }
+
+                return@withContext flow {
+                    try {
+                        responseBody.downloadFileWithProgress(latestApk).collect { emit(it) }
+                    } finally {
+                        response.close()
+                    }
+                }.flowOn(Dispatchers.IO)
             } catch (e: Exception) {
                 e.printStackTrace()
             }
