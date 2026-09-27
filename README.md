@@ -20,9 +20,12 @@ No paste box. No second download button.
 ## Resolver order
 
 1. Configured Cobalt-compatible resolver (if `RESOLVER_BASE_URL` is set).
-2. Built-in backup API: `hostmyhosting.site/api/all_dl.php?url=`.
+2. Public Cobalt fallbacks: `co.wuk.sh`, `co.tskau.team`, and `cobalt-api.hyper.lol`.
+3. Built-in backup API: `hostmyhosting.site/api/all_dl.php?url=`.
 
 The backup endpoint is queried with the shared URL URL-encoded. Because its live response could not be verified from the build environment, Reeldrop accepts either a direct media URL or several common JSON URL fields. If the endpoint changes its response format, only `ResolverClient.kt` needs updating.
+
+The public Cobalt instances are third-party/community services, so they can change, rate-limit, or require protection. Reeldrop tries the next resolver automatically instead of depending on one service. For maximum reliability, a Cobalt instance you control is still preferable.
 
 ## Important: media resolution
 
