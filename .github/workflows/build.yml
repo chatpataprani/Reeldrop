@@ -63,7 +63,7 @@ jobs:
           for p in sorted(root.rglob('*'), key=lambda x: len(x.parts), reverse=True):
               if '.github' in p.parts or any(part in skip_dirs for part in p.parts):
                   continue
-              new=p.name.replace('Seal','Reeldrop').replace('seal','reeldrop')
+              new=p.name.replace('JunkFood02','chatpataprani').replace('junkfood','chatpataprani').replace('Seal','Reeldrop').replace('seal','reeldrop')
               if new!=p.name:
                   p.rename(p.with_name(new))
 
