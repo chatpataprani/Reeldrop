@@ -456,12 +456,12 @@
     <string name="customize_later">Customize later</string>
     <string name="flirty_reminders">yawr</string>
     <string name="flirty_reminders_desc">Playful reminders to come back and download something.</string>
-    <string name="flirty_1">don&apos;t you wanna download something bbg? &#x1F440;</string>
-    <string name="flirty_2">did you forget about me? &#x1F972;</string>
-    <string name="flirty_3">psst… got something to download? &#x1F60F;</string>
-    <string name="flirty_4">your downloads are getting lonely &#x1F62D;</string>
-    <string name="flirty_5">you really opened your phone and forgot about me? &#x1F972;</string>
-    <string name="flirty_6">no download today? betrayal fr &#x1F494;</string>
-    <string name="flirty_7">got a reel? hand it over &#x1F60C;</string>
-    <string name="flirty_8">me waiting for you to paste a link: &#x1F9CD;</string>
+    <string name="flirty_1"><![CDATA[don't you wanna download something bbg? 👀]]></string>
+    <string name="flirty_2"><![CDATA[did you forget about me? 🥹]]></string>
+    <string name="flirty_3"><![CDATA[psst… got something to download? 😏]]></string>
+    <string name="flirty_4"><![CDATA[your downloads are getting lonely 😭]]></string>
+    <string name="flirty_5"><![CDATA[you really opened your phone and forgot about me? 🥹]]></string>
+    <string name="flirty_6"><![CDATA[no download today? betrayal fr 💔]]></string>
+    <string name="flirty_7"><![CDATA[got a reel? hand it over 😌]]></string>
+    <string name="flirty_8"><![CDATA[me waiting for you to paste a link: 🧍]]></string>
 </resources>
