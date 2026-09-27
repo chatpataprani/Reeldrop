@@ -5,6 +5,7 @@ import android.content.pm.PackageManager
 import android.net.Uri
 import android.os.Build
 import android.provider.Settings
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
@@ -58,7 +59,7 @@ import java.util.Locale
 
 @Composable
 fun LanguagePage(onNavigateBack: () -> Unit = {}) {
-    val selectedLocale by remember { mutableStateOf(Locale.getDefault()) }
+    val selectedLocale = AppCompatDelegate.getApplicationLocales()[0] ?: Locale.getDefault()
     val scope = rememberCoroutineScope()
     val context = LocalContext.current
     val intent =
