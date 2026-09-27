@@ -132,7 +132,9 @@ the app isn't imaginary, the screenshots are just still loading... 💀
 
 check **GitHub Releases** for the latest build.
 
-if u see a newer release, use that one.
+the current release is an **arm64** APK for Android 7.0+.
+
+yawr checks for newer releases automatically when enabled, so u shouldn't need to manually download every update.
 
 ---
 
@@ -157,7 +159,7 @@ cd Reeldrop
 ### build
 
 ```bash
-./gradlew assembleDebug
+./gradlew assembleGenericRelease -PnoSplits
 ```
 
 APK output:
@@ -165,6 +167,8 @@ APK output:
 ```text
 app/build/outputs/apk/
 ```
+
+The GitHub release build is **arm64-v8a only** to keep the APK smaller.
 
 if Gradle throws some random ancient error at u, check the logs before blaming the app 😭
 
