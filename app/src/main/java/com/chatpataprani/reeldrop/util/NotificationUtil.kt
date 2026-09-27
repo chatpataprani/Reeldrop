@@ -9,6 +9,7 @@ import android.app.PendingIntent
 import android.content.Context
 import android.content.Intent
 import android.os.Build
+import android.graphics.BitmapFactory
 import android.util.Log
 import androidx.annotation.RequiresApi
 import androidx.core.app.NotificationCompat
@@ -35,6 +36,7 @@ object NotificationUtil {
     private const val CHANNEL_ID = "download_notification"
     private const val SERVICE_CHANNEL_ID = "download_service"
     private const val FLIRTY_CHANNEL_ID = "flirty_reminders"
+    private val appLogo by lazy { BitmapFactory.decodeResource(context.resources, R.drawable.reeldrop_logo) }
     private const val NOTIFICATION_GROUP_ID = "reeldrop.download.notification"
     private const val DEFAULT_NOTIFICATION_ID = 100
     const val SERVICE_NOTIFICATION_ID = 123
@@ -42,6 +44,7 @@ object NotificationUtil {
 
     //    private var builder =
     //        NotificationCompat.Builder(context, CHANNEL_ID).setSmallIcon(R.drawable.ic_stat_reeldrop)
+            .setLargeIcon(appLogo)
     private val commandNotificationBuilder =
         NotificationCompat.Builder(context, CHANNEL_ID).setSmallIcon(R.drawable.ic_stat_reeldrop)
 
