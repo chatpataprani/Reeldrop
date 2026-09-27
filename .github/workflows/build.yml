@@ -27,20 +27,20 @@ jobs:
       - name: Verify APK integrity
         run: |
           set -e
-          APK="$(find app/build/outputs/apk -type f -name '*.apk' | head -n 1)"
+          APK="$(find app/build/outputs/apk -type f -name '*arm64-v8a*.apk' | head -n 1)"
           test -n "$APK"
           echo "Using APK: $APK"
           ls -lh "$APK"
           file "$APK"
           unzip -t "$APK"
           sha256sum "$APK"
-          cp "$APK" reeldrop-debug.apk
+          cp "$APK" yawr-debug.apk
 
       - name: Upload build artifact
         uses: actions/upload-artifact@v4
         with:
-          name: reeldrop-debug-apk
-          path: reeldrop-debug.apk
+          name: yawr-debug-apk
+          path: yawr-debug.apk
           if-no-files-found: error
           retention-days: 30
 
@@ -49,15 +49,15 @@ jobs:
           GH_TOKEN: ${{ github.token }}
         run: |
           set -e
-          TAG="reeldrop-latest"
+          TAG="yawr-latest"
           if ! gh release view "$TAG" >/dev/null 2>&1; then
-            gh release create "$TAG" reeldrop-debug.apk               --title "Reeldrop Latest Build"               --notes "Automatically published from the latest successful main-branch build."               --prerelease
+            gh release create "$TAG" yawr-debug.apk               --title "yawr Latest Build"               --notes "Automatically published from the latest successful main-branch build."               --prerelease
           else
-            gh release upload "$TAG" reeldrop-debug.apk --clobber
+            gh release upload "$TAG" yawr-debug.apk --clobber
           fi
 
       - name: Write APK download link
         run: |
-          echo "## Reeldrop APK" >> "$GITHUB_STEP_SUMMARY"
+          echo "## yawr APK" >> "$GITHUB_STEP_SUMMARY"
           echo "" >> "$GITHUB_STEP_SUMMARY"
-          echo "[Download the latest Reeldrop APK](https://github.com/chatpataprani/Reeldrop/releases/download/reeldrop-latest/reeldrop-debug.apk)" >> "$GITHUB_STEP_SUMMARY"
+          echo "[Download the latest yawr APK](https://github.com/chatpataprani/Reeldrop/releases/download/reeldrop-latest/yawr-debug.apk)" >> "$GITHUB_STEP_SUMMARY"
