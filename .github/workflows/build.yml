@@ -38,16 +38,16 @@ jobs:
           ls -lh "$APK"
           file "$APK"
           python3 - "$APK" <<'PY'
-import sys
-import zipfile
+          import sys
+          import zipfile
 
-apk = sys.argv[1]
-with zipfile.ZipFile(apk) as z:
-    bad = z.testzip()
-    if bad:
-        raise SystemExit(f"Corrupt APK entry: {bad}")
-print("Python ZIP integrity check: OK")
-PY
+          apk = sys.argv[1]
+          with zipfile.ZipFile(apk) as z:
+              bad = z.testzip()
+              if bad:
+                  raise SystemExit(f"Corrupt APK entry: {bad}")
+          print("Python ZIP integrity check: OK")
+          PY
           "$ANDROID_HOME/build-tools/35.0.0/apksigner" verify --verbose "$APK"
           sha256sum "$APK"
           cp "$APK" yawr.apk
