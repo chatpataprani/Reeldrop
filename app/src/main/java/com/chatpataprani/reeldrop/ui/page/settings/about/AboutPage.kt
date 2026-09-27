@@ -34,7 +34,6 @@ import androidx.compose.ui.platform.LocalClipboardManager
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalHapticFeedback
 import androidx.compose.ui.platform.LocalUriHandler
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.text.ExperimentalTextApi
@@ -60,8 +59,6 @@ private const val repoUrl = "https://github.com/chatpataprani/Reeldrop"
 const val weblate = "https://hosted.weblate.org/engage/reeldrop/"
 const val YtdlpRepository = "https://github.com/yt-dlp/yt-dlp"
 private const val githubIssueUrl = "https://github.com/chatpataprani/Reeldrop/issues"
-private const val telegramChannelUrl = "https://github.com/chatpataprani/Reeldrop"
-private const val matrixSpaceUrl = "https://github.com/chatpataprani/Reeldrop"
 private const val githubSponsor = "https://github.com/sponsors/chatpataprani"
 private const val instagramUrl = "https://instagram.com/chatpataprani"
 private const val TAG = "AboutPage"
@@ -154,24 +151,6 @@ fun AboutPage(
                     ) {
                         //                    openUrl(githubSponsor)
                         onNavigateToDonatePage()
-                    }
-                }
-                item {
-                    PreferenceItem(
-                        title = stringResource(R.string.telegram_channel),
-                        description = telegramChannelUrl,
-                        icon = painterResource(id = R.drawable.icons8_telegram_app),
-                    ) {
-                        openUrl(telegramChannelUrl)
-                    }
-                }
-                item {
-                    PreferenceItem(
-                        title = stringResource(R.string.matrix_space),
-                        description = matrixSpaceUrl,
-                        icon = painterResource(id = R.drawable.icons8_matrix),
-                    ) {
-                        openUrl(matrixSpaceUrl)
                     }
                 }
                 item {
