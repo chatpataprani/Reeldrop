@@ -9,7 +9,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
     permissions:
-      contents: read
+      contents: write
 
     steps:
       - name: Checkout
@@ -36,9 +36,28 @@ jobs:
           sha256sum "$APK"
           cp "$APK" reeldrop-debug.apk
 
-      - name: Upload Reeldrop APK
+      - name: Upload build artifact
         uses: actions/upload-artifact@v4
         with:
+          name: reeldrop-debug-apk
           path: reeldrop-debug.apk
           if-no-files-found: error
-          archive: false
+          retention-days: 30
+
+      - name: Publish latest APK
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -e
+          TAG="reeldrop-latest"
+          if ! gh release view "$TAG" >/dev/null 2>&1; then
+            gh release create "$TAG" reeldrop-debug.apk               --title "Reeldrop Latest Build"               --notes "Automatically published from the latest successful main-branch build."               --prerelease
+          else
+            gh release upload "$TAG" reeldrop-debug.apk --clobber
+          fi
+
+      - name: Write APK download link
+        run: |
+          echo "## Reeldrop APK" >> "$GITHUB_STEP_SUMMARY"
+          echo "" >> "$GITHUB_STEP_SUMMARY"
+          echo "[Download the latest Reeldrop APK](https://github.com/chatpataprani/Reeldrop/releases/download/reeldrop-latest/reeldrop-debug.apk)" >> "$GITHUB_STEP_SUMMARY"
