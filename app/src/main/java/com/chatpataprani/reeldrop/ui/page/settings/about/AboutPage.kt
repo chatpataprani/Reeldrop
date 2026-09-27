@@ -8,6 +8,7 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.AutoAwesome
 import androidx.compose.material.icons.outlined.Description
 import androidx.compose.material.icons.outlined.Info
+import androidx.compose.material.icons.outlined.Language
 import androidx.compose.material.icons.outlined.NewReleases
 import androidx.compose.material.icons.outlined.Update
 import androidx.compose.material.icons.outlined.UpdateDisabled
@@ -62,6 +63,7 @@ private const val githubIssueUrl = "https://github.com/chatpataprani/Reeldrop/is
 private const val telegramChannelUrl = "https://github.com/chatpataprani/Reeldrop"
 private const val matrixSpaceUrl = "https://github.com/chatpataprani/Reeldrop"
 private const val githubSponsor = "https://github.com/sponsors/chatpataprani"
+private const val instagramUrl = "https://instagram.com/chatpataprani"
 private const val TAG = "AboutPage"
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -117,6 +119,15 @@ fun AboutPage(
                         icon = Icons.Outlined.Description,
                     ) {
                         openUrl(repoUrl)
+                    }
+                }
+                item {
+                    PreferenceItem(
+                        title = "Instagram",
+                        description = "@chatpataprani",
+                        icon = Icons.Outlined.Language,
+                    ) {
+                        openUrl(instagramUrl)
                     }
                 }
                 item {
