@@ -1,33 +1,33 @@
 <div align="center">
 
-# yawr.
+# Reeldrop
 
-### your lowkey Android video & audio downloader powered by yt-dlp
+### A fast, clean Android downloader powered by yt-dlp.
 
 <p>
   <a href="https://github.com/chatpataprani/Reeldrop">
     <img src="https://img.shields.io/github/stars/chatpataprani/Reeldrop?style=for-the-badge&logo=github&label=Stars" alt="GitHub Stars">
   </a>
-  <a href="https://github.com/chatpataprani/Reeldrop/releases/tag/reeldrop-latest">
-    <img src="https://img.shields.io/github/v/release/chatpataprani/Reeldrop?include_prereleases&style=for-the-badge&logo=android&label=Release" alt="Release">
+  <a href="https://github.com/chatpataprani/Reeldrop/releases">
+    <img src="https://img.shields.io/github/v/release/chatpataprani/Reeldrop?style=for-the-badge&logo=android&label=Release" alt="Latest Release">
   </a>
   <a href="https://github.com/chatpataprani/Reeldrop/actions/workflows/build.yml">
-    <img src="https://img.shields.io/github/actions/workflow/status/chatpataprani/Reeldrop/build.yml?style=for-the-badge&logo=github-actions&label=Build" alt="Build">
+    <img src="https://img.shields.io/github/actions/workflow/status/chatpataprani/Reeldrop/build.yml?style=for-the-badge&logo=github-actions&label=Build" alt="Build Status">
   </a>
   <a href="https://github.com/chatpataprani/Reeldrop/blob/main/LICENSE">
-    <img src="https://img.shields.io/github/license/chatpataprani/Reeldrop?style=for-the-badge&logo=opensourceinitiative&label=License" alt="License">
+    <img src="https://img.shields.io/github/license/chatpataprani/Reeldrop?style=for-the-badge&label=License" alt="License">
   </a>
 </p>
 
 <p>
-  <img src="https://img.shields.io/badge/Android-7.0%2B-3DDC84?style=flat-square&logo=android&logoColor=white" alt="Android">
+  <img src="https://img.shields.io/badge/Android-7.0%2B-3DDC84?style=flat-square&logo=android&logoColor=white" alt="Android 7.0+">
   <img src="https://img.shields.io/badge/Kotlin-100%25-7F52FF?style=flat-square&logo=kotlin&logoColor=white" alt="Kotlin">
-  <img src="https://img.shields.io/badge/Jetpack%20Compose-Material%203-4285F4?style=flat-square&logo=jetpackcompose&logoColor=white" alt="Jetpack Compose">
+  <img src="https://img.shields.io/badge/Jetpack%20Compose-Material%203-4285F4?style=flat-square&logo=jetpackcompose" alt="Jetpack Compose">
   <img src="https://img.shields.io/badge/yt--dlp-powered-FF0000?style=flat-square&logo=youtube&logoColor=white" alt="yt-dlp">
 </p>
 
 <p>
-  <a href="https://github.com/chatpataprani/Reeldrop/releases/download/reeldrop-latest/reeldrop-debug.apk">
+  <a href="https://github.com/chatpataprani/Reeldrop/releases">
     <img src="https://img.shields.io/badge/Download-Latest%20APK-2ea44f?style=for-the-badge&logo=android&logoColor=white" alt="Download Latest APK">
   </a>
 </p>
@@ -36,93 +36,89 @@
 
 ---
 
-## ✨ about
+## ✨ What is Reeldrop?
 
-**yawr.** is your lowkey downloader sidekick. paste a link, hit download, and let it cook.
+**Reeldrop** is a lightweight Android downloader built around **yt-dlp**.
 
-no 47-step setup. no unnecessary drama. just download stuff you actually have permission to download.
+Paste a supported URL, choose what you want, and download it — without turning a simple download into a side quest.
 
-## 🚀 what it can do
+> Built for people who want a downloader, not a 60 MB app with 14 screens of nonsense.
 
-| feature | what it does |
+## 🚀 Features
+
+| Feature | Description |
 |---|---|
-| 🎬 video downloads | grabs supported videos through yt-dlp |
-| 🎵 audio extraction | saves supported media as audio |
-| 📚 playlists | handles playlist downloads |
-| 🖼️ metadata | keeps thumbnails + metadata when supported |
-| 💬 subtitles | downloads and embeds subtitles |
-| ⚡ aria2c | optional external downloader support |
-| 🧩 custom commands | nerd mode for custom yt-dlp commands |
-| 🍪 cookies | useful for sites that need login |
-| 📥 download manager | queue + history + task management |
-| 🎨 Material 3 | clean Android UI with dynamic theming |
-| 🔗 share support | send links straight into yawr |
-| 🌐 network controls | proxy + IPv4 options |
-| 😭 reminders | yawr occasionally reminds you it exists |
+| 🎬 Video downloads | Download supported videos through yt-dlp |
+| 🎵 Audio extraction | Extract supported media as audio |
+| 📚 Playlists | Download supported playlists |
+| 🖼️ Metadata | Preserve thumbnails and metadata when available |
+| 💬 Subtitles | Download and embed subtitles when supported |
+| ⚡ aria2c | Optional external downloader support |
+| 🧩 Custom commands | Advanced yt-dlp command support |
+| 🍪 Cookies | Support sites that require authentication |
+| 📥 Download manager | Queue, history and task management |
+| 🎨 Material 3 | Modern Android UI with dynamic theming |
+| 🔗 Share support | Send links directly to Reeldrop |
+| 🌐 Network controls | Proxy and IPv4 options |
 
-## 📱 screenshots
+## 📱 Screenshots
 
-drop screenshots here whenever the UI gets even more unnecessarily polished.
+Screenshots coming soon.
 
-<!--
+<!-- Add screenshots here:
 <img src="docs/screenshots/home.png" width="240">
 <img src="docs/screenshots/download.png" width="240">
 <img src="docs/screenshots/settings.png" width="240">
 -->
 
-## ⬇️ download
+## ⬇️ Download
 
-### latest APK
+Get the latest APK from **GitHub Releases**:
 
-<p align="center">
-  <a href="https://github.com/chatpataprani/Reeldrop/releases/download/reeldrop-latest/reeldrop-debug.apk">
-    <img src="https://img.shields.io/badge/Download%20yawr-APK-34A853?style=for-the-badge&logo=android&logoColor=white" alt="Download yawr APK">
-  </a>
-</p>
+**[Download Reeldrop](https://github.com/chatpataprani/Reeldrop/releases)**
 
-successful builds publish the latest debug APK to the release above.
+> APK availability depends on the project's release/build status.
 
-## 🛠️ build it yourself
+## 🛠️ Build from source
 
-### you need
+### Requirements
 
 - Android Studio
 - JDK 21
 - Android SDK
 - Git
 
-### clone
+### Clone
 
 ```bash
 git clone https://github.com/chatpataprani/Reeldrop.git
 cd Reeldrop
 ```
 
-### build
+### Build
 
 ```bash
 ./gradlew assembleDebug
 ```
 
-APK output:
+The generated APK will be under:
 
 ```text
 app/build/outputs/apk/
 ```
 
-## 🧱 tech stuff
+## 🧱 Tech stack
 
-<p>
-  <img src="https://img.shields.io/badge/Language-Kotlin-7F52FF?style=flat-square&logo=kotlin&logoColor=white" alt="Kotlin">
-  <img src="https://img.shields.io/badge/UI-Jetpack%20Compose-4285F4?style=flat-square&logo=jetpackcompose&logoColor=white" alt="Jetpack Compose">
-  <img src="https://img.shields.io/badge/Design-Material%203-757575?style=flat-square&logo=materialdesign&logoColor=white" alt="Material 3">
-  <img src="https://img.shields.io/badge/Downloader-yt--dlp-FF0000?style=flat-square&logo=youtube&logoColor=white" alt="yt-dlp">
-  <img src="https://img.shields.io/badge/Build-Gradle-02303A?style=flat-square&logo=gradle&logoColor=white" alt="Gradle">
-</p>
+- **Kotlin**
+- **Jetpack Compose**
+- **Material 3**
+- **yt-dlp**
+- **Gradle**
+- **aria2c** (optional)
 
-## 🤝 credits
+## 🤝 Open-source credits
 
-big respect to the open-source projects and libraries that make yawr possible:
+Reeldrop uses and/or builds upon open-source projects including:
 
 - [yt-dlp](https://github.com/yt-dlp/yt-dlp)
 - [youtubedl-android](https://github.com/yausername/youtubedl-android)
@@ -133,39 +129,34 @@ big respect to the open-source projects and libraries that make yawr possible:
 - [Material Color Utilities](https://github.com/material-foundation/material-color-utilities)
 - [Monet](https://github.com/Kyant0/Monet)
 
-original licenses and required attribution stay in the repository.
+See the repository and individual projects for their respective licenses and attribution requirements.
 
-## 👨‍💻 developer
+## 👨‍💻 Developer
 
-<div align="center">
+**Amir · [@chatpataprani](https://github.com/chatpataprani)**
 
-### Amir · @chatpataprani
+Built independently, with questionable amounts of debugging.
 
-<a href="https://github.com/chatpataprani">
-  <img src="https://img.shields.io/badge/GitHub-@chatpataprani-181717?style=for-the-badge&logo=github&logoColor=white" alt="GitHub">
-</a>
-<a href="https://instagram.com/chatpataprani">
-  <img src="https://img.shields.io/badge/Instagram-@chatpataprani-E4405F?style=for-the-badge&logo=instagram&logoColor=white" alt="Instagram">
-</a>
+## 📄 License
 
-</div>
+This project is licensed under the **GNU General Public License v3.0**.
 
-## 📄 license
+See [LICENSE](LICENSE) for the full license text.
 
-GNU General Public License v3.0.
+## ⚠️ Disclaimer
 
-see [LICENSE](LICENSE).
+Reeldrop is a downloading tool. Only download content you have the legal right or permission to download.
 
-## ⚠️ disclaimer
-
-only download content you have the right or permission to download. you're responsible for following applicable copyright rules, website terms, privacy requirements, and laws.
+You are responsible for complying with applicable copyright laws, website terms, privacy requirements, and other rules that apply to your use of the application.
 
 ---
 
 <div align="center">
 
-**yawr. — paste link. download. disappear.**
+### Reeldrop
 
-⭐ star the repo if it saved you from opening a 60 MB app just to test one link.
+**paste link. download. disappear.**
+
+⭐ If Reeldrop is useful to you, consider starring the repository.
 
 </div>
