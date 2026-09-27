@@ -56,7 +56,7 @@ import com.chatpataprani.reeldrop.util.ToastUtil
 
 private const val releaseURL = "https://github.com/chatpataprani/Reeldrop/releases"
 private const val repoUrl = "https://github.com/chatpataprani/Reeldrop"
-const val weblate = "https://hosted.weblate.org/engage/reeldrop/"
+const val weblate = "https://hosted.weblate.org/engage/seal/"
 const val YtdlpRepository = "https://github.com/yt-dlp/yt-dlp"
 private const val githubIssueUrl = "https://github.com/chatpataprani/Reeldrop/issues"
 private const val telegramChannelUrl = "https://github.com/chatpataprani/Reeldrop"

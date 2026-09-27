@@ -90,7 +90,7 @@ import com.chatpataprani.reeldrop.ui.component.PreferenceSubtitle
 import com.chatpataprani.reeldrop.ui.component.PreferenceSwitch
 import com.chatpataprani.reeldrop.ui.component.PreferenceSwitchWithDivider
 import com.chatpataprani.reeldrop.ui.component.PreferencesHintCard
-import com.chatpataprani.reeldrop.ui.component.ReeldropDialog
+import com.chatpataprani.reeldrop.ui.component.SealDialog
 import com.chatpataprani.reeldrop.util.COMMAND_DIRECTORY
 import com.chatpataprani.reeldrop.util.CUSTOM_COMMAND
 import com.chatpataprani.reeldrop.util.CUSTOM_OUTPUT_TEMPLATE
@@ -524,7 +524,7 @@ fun OutputTemplateDialog(
 
     var error by remember { mutableIntStateOf(0) }
 
-    ReeldropDialog(
+    SealDialog(
         onDismissRequest = onDismissRequest,
         confirmButton = {
             ConfirmButton(enabled = error == 0) {

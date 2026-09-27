@@ -71,8 +71,8 @@ import com.chatpataprani.reeldrop.ui.component.DialogSwitchItem
 import com.chatpataprani.reeldrop.ui.component.DismissButton
 import com.chatpataprani.reeldrop.ui.component.OutlinedButtonChip
 import com.chatpataprani.reeldrop.ui.component.PreferenceSubtitle
-import com.chatpataprani.reeldrop.ui.component.ReeldropDialog
-import com.chatpataprani.reeldrop.ui.component.ReeldropTextField
+import com.chatpataprani.reeldrop.ui.component.SealDialog
+import com.chatpataprani.reeldrop.ui.component.SealTextField
 import com.chatpataprani.reeldrop.ui.page.downloadv2.configure.PreferencesMock
 import com.chatpataprani.reeldrop.util.AUDIO_CONVERSION_FORMAT
 import com.chatpataprani.reeldrop.util.AUDIO_CONVERT
@@ -112,7 +112,7 @@ fun VideoResolutionSelectField(
     val videoResolutionText = PreferenceStrings.getVideoResolutionDesc(videoResolution)
 
     ExposedDropdownMenuBox(expanded = expanded, onExpandedChange = { expanded = !expanded }) {
-        ReeldropTextField(
+        SealTextField(
             modifier = modifier.fillMaxWidth().menuAnchor(MenuAnchorType.PrimaryNotEditable),
             value = videoResolutionText,
             onValueChange = {},
@@ -184,7 +184,7 @@ fun VideoQuickSettingsDialog(
     onSave: () -> Unit = {},
     onDismissRequest: () -> Unit = {},
 ) {
-    ReeldropDialog(
+    SealDialog(
         onDismissRequest = onDismissRequest,
         icon = { Icon(Icons.Outlined.VideoFile, null) },
         title = { Text(text = stringResource(id = R.string.edit_preset)) },
@@ -286,7 +286,7 @@ private fun AudioFormatSelectField(
 
     PreferenceSubtitle(text = stringResource(R.string.audio_format))
     ExposedDropdownMenuBox(expanded = expanded, onExpandedChange = { expanded = !expanded }) {
-        ReeldropTextField(
+        SealTextField(
             modifier = modifier.fillMaxWidth().menuAnchor(MenuAnchorType.PrimaryNotEditable),
             value = userSelectionText,
             onValueChange = {},
@@ -336,7 +336,7 @@ private fun AudioQualitySelectField(
 
     PreferenceSubtitle(text = stringResource(R.string.audio_quality))
     ExposedDropdownMenuBox(expanded = expanded, onExpandedChange = { expanded = !expanded }) {
-        ReeldropTextField(
+        SealTextField(
             enabled = enabled,
             modifier =
                 modifier
@@ -387,7 +387,7 @@ fun AudioQuickSettingsDialog(
     onSave: () -> Unit,
 ) {
     var editingPreset by remember { mutableStateOf(false) }
-    ReeldropDialog(
+    SealDialog(
         modifier = modifier,
         onDismissRequest = onDismissRequest,
         icon = { Icon(Icons.Outlined.AudioFile, null) },
@@ -479,7 +479,7 @@ fun AudioConversionDialog(
     onConfirm: (Int) -> Unit = {},
 ) {
     var audioFormat by remember { mutableIntStateOf(audioFormat) }
-    ReeldropDialog(
+    SealDialog(
         onDismissRequest = onDismissRequest,
         dismissButton = {
             TextButton(onClick = onDismissRequest) { Text(stringResource(R.string.dismiss)) }
@@ -521,7 +521,7 @@ fun AudioConversionDialog(
 fun AudioConversionQuickSettingsDialog(onDismissRequest: () -> Unit, onConfirm: () -> Unit = {}) {
     var audioFormat by remember { mutableIntStateOf(PreferenceUtil.getAudioConvertFormat()) }
     var convertAudio by AUDIO_CONVERT.booleanState
-    ReeldropDialog(
+    SealDialog(
         onDismissRequest = onDismissRequest,
         dismissButton = { DismissButton { onDismissRequest() } },
         icon = { Icon(Icons.Outlined.Sync, null) },
@@ -569,7 +569,7 @@ fun VideoFormatDialog(
     onConfirm: (Int) -> Unit = {},
 ) {
     var preference by remember { mutableIntStateOf(videoFormatPreference) }
-    ReeldropDialog(
+    SealDialog(
         onDismissRequest = onDismissRequest,
         dismissButton = {
             TextButton(onClick = onDismissRequest) { Text(stringResource(R.string.dismiss)) }
@@ -610,7 +610,7 @@ fun VideoFormatDialog(
 @Composable
 fun AudioFormatDialog(onDismissRequest: () -> Unit) {
     var audioFormat by AUDIO_FORMAT.intState
-    ReeldropDialog(
+    SealDialog(
         onDismissRequest = onDismissRequest,
         dismissButton = {
             TextButton(onClick = onDismissRequest) { Text(stringResource(R.string.dismiss)) }
@@ -646,7 +646,7 @@ fun AudioFormatDialog(onDismissRequest: () -> Unit) {
 @Composable
 fun AudioQualityDialog(onDismissRequest: () -> Unit) {
     var audioQuality by AUDIO_QUALITY.intState
-    ReeldropDialog(
+    SealDialog(
         onDismissRequest = onDismissRequest,
         dismissButton = { DismissButton { onDismissRequest() } },
         icon = { Icon(Icons.Outlined.HighQuality, null) },
@@ -688,7 +688,7 @@ fun FormatSortingDialog(
     onConfirm: (String) -> Unit = {},
 ) {
     var sortingFields by remember(fields) { mutableStateOf(fields) }
-    ReeldropDialog(
+    SealDialog(
         onDismissRequest = onDismissRequest,
         dismissButton = { DismissButton { onDismissRequest() } },
         icon = { Icon(Icons.AutoMirrored.Outlined.Sort, null) },
@@ -771,7 +771,7 @@ fun VideoQualityDialog(
 ) {
     var videoResolution by remember { mutableIntStateOf(videoQuality) }
 
-    ReeldropDialog(
+    SealDialog(
         onDismissRequest = onDismissRequest,
         dismissButton = {
             TextButton(onClick = onDismissRequest) { Text(stringResource(R.string.dismiss)) }
@@ -843,7 +843,7 @@ private fun SubtitleLanguageDialogImpl(
 ) {
     var languages by remember(initialLanguages) { mutableStateOf(initialLanguages) }
     val uriHandler = LocalUriHandler.current
-    ReeldropDialog(
+    SealDialog(
         onDismissRequest = onDismissRequest,
         title = { Text(stringResource(id = R.string.subtitle_language)) },
         icon = { Icon(Icons.Outlined.Language, null) },
@@ -902,7 +902,7 @@ private fun SubtitleLanguageDialogImpl(
 @Composable
 fun SubtitleConversionDialog(onDismissRequest: () -> Unit) {
     var currentFormat by CONVERT_SUBTITLE.intState
-    ReeldropDialog(
+    SealDialog(
         onDismissRequest = onDismissRequest,
         confirmButton = {
             ConfirmButton {

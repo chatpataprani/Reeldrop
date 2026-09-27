@@ -71,8 +71,8 @@ import com.chatpataprani.reeldrop.ui.component.FilledButtonWithIcon
 import com.chatpataprani.reeldrop.ui.component.OutlinedButtonChip
 import com.chatpataprani.reeldrop.ui.component.OutlinedButtonWithIcon
 import com.chatpataprani.reeldrop.ui.component.PasteFromClipBoardButton
-import com.chatpataprani.reeldrop.ui.component.ReeldropDialog
-import com.chatpataprani.reeldrop.ui.component.ReeldropModalBottomSheetM2
+import com.chatpataprani.reeldrop.ui.component.SealDialog
+import com.chatpataprani.reeldrop.ui.component.SealModalBottomSheetM2
 import com.chatpataprani.reeldrop.ui.component.TaskStatus
 import com.chatpataprani.reeldrop.ui.page.settings.command.CommandTemplateDialog
 import com.chatpataprani.reeldrop.util.PreferenceUtil
@@ -164,7 +164,7 @@ fun TaskListPage(onNavigateBack: () -> Unit, onNavigateToDetail: (Int) -> Unit) 
     BackHandler(showBottomSheet) { onDismissRequest() }
 
     if (showBottomSheet)
-        ReeldropModalBottomSheetM2(
+        SealModalBottomSheetM2(
             sheetState = sheetState,
             sheetContent = {
                 val clipboardManager = LocalClipboardManager.current
@@ -337,7 +337,7 @@ fun TemplatePickerDialog(onDismissRequest: () -> Unit = {}) {
                     .run { if (this == -1) 0 else this }
         )
 
-    ReeldropDialog(
+    SealDialog(
         onDismissRequest = onDismissRequest,
         confirmButton = { DismissButton(onClick = onDismissRequest) },
         title = { Text(text = stringResource(id = R.string.template_selection)) },

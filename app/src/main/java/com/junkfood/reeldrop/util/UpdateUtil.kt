@@ -32,7 +32,7 @@ import okhttp3.ResponseBody
 object UpdateUtil {
 
     private const val OWNER = "chatpataprani"
-    private const val REPO = "Reeldrop"
+    private const val REPO = "Seal"
     private const val ARM64 = "arm64-v8a"
     private const val ARM32 = "armeabi-v7a"
     private const val X86 = "x86"
@@ -250,7 +250,7 @@ object UpdateUtil {
         @SerialName("browser_download_url") val browserDownloadUrl: String? = null,
     )
 
-    reeldroped class DownloadStatus {
+    sealed class DownloadStatus {
         object NotYet : DownloadStatus()
 
         data class Progress(val percent: Int) : DownloadStatus()
@@ -278,7 +278,7 @@ object UpdateUtil {
             } else EMPTY_VERSION
         } ?: EMPTY_VERSION
 
-    reeldroped class Version(val major: Int, val minor: Int, val patch: Int, val build: Int = 0) :
+    sealed class Version(val major: Int, val minor: Int, val patch: Int, val build: Int = 0) :
         Comparable<Version> {
         companion object {
             // private const val ABI = 1L

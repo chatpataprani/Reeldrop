@@ -9,7 +9,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import com.chatpataprani.reeldrop.R
 import com.chatpataprani.reeldrop.ui.component.DialogSingleChoiceItem
-import com.chatpataprani.reeldrop.ui.component.ReeldropDialog
+import com.chatpataprani.reeldrop.ui.component.SealDialog
 import com.chatpataprani.reeldrop.util.NONE
 import com.chatpataprani.reeldrop.util.USE_PREVIOUS_SELECTION
 
@@ -20,7 +20,7 @@ fun DownloadTypeCustomizationDialog(
     selectedItem: Int,
     onSelect: (Int) -> Unit,
 ) {
-    ReeldropDialog(
+    SealDialog(
         modifier = modifier,
         onDismissRequest = onDismissRequest,
         confirmButton = null,

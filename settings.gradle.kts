@@ -16,6 +16,6 @@ dependencyResolutionManagement {
         mavenLocal()
     }
 }
-rootProject.name = "Reeldrop"
+rootProject.name = "Seal"
 include (":app")
 include(":color")

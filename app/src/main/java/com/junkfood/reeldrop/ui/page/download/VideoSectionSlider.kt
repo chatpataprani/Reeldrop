@@ -48,8 +48,8 @@ import androidx.core.text.isDigitsOnly
 import com.chatpataprani.reeldrop.R
 import com.chatpataprani.reeldrop.ui.component.ConfirmButton
 import com.chatpataprani.reeldrop.ui.component.DismissButton
-import com.chatpataprani.reeldrop.ui.component.ReeldropDialog
-import com.chatpataprani.reeldrop.ui.component.ReeldropTextField
+import com.chatpataprani.reeldrop.ui.component.SealDialog
+import com.chatpataprani.reeldrop.ui.component.SealTextField
 import com.chatpataprani.reeldrop.ui.component.TextButtonWithIcon
 import com.chatpataprani.reeldrop.util.isNumberInRange
 import com.chatpataprani.reeldrop.util.toDurationText
@@ -220,7 +220,7 @@ fun VideoClipDialog(
         } else error = true
     }
 
-    ReeldropDialog(
+    SealDialog(
         onDismissRequest = onDismissRequest,
         title = { Text(stringResource(id = R.string.clip_video)) },
         icon = { Icon(Icons.Outlined.ContentCut, null) },
@@ -234,7 +234,7 @@ fun VideoClipDialog(
                 ) {
                     Column(modifier = Modifier.weight(1f).padding(end = 6.dp)) {
                         Row(verticalAlignment = Alignment.CenterVertically) {
-                            ReeldropTextField(
+                            SealTextField(
                                 modifier =
                                     Modifier.weight(1f).semantics {
                                         contentDescription = start + minute
@@ -254,7 +254,7 @@ fun VideoClipDialog(
                                 text = ":",
                                 style = MaterialTheme.typography.labelLarge,
                             )
-                            ReeldropTextField(
+                            SealTextField(
                                 modifier =
                                     Modifier.weight(1f).semantics {
                                         contentDescription = start + second
@@ -279,7 +279,7 @@ fun VideoClipDialog(
                         modifier = Modifier.weight(1f).padding(start = 6.dp),
                         verticalAlignment = Alignment.CenterVertically,
                     ) {
-                        ReeldropTextField(
+                        SealTextField(
                             modifier =
                                 Modifier.weight(1f).semantics { contentDescription = end + minute },
                             value = toMin,
@@ -297,7 +297,7 @@ fun VideoClipDialog(
                             text = ":",
                             style = MaterialTheme.typography.labelLarge,
                         )
-                        ReeldropTextField(
+                        SealTextField(
                             modifier =
                                 Modifier.weight(1f).semantics { contentDescription = end + second },
                             value = toSec,

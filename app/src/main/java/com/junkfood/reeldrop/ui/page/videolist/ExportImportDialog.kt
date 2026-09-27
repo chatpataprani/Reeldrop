@@ -28,9 +28,9 @@ import com.chatpataprani.reeldrop.R
 import com.chatpataprani.reeldrop.database.backup.BackupUtil.BackupDestination
 import com.chatpataprani.reeldrop.database.backup.BackupUtil.BackupType
 import com.chatpataprani.reeldrop.ui.component.DialogSubtitle
-import com.chatpataprani.reeldrop.ui.component.ReeldropDialog
+import com.chatpataprani.reeldrop.ui.component.SealDialog
 import com.chatpataprani.reeldrop.ui.component.SingleSelectChip
-import com.chatpataprani.reeldrop.ui.theme.ReeldropTheme
+import com.chatpataprani.reeldrop.ui.theme.SealTheme
 
 @Composable
 fun ExportDialog(
@@ -41,7 +41,7 @@ fun ExportDialog(
 ) {
     var type by remember { mutableStateOf(BackupType.DownloadHistory) }
     var destination by remember { mutableStateOf(BackupDestination.File) }
-    ReeldropDialog(
+    SealDialog(
         containerColor = MaterialTheme.colorScheme.surfaceContainerLow,
         modifier = modifier,
         onDismissRequest = onDismissRequest,
@@ -126,7 +126,7 @@ fun ImportDialog(
 ) {
     var destination by remember { mutableStateOf(BackupDestination.File) }
 
-    ReeldropDialog(
+    SealDialog(
         containerColor = MaterialTheme.colorScheme.surfaceContainerLow,
         modifier = modifier,
         onDismissRequest = onDismissRequest,
@@ -195,11 +195,11 @@ fun ImportDialog(
 @Preview(locale = "ja")
 @Composable
 private fun PreviewExport() {
-    ReeldropTheme { ExportDialog() { _, _ -> } }
+    SealTheme { ExportDialog() { _, _ -> } }
 }
 
 @Preview(uiMode = Configuration.UI_MODE_NIGHT_YES, name = "Dark")
 @Composable
 private fun PreviewImport() {
-    ReeldropTheme { ImportDialog() { _ -> } }
+    SealTheme { ImportDialog() { _ -> } }
 }

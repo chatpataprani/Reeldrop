@@ -37,7 +37,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.chatpataprani.reeldrop.R
 import com.chatpataprani.reeldrop.ui.common.AsyncImageImpl
-import com.chatpataprani.reeldrop.ui.theme.ReeldropTheme
+import com.chatpataprani.reeldrop.ui.theme.SealTheme
 import com.chatpataprani.reeldrop.util.toDurationText
 import com.chatpataprani.reeldrop.util.toFileSizeText
 
@@ -159,5 +159,5 @@ fun VideoCard(
 @Preview
 @Preview(name = "Dark Mode", uiMode = Configuration.UI_MODE_NIGHT_YES)
 fun VideoCardPreview() {
-    ReeldropTheme() { VideoCard(isPreview = true) }
+    SealTheme() { VideoCard(isPreview = true) }
 }

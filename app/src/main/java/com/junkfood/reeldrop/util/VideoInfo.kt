@@ -4,7 +4,7 @@ import kotlin.math.roundToInt
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
-reeldroped interface YoutubeDLInfo
+sealed interface YoutubeDLInfo
 
 @Serializable
 data class VideoInfo(

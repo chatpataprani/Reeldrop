@@ -15,7 +15,7 @@ import androidx.compose.ui.unit.dp
 import com.chatpataprani.reeldrop.R
 import com.chatpataprani.reeldrop.database.objects.DownloadedVideoInfo
 import com.chatpataprani.reeldrop.ui.component.CheckBoxItem
-import com.chatpataprani.reeldrop.ui.component.ReeldropDialog
+import com.chatpataprani.reeldrop.ui.component.SealDialog
 
 @Composable
 fun RemoveItemDialog(
@@ -25,7 +25,7 @@ fun RemoveItemDialog(
     onRemoveConfirm: (Boolean) -> Unit = {},
     onDismissRequest: () -> Unit = {},
 ) {
-    ReeldropDialog(
+    SealDialog(
         onDismissRequest = onDismissRequest,
         title = { Text(text = stringResource(R.string.delete_info)) },
         icon = { Icon(Icons.Outlined.Delete, null) },

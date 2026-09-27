@@ -21,7 +21,7 @@ private const val TAG = "DownloadDialogViewModel"
 
 class DownloadDialogViewModel(private val downloader: DownloaderV2) : ViewModel() {
 
-    reeldroped interface SelectionState {
+    sealed interface SelectionState {
         data object Idle : SelectionState
 
         data class PlaylistSelection(val result: PlaylistResult) : SelectionState
@@ -29,7 +29,7 @@ class DownloadDialogViewModel(private val downloader: DownloaderV2) : ViewModel(
         data class FormatSelection(val info: VideoInfo) : SelectionState
     }
 
-    reeldroped interface SheetState {
+    sealed interface SheetState {
         data object InputUrl : SheetState
 
         data class Configure(val urlList: List<String>) : SheetState
@@ -39,13 +39,13 @@ class DownloadDialogViewModel(private val downloader: DownloaderV2) : ViewModel(
         data class Error(val action: Action, val throwable: Throwable) : SheetState
     }
 
-    reeldroped interface SheetValue {
+    sealed interface SheetValue {
         data object Expanded : SheetValue
 
         data object Hidden : SheetValue
     }
 
-    reeldroped interface Action {
+    sealed interface Action {
         data object HideSheet : Action
 
         data class ShowSheet(val urlList: List<String>? = null) : Action

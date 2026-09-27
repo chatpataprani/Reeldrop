@@ -27,7 +27,7 @@ import com.chatpataprani.reeldrop.ui.page.downloadv2.configure.DownloadDialogVie
 import com.chatpataprani.reeldrop.ui.page.downloadv2.configure.DownloadDialogViewModel.SelectionState
 import com.chatpataprani.reeldrop.ui.page.downloadv2.configure.FormatPage
 import com.chatpataprani.reeldrop.ui.page.downloadv2.configure.PlaylistSelectionPage
-import com.chatpataprani.reeldrop.ui.theme.ReeldropTheme
+import com.chatpataprani.reeldrop.ui.theme.SealTheme
 import com.chatpataprani.reeldrop.util.DownloadUtil
 import com.chatpataprani.reeldrop.util.PreferenceUtil
 import com.chatpataprani.reeldrop.util.matchUrlFromSharedText
@@ -97,7 +97,7 @@ class QuickDownloadActivity : ComponentActivity() {
 
         setContent {
             SettingsProvider(calculateWindowSizeClass(this).widthSizeClass) {
-                ReeldropTheme(
+                SealTheme(
                     darkTheme = LocalDarkTheme.current.isDarkTheme(),
                     isHighContrastModeEnabled = LocalDarkTheme.current.isHighContrastModeEnabled,
                 ) {

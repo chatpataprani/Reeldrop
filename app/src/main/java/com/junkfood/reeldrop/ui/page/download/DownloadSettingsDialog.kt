@@ -64,8 +64,8 @@ import com.chatpataprani.reeldrop.ui.component.DismissButton
 import com.chatpataprani.reeldrop.ui.component.DrawerSheetSubtitle
 import com.chatpataprani.reeldrop.ui.component.FilledButtonWithIcon
 import com.chatpataprani.reeldrop.ui.component.OutlinedButtonWithIcon
-import com.chatpataprani.reeldrop.ui.component.ReeldropModalBottomSheet
-import com.chatpataprani.reeldrop.ui.component.ReeldropModalBottomSheetM2
+import com.chatpataprani.reeldrop.ui.component.SealModalBottomSheet
+import com.chatpataprani.reeldrop.ui.component.SealModalBottomSheetM2
 import com.chatpataprani.reeldrop.ui.component.SingleChoiceChip
 import com.chatpataprani.reeldrop.ui.component.VideoFilterChip
 import com.chatpataprani.reeldrop.ui.page.command.TemplatePickerDialog
@@ -503,7 +503,7 @@ fun DownloadSettingDialog(
                     }
                 }
 
-                ReeldropModalBottomSheetM2(
+                SealModalBottomSheetM2(
                     sheetState = sheetState,
                     contentPadding = PaddingValues(horizontal = 20.dp),
                     sheetContent = {
@@ -516,7 +516,7 @@ fun DownloadSettingDialog(
                     scope.launch { sheetState.hide() }.invokeOnCompletion { onDismissRequest() }
                 }
 
-                ReeldropModalBottomSheet(
+                SealModalBottomSheet(
                     sheetState = sheetState,
                     contentPadding = PaddingValues(horizontal = 20.dp),
                     onDismissRequest = onDismissRequest,

@@ -40,7 +40,7 @@ object Downloader {
 
     private const val TAG = "Downloader"
 
-    reeldroped class State {
+    sealed class State {
         data class DownloadingPlaylist(val currentItem: Int = 0, val itemCount: Int = 0) : State()
 
         data object DownloadingVideo : State()
@@ -52,7 +52,7 @@ object Downloader {
         data object Updating : State()
     }
 
-    reeldroped class ErrorState(open val url: String = "", open val report: String = "") {
+    sealed class ErrorState(open val url: String = "", open val report: String = "") {
         data class DownloadError(override val url: String, override val report: String) :
             ErrorState(url = url, report = report)
 
@@ -80,7 +80,7 @@ object Downloader {
     ) {
         fun toKey() = makeKey(url, template.name)
 
-        reeldroped class State {
+        sealed class State {
             data class Error(val errorReport: String) : State()
 
             object Completed : State()

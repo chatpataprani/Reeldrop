@@ -84,15 +84,15 @@ import com.chatpataprani.reeldrop.ui.component.FormatItem
 import com.chatpataprani.reeldrop.ui.component.FormatSubtitle
 import com.chatpataprani.reeldrop.ui.component.FormatVideoPreview
 import com.chatpataprani.reeldrop.ui.component.PreferenceInfo
-import com.chatpataprani.reeldrop.ui.component.ReeldropDialog
-import com.chatpataprani.reeldrop.ui.component.ReeldropSearchBar
+import com.chatpataprani.reeldrop.ui.component.SealDialog
+import com.chatpataprani.reeldrop.ui.component.SealSearchBar
 import com.chatpataprani.reeldrop.ui.component.SuggestedFormatItem
 import com.chatpataprani.reeldrop.ui.component.TextButtonWithIcon
 import com.chatpataprani.reeldrop.ui.component.VideoFilterChip
 import com.chatpataprani.reeldrop.ui.page.download.VideoClipDialog
 import com.chatpataprani.reeldrop.ui.page.download.VideoSelectionSlider
 import com.chatpataprani.reeldrop.ui.page.settings.general.DialogCheckBoxItem
-import com.chatpataprani.reeldrop.ui.theme.ReeldropTheme
+import com.chatpataprani.reeldrop.ui.theme.SealTheme
 import com.chatpataprani.reeldrop.ui.theme.generateLabelColor
 import com.chatpataprani.reeldrop.util.EXTRACT_AUDIO
 import com.chatpataprani.reeldrop.util.Format
@@ -270,7 +270,7 @@ fun FormatPagePreview() {
                 },
             duration = 180.0,
         )
-    ReeldropTheme {
+    SealTheme {
         FormatPageImpl(
             videoInfo = videoInfo,
             isClippingAvailable = true,
@@ -790,7 +790,7 @@ private fun RenameDialog(
     onConfirm: (String) -> Unit,
 ) {
     var filename by remember { mutableStateOf(initialValue) }
-    ReeldropDialog(
+    SealDialog(
         onDismissRequest = onDismissRequest,
         confirmButton = {
             ConfirmButton {
@@ -889,7 +889,7 @@ private fun SubtitleSelectionDialog(
     val autoCaptionsFiltered =
         autoCaptions.filterWithSearchText(searchText).sortedWithSelection(selectedSubtitles)
 
-    ReeldropDialog(
+    SealDialog(
         containerColor = MaterialTheme.colorScheme.surfaceContainerLowest,
         onDismissRequest = onDismissRequest,
         confirmButton = { ConfirmButton { onConfirm(selectedSubtitles, selectedAutoCaptions) } },
@@ -899,7 +899,7 @@ private fun SubtitleSelectionDialog(
         text = {
             Column {
                 if (autoCaptions.size + suggestedSubtitles.size > 5) {
-                    ReeldropSearchBar(
+                    SealSearchBar(
                         text = searchText,
                         placeholderText = stringResource(R.string.search_in_subtitles),
                         modifier = Modifier.padding(horizontal = 16.dp),
@@ -991,7 +991,7 @@ private fun SubtitleSelectionDialogPreview() {
         put("ja", listOf(SubtitleFormat(ext = "ass", url = "", name = "Japanese")))
     }
 
-    ReeldropTheme {
+    SealTheme {
         SubtitleSelectionDialog(
             suggestedSubtitles = subMap,
             autoCaptions = captionsMap,

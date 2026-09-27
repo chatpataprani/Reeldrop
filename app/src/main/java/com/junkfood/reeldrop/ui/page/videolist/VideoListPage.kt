@@ -94,8 +94,8 @@ import com.chatpataprani.reeldrop.ui.component.CheckBoxItem
 import com.chatpataprani.reeldrop.ui.component.ConfirmButton
 import com.chatpataprani.reeldrop.ui.component.DismissButton
 import com.chatpataprani.reeldrop.ui.component.MediaListItem
-import com.chatpataprani.reeldrop.ui.component.ReeldropDialog
-import com.chatpataprani.reeldrop.ui.component.ReeldropSearchBar
+import com.chatpataprani.reeldrop.ui.component.SealDialog
+import com.chatpataprani.reeldrop.ui.component.SealSearchBar
 import com.chatpataprani.reeldrop.ui.component.VideoFilterChip
 import com.chatpataprani.reeldrop.ui.svg.DynamicColorImageVectors
 import com.chatpataprani.reeldrop.ui.svg.drawablevectors.videoSteaming
@@ -451,7 +451,7 @@ fun VideoListPage(viewModel: VideoListViewModel = koinViewModel(), onNavigateBac
                 item {
                     Column {
                         AnimatedVisibility(visible = viewState.isSearching) {
-                            ReeldropSearchBar(
+                            SealSearchBar(
                                 modifier =
                                     Modifier.padding(horizontal = 12.dp).padding(vertical = 8.dp),
                                 text = viewState.searchText,
@@ -543,7 +543,7 @@ fun VideoListPage(viewModel: VideoListViewModel = koinViewModel(), onNavigateBac
     }
 
     if (showRemoveMultipleItemsDialog) {
-        ReeldropDialog(
+        SealDialog(
             onDismissRequest = { showRemoveMultipleItemsDialog = false },
             icon = { Icon(Icons.Outlined.DeleteSweep, null) },
             title = { Text(stringResource(R.string.delete_info)) },

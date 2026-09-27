@@ -26,10 +26,10 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.chatpataprani.reeldrop.R
-import com.chatpataprani.reeldrop.ui.theme.ReeldropTheme
+import com.chatpataprani.reeldrop.ui.theme.SealTheme
 
 @Composable
-fun ReeldropSearchBar(
+fun SealSearchBar(
     modifier: Modifier = Modifier,
     text: String,
     placeholderText: String,
@@ -49,7 +49,7 @@ fun ReeldropSearchBar(
                 contentDescription = null,
                 tint = MaterialTheme.colorScheme.onSurfaceVariant,
             )
-            ReeldropAutoFocusTextField(
+            SealAutoFocusTextField(
                 value = text,
                 onValueChange = onValueChange,
                 placeholder = { Text(text = placeholderText) },
@@ -81,9 +81,9 @@ fun ReeldropSearchBar(
 @Composable
 private fun SearchBarPreview() {
     var text by remember { mutableStateOf("") }
-    ReeldropTheme {
+    SealTheme {
         Surface {
-            ReeldropSearchBar(
+            SealSearchBar(
                 text = text,
                 placeholderText = stringResource(R.string.search_in_downloads),
             ) {

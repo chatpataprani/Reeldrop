@@ -49,7 +49,7 @@ import com.chatpataprani.reeldrop.ui.component.PreferenceSingleChoiceItem
 import com.chatpataprani.reeldrop.ui.component.PreferenceSubtitle
 import com.chatpataprani.reeldrop.ui.component.PreferencesHintCard
 import com.chatpataprani.reeldrop.ui.page.settings.about.weblate
-import com.chatpataprani.reeldrop.ui.theme.ReeldropTheme
+import com.chatpataprani.reeldrop.ui.theme.SealTheme
 import com.chatpataprani.reeldrop.util.LocaleLanguageCodeMap
 import com.chatpataprani.reeldrop.util.PreferenceUtil
 import com.chatpataprani.reeldrop.util.setLanguage
@@ -261,7 +261,7 @@ private fun LanguagePageImpl(
 private fun LanguagePagePreview() {
     var language by remember { mutableStateOf(Locale.JAPANESE) }
     val map = setOf(Locale.forLanguageTag("en-US"))
-    ReeldropTheme {
+    SealTheme {
         LanguagePageImpl(
             suggestedLocales = map,
             otherLocales = map + Locale.forLanguageTag("ja-JP"),

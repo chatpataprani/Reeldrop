@@ -21,7 +21,7 @@ import androidx.compose.ui.unit.dp
 import com.chatpataprani.reeldrop.R
 import com.chatpataprani.reeldrop.ui.component.ConfirmButton
 import com.chatpataprani.reeldrop.ui.component.DismissButton
-import com.chatpataprani.reeldrop.ui.component.ReeldropDialog
+import com.chatpataprani.reeldrop.ui.component.SealDialog
 import com.chatpataprani.reeldrop.ui.page.settings.general.DialogCheckBoxItem
 
 @Composable
@@ -34,7 +34,7 @@ fun DirectoryPreferenceDialog(
     var website by remember { mutableStateOf(isWebsiteSelected) }
     var playlistTitle by remember { mutableStateOf(isPlaylistTitleSelected) }
 
-    ReeldropDialog(
+    SealDialog(
         onDismissRequest = onDismissRequest,
         confirmButton = {
             ConfirmButton {

@@ -79,7 +79,7 @@ import com.chatpataprani.reeldrop.ui.component.PreferenceItem
 import com.chatpataprani.reeldrop.ui.component.PreferenceSubtitle
 import com.chatpataprani.reeldrop.ui.component.PreferenceSwitch
 import com.chatpataprani.reeldrop.ui.component.PreferenceSwitchWithDivider
-import com.chatpataprani.reeldrop.ui.component.ReeldropDialog
+import com.chatpataprani.reeldrop.ui.component.SealDialog
 import com.chatpataprani.reeldrop.ui.page.download.NotificationPermissionDialog
 import com.chatpataprani.reeldrop.util.CONFIGURE
 import com.chatpataprani.reeldrop.util.CUSTOM_COMMAND
@@ -505,7 +505,7 @@ fun DownloadArchiveDialog(
 ) {
     var editContent by remember { mutableStateOf(archiveFileContent) }
 
-    ReeldropDialog(
+    SealDialog(
         onDismissRequest = onDismissRequest,
         confirmButton = {
             ConfirmButton(text = stringResource(id = R.string.save)) {

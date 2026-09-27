@@ -34,7 +34,7 @@ fun Color.harmonizeWithPrimary(): Color =
     this.harmonizeWith(other = MaterialTheme.colorScheme.primary)
 
 @Composable
-fun ReeldropTheme(
+fun SealTheme(
     darkTheme: Boolean = isSystemInDarkTheme(),
     isHighContrastModeEnabled: Boolean = false,
     content: @Composable () -> Unit,
@@ -94,7 +94,7 @@ fun ReeldropTheme(
 }
 
 @Composable
-@Deprecated("Use ReeldropTheme instead", replaceWith = ReplaceWith("ReeldropTheme(content)"))
+@Deprecated("Use SealTheme instead", replaceWith = ReplaceWith("SealTheme(content)"))
 fun PreviewThemeLight(content: @Composable () -> Unit) {
-    ReeldropTheme(darkTheme = false, content = content)
+    SealTheme(darkTheme = false, content = content)
 }

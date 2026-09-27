@@ -70,12 +70,12 @@ fun TroubleShootingPage(
                         modifier = Modifier,
                         text = stringResource(R.string.issue_tracker_hint),
                     )
-                    val knownIssueUrlReeldrop = "https://github.com/chatpataprani/Reeldrop/issues/1399"
+                    val knownIssueUrlSeal = "https://github.com/chatpataprani/Reeldrop/issues/1399"
                     PreferenceItem(
-                        title = "Reeldrop Issue Tracker",
+                        title = "Seal Issue Tracker",
                         description = null,
                         icon = Icons.AutoMirrored.Outlined.OpenInNew,
-                        onClick = { uriHandler.openUri(knownIssueUrlReeldrop) },
+                        onClick = { uriHandler.openUri(knownIssueUrlSeal) },
                     )
 
                     val knownIssueUrlYtdlp = "https://github.com/yt-dlp/yt-dlp/issues/3766"

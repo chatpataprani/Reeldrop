@@ -10,8 +10,8 @@ import androidx.compose.ui.tooling.preview.Preview
 import com.chatpataprani.reeldrop.R
 import com.chatpataprani.reeldrop.ui.component.BottomButtonShape
 import com.chatpataprani.reeldrop.ui.component.MiddleButtonShape
-import com.chatpataprani.reeldrop.ui.component.ReeldropDialogButtonVariant
-import com.chatpataprani.reeldrop.ui.component.ReeldropDialogVariant
+import com.chatpataprani.reeldrop.ui.component.SealDialogButtonVariant
+import com.chatpataprani.reeldrop.ui.component.SealDialogVariant
 import com.chatpataprani.reeldrop.ui.component.TopButtonShape
 
 @Composable
@@ -21,7 +21,7 @@ fun MeteredNetworkDialog(
     onAllowOnceConfirm: () -> Unit = {},
     onAllowAlwaysConfirm: () -> Unit = {},
 ) {
-    ReeldropDialogVariant(
+    SealDialogVariant(
         onDismissRequest = onDismissRequest,
         icon = {
             Icon(
@@ -37,19 +37,19 @@ fun MeteredNetworkDialog(
         //        },
         title = { Text(text = stringResource(id = R.string.download_with_cellular_request)) },
         buttons = {
-            ReeldropDialogButtonVariant(
+            SealDialogButtonVariant(
                 text = stringResource(id = R.string.allow_always),
                 shape = TopButtonShape,
             ) {
                 onAllowAlwaysConfirm()
             }
-            ReeldropDialogButtonVariant(
+            SealDialogButtonVariant(
                 text = stringResource(id = R.string.allow_once),
                 shape = MiddleButtonShape,
             ) {
                 onAllowOnceConfirm()
             }
-            ReeldropDialogButtonVariant(
+            SealDialogButtonVariant(
                 text = stringResource(id = R.string.dont_allow),
                 shape = BottomButtonShape,
             ) {

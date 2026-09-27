@@ -96,8 +96,8 @@ import com.chatpataprani.reeldrop.ui.common.motion.materialSharedAxisX
 import com.chatpataprani.reeldrop.ui.component.ButtonChip
 import com.chatpataprani.reeldrop.ui.component.DrawerSheetSubtitle
 import com.chatpataprani.reeldrop.ui.component.OutlinedButtonWithIcon
-import com.chatpataprani.reeldrop.ui.component.ReeldropModalBottomSheet
-import com.chatpataprani.reeldrop.ui.component.ReeldropModalBottomSheetM2Variant
+import com.chatpataprani.reeldrop.ui.component.SealModalBottomSheet
+import com.chatpataprani.reeldrop.ui.component.SealModalBottomSheetM2Variant
 import com.chatpataprani.reeldrop.ui.component.SingleChoiceChip
 import com.chatpataprani.reeldrop.ui.component.SingleChoiceSegmentedButton
 import com.chatpataprani.reeldrop.ui.component.VideoFilterChip
@@ -115,7 +115,7 @@ import com.chatpataprani.reeldrop.ui.page.settings.command.CommandTemplateDialog
 import com.chatpataprani.reeldrop.ui.page.settings.format.AudioQuickSettingsDialog
 import com.chatpataprani.reeldrop.ui.page.settings.format.VideoQuickSettingsDialog
 import com.chatpataprani.reeldrop.ui.page.settings.network.CookiesQuickSettingsDialog
-import com.chatpataprani.reeldrop.ui.theme.ReeldropTheme
+import com.chatpataprani.reeldrop.ui.theme.SealTheme
 import com.chatpataprani.reeldrop.util.AUDIO_CONVERSION_FORMAT
 import com.chatpataprani.reeldrop.util.AUDIO_CONVERT
 import com.chatpataprani.reeldrop.util.AUDIO_FORMAT
@@ -199,7 +199,7 @@ fun DownloadDialog(
     var showVideoPresetDialog by remember { mutableStateOf(false) }
     var showAudioPresetDialog by remember { mutableStateOf(false) }
 
-    ReeldropModalBottomSheet(
+    SealModalBottomSheet(
         sheetState = sheetState,
         contentPadding = PaddingValues(),
         onDismissRequest = { onActionPost(Action.HideSheet) },
@@ -423,7 +423,7 @@ private fun DownloadDialogContent(
 @Preview
 @Composable
 private fun ErrorPreview() {
-    ReeldropModalBottomSheet(
+    SealModalBottomSheet(
         onDismissRequest = {},
         sheetState =
             with(LocalDensity.current) {
@@ -467,7 +467,7 @@ fun FormatPage(
     val scope = rememberCoroutineScope()
     BackHandler { scope.launch { sheetState.hide() }.invokeOnCompletion { onDismissRequest() } }
 
-    ReeldropModalBottomSheetM2Variant(sheetState = sheetState, sheetGesturesEnabled = false) {
+    SealModalBottomSheetM2Variant(sheetState = sheetState, sheetGesturesEnabled = false) {
         FormatPage(
             modifier = modifier,
             videoInfo = state.info,
@@ -483,8 +483,8 @@ fun FormatPage(
 @Preview(name = "Light", uiMode = Configuration.UI_MODE_NIGHT_NO)*/
 @Composable
 private fun ConfigurePagePreview() {
-    ReeldropTheme() {
-        ReeldropModalBottomSheet(
+    SealTheme() {
+        SealModalBottomSheet(
             sheetState =
                 with(LocalDensity.current) {
                     SheetState(

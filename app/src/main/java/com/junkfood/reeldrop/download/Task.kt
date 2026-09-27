@@ -38,7 +38,7 @@ data class Task(
     }
 
     @Serializable
-    reeldroped interface TypeInfo {
+    sealed interface TypeInfo {
 
         @Serializable data class Playlist(val index: Int = 0) : TypeInfo
 
@@ -55,7 +55,7 @@ data class Task(
     )
 
     @Serializable
-    reeldroped interface DownloadState : Comparable<DownloadState> {
+    sealed interface DownloadState : Comparable<DownloadState> {
 
         interface Cancelable {
             val job: Job
@@ -119,7 +119,7 @@ data class Task(
     }
 
     @Serializable
-    reeldroped interface RestartableAction {
+    sealed interface RestartableAction {
         @Serializable data object FetchInfo : RestartableAction
 
         @Serializable data object Download : RestartableAction

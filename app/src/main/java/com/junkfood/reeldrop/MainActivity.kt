@@ -13,7 +13,7 @@ import com.chatpataprani.reeldrop.ui.common.LocalDarkTheme
 import com.chatpataprani.reeldrop.ui.common.SettingsProvider
 import com.chatpataprani.reeldrop.ui.page.AppEntry
 import com.chatpataprani.reeldrop.ui.page.downloadv2.configure.DownloadDialogViewModel
-import com.chatpataprani.reeldrop.ui.theme.ReeldropTheme
+import com.chatpataprani.reeldrop.ui.theme.SealTheme
 import com.chatpataprani.reeldrop.util.PreferenceUtil
 import com.chatpataprani.reeldrop.util.matchUrlFromSharedText
 import com.chatpataprani.reeldrop.util.setLanguage
@@ -38,7 +38,7 @@ class MainActivity : AppCompatActivity() {
             KoinContext {
                 val windowSizeClass = calculateWindowSizeClass(this)
                 SettingsProvider(windowWidthSizeClass = windowSizeClass.widthSizeClass) {
-                    ReeldropTheme(
+                    SealTheme(
                         darkTheme = LocalDarkTheme.current.isDarkTheme(),
                         isHighContrastModeEnabled = LocalDarkTheme.current.isHighContrastModeEnabled,
                     ) {

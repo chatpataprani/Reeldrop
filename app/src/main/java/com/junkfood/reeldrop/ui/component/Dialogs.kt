@@ -39,7 +39,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.DialogProperties
 import com.chatpataprani.reeldrop.R
 import com.chatpataprani.reeldrop.ui.theme.FixedAccentColors
-import com.chatpataprani.reeldrop.ui.theme.ReeldropTheme
+import com.chatpataprani.reeldrop.ui.theme.SealTheme
 
 private val DialogVerticalPadding = PaddingValues(vertical = 24.dp)
 private val IconPadding = PaddingValues(bottom = 16.dp)
@@ -70,7 +70,7 @@ fun HelpDialog(
 
 @OptIn(ExperimentalMaterial3Api::class, ExperimentalLayoutApi::class)
 @Composable
-fun ReeldropDialog(
+fun SealDialog(
     modifier: Modifier = Modifier,
     onDismissRequest: () -> Unit,
     confirmButton: @Composable (() -> Unit)?,
@@ -165,7 +165,7 @@ fun ReeldropDialog(
 }
 
 @Composable
-fun ReeldropDialogButtonVariant(
+fun SealDialogButtonVariant(
     modifier: Modifier = Modifier,
     shape: Shape = MiddleButtonShape,
     text: String,
@@ -190,8 +190,8 @@ fun ReeldropDialogButtonVariant(
 @Preview(name = "light", uiMode = Configuration.UI_MODE_NIGHT_NO)
 @Composable
 private fun ButtonVariantPreview() {
-    ReeldropTheme {
-        ReeldropDialogVariant(
+    SealTheme {
+        SealDialogVariant(
             onDismissRequest = {},
             modifier = Modifier,
             icon = {
@@ -208,15 +208,15 @@ private fun ButtonVariantPreview() {
                 )
             },
             buttons = {
-                ReeldropDialogButtonVariant(
+                SealDialogButtonVariant(
                     text = stringResource(R.string.allow_always),
                     shape = TopButtonShape,
                 ) {}
-                ReeldropDialogButtonVariant(
+                SealDialogButtonVariant(
                     text = stringResource(id = R.string.allow_once),
                     shape = MiddleButtonShape,
                 ) {}
-                ReeldropDialogButtonVariant(
+                SealDialogButtonVariant(
                     text = stringResource(R.string.dont_allow),
                     shape = BottomButtonShape,
                 ) {}
@@ -235,7 +235,7 @@ val BottomButtonShape =
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun ReeldropDialogVariant(
+fun SealDialogVariant(
     onDismissRequest: () -> Unit,
     modifier: Modifier = Modifier,
     buttons: @Composable (() -> Unit)? = null,

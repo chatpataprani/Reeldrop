@@ -34,15 +34,15 @@ object NotificationUtil {
     private const val PROGRESS_INITIAL = 0
     private const val CHANNEL_ID = "download_notification"
     private const val SERVICE_CHANNEL_ID = "download_service"
-    private const val NOTIFICATION_GROUP_ID = "reeldrop.download.notification"
+    private const val NOTIFICATION_GROUP_ID = "seal.download.notification"
     private const val DEFAULT_NOTIFICATION_ID = 100
     const val SERVICE_NOTIFICATION_ID = 123
     private lateinit var serviceNotification: Notification
 
     //    private var builder =
-    //        NotificationCompat.Builder(context, CHANNEL_ID).setSmallIcon(R.drawable.ic_stat_reeldrop)
+    //        NotificationCompat.Builder(context, CHANNEL_ID).setSmallIcon(R.drawable.ic_stat_seal)
     private val commandNotificationBuilder =
-        NotificationCompat.Builder(context, CHANNEL_ID).setSmallIcon(R.drawable.ic_stat_reeldrop)
+        NotificationCompat.Builder(context, CHANNEL_ID).setSmallIcon(R.drawable.ic_stat_seal)
 
     @RequiresApi(Build.VERSION_CODES.O)
     fun createNotificationChannel() {
@@ -91,7 +91,7 @@ object NotificationUtil {
             }
 
         NotificationCompat.Builder(context, CHANNEL_ID)
-            .setSmallIcon(R.drawable.ic_stat_reeldrop)
+            .setSmallIcon(R.drawable.ic_stat_seal)
             .setContentTitle(title)
             .setProgress(PROGRESS_MAX, progress, progress <= 0)
             .setOngoing(true)
@@ -117,7 +117,7 @@ object NotificationUtil {
 
         val builder =
             NotificationCompat.Builder(context, CHANNEL_ID)
-                .setSmallIcon(R.drawable.ic_stat_reeldrop)
+                .setSmallIcon(R.drawable.ic_stat_seal)
                 .setContentText(text)
                 .setOngoing(false)
                 .setAutoCancel(true)
@@ -134,7 +134,7 @@ object NotificationUtil {
         //        notificationManager.cancel(notificationId)
         val builder =
             NotificationCompat.Builder(context, CHANNEL_ID)
-                .setSmallIcon(R.drawable.ic_stat_reeldrop)
+                .setSmallIcon(R.drawable.ic_stat_seal)
                 .setContentText(text)
                 .setProgress(0, 0, false)
                 .setAutoCancel(true)
@@ -148,7 +148,7 @@ object NotificationUtil {
     fun makeServiceNotification(intent: PendingIntent, text: String? = null): Notification {
         serviceNotification =
             NotificationCompat.Builder(context, SERVICE_CHANNEL_ID)
-                .setSmallIcon(R.drawable.ic_stat_reeldrop)
+                .setSmallIcon(R.drawable.ic_stat_seal)
                 .setContentTitle(context.getString(R.string.service_title))
                 .setContentText(text)
                 .setOngoing(true)
@@ -195,7 +195,7 @@ object NotificationUtil {
                     PendingIntent.FLAG_UPDATE_CURRENT,
             )
         NotificationCompat.Builder(context, CHANNEL_ID)
-            .setSmallIcon(R.drawable.ic_stat_reeldrop)
+            .setSmallIcon(R.drawable.ic_stat_seal)
             .setContentTitle(title)
             .setContentText(context.getString(textId))
             .setOngoing(false)
@@ -235,7 +235,7 @@ object NotificationUtil {
             )
 
         NotificationCompat.Builder(context, CHANNEL_ID)
-            .setSmallIcon(R.drawable.ic_stat_reeldrop)
+            .setSmallIcon(R.drawable.ic_stat_seal)
             .setContentTitle(
                 "[${templateName}_${taskUrl}] " +
                     context.getString(R.string.execute_command_notification)

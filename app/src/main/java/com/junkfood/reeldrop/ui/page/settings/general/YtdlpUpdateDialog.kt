@@ -41,7 +41,7 @@ import com.chatpataprani.reeldrop.ui.common.booleanState
 import com.chatpataprani.reeldrop.ui.common.intState
 import com.chatpataprani.reeldrop.ui.component.ConfirmButton
 import com.chatpataprani.reeldrop.ui.component.DismissButton
-import com.chatpataprani.reeldrop.ui.component.ReeldropDialog
+import com.chatpataprani.reeldrop.ui.component.SealDialog
 import com.chatpataprani.reeldrop.util.PreferenceStrings.getUpdateIntervalText
 import com.chatpataprani.reeldrop.util.PreferenceUtil.getLong
 import com.chatpataprani.reeldrop.util.PreferenceUtil.updateBoolean
@@ -101,7 +101,7 @@ fun YtdlpUpdateChannelDialog(modifier: Modifier = Modifier, onDismissRequest: ()
     var ytdlpAutoUpdate by YT_DLP_AUTO_UPDATE.booleanState
     var updateInterval by remember { mutableLongStateOf(YT_DLP_UPDATE_INTERVAL.getLong()) }
 
-    ReeldropDialog(
+    SealDialog(
         modifier = modifier,
         onDismissRequest = onDismissRequest,
         confirmButton = {

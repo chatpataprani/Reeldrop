@@ -79,7 +79,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Fixed
 
-* Fix a permission issue when using Reeldrop in a different user profile or private space
+* Fix a permission issue when using Seal in a different user profile or private space
 * Fix an issue where the text cannot be copied in the menu of the download history
 * Display approximate file size for formats when there's no exact value available
 * Fix an issue causes app to crash when the selected template is not available
@@ -151,7 +151,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
-* Move the directory for storing temporary files to external storage (`Reeldrop/tmp`)
+* Move the directory for storing temporary files to external storage (`Seal/tmp`)
 * Change the default output template to `%(title)s.%(ext)s`
 * Temporary directory now are enabled by default for downloads in general mode
 * Move actions in format page to dropdown menu

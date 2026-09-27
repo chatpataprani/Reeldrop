@@ -66,11 +66,11 @@ import com.chatpataprani.reeldrop.R
 import com.chatpataprani.reeldrop.ui.common.AsyncImageImpl
 import com.chatpataprani.reeldrop.ui.component.BackButton
 import com.chatpataprani.reeldrop.ui.component.PreferenceSubtitle
-import com.chatpataprani.reeldrop.ui.component.ReeldropModalBottomSheet
+import com.chatpataprani.reeldrop.ui.component.SealModalBottomSheet
 import com.chatpataprani.reeldrop.ui.component.SponsorItem
 import com.chatpataprani.reeldrop.ui.component.gitHubAvatar
 import com.chatpataprani.reeldrop.ui.component.gitHubProfile
-import com.chatpataprani.reeldrop.ui.theme.ReeldropTheme
+import com.chatpataprani.reeldrop.ui.theme.SealTheme
 import com.chatpataprani.reeldrop.util.PreferenceUtil.updateInt
 import com.chatpataprani.reeldrop.util.SHOW_SPONSOR_MSG
 import com.chatpataprani.reeldrop.util.SocialAccount
@@ -329,7 +329,7 @@ fun SponsorDialog(sponsorShip: SponsorShip, sheetState: SheetState, onDismissReq
             null
         }
 
-    ReeldropModalBottomSheet(
+    SealModalBottomSheet(
         onDismissRequest = onDismissRequest,
         sheetState = sheetState,
         contentPadding = PaddingValues(0.dp),
@@ -455,7 +455,7 @@ private fun SponsorDialogContentPreview() {
             tier = Tier(10),
         )
 
-    ReeldropTheme {
+    SealTheme {
         Surface {
             SponsorDialogContent(
                 userLogin = sponsorShip.sponsorEntity.login,

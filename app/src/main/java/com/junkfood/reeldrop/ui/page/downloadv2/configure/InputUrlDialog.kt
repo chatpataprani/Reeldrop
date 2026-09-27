@@ -72,7 +72,7 @@ import com.chatpataprani.reeldrop.ui.component.ClearButton
 import com.chatpataprani.reeldrop.ui.component.FilledButtonWithIcon
 import com.chatpataprani.reeldrop.ui.component.OutlinedButtonWithIcon
 import com.chatpataprani.reeldrop.ui.component.OutlinedDismissButton
-import com.chatpataprani.reeldrop.ui.component.ReeldropDialog
+import com.chatpataprani.reeldrop.ui.component.SealDialog
 import com.chatpataprani.reeldrop.ui.page.downloadv2.configure.DownloadDialogViewModel.Action
 import com.chatpataprani.reeldrop.ui.theme.ErrorTonalPalettes
 import com.chatpataprani.reeldrop.util.findURLsFromString
@@ -291,7 +291,7 @@ private fun URLSelectionDialog(
             mutableStateListOf<Int>().apply { addAll(urlListFromClipboard.indices) }
         }
 
-    ReeldropDialog(
+    SealDialog(
         modifier = modifier,
         onDismissRequest = onDismissRequest,
         title = { Text(stringResource(R.string.select_multiple_link, urlListFromClipboard.size)) },
@@ -465,7 +465,7 @@ private fun SavedUrlDialogImpl(
     var selectedUrl: String? by remember(urls.size) { mutableStateOf(null) }
     val hapticFeedback = LocalHapticFeedback.current
 
-    ReeldropDialog(
+    SealDialog(
         modifier = modifier,
         icon = { Icon(Icons.Outlined.Link, contentDescription = null) },
         title = { Text(stringResource(R.string.saved_urls)) },

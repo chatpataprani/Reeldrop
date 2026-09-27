@@ -102,7 +102,7 @@ import com.chatpataprani.reeldrop.ui.common.HapticFeedback.slightHapticFeedback
 import com.chatpataprani.reeldrop.ui.common.LocalDarkTheme
 import com.chatpataprani.reeldrop.ui.common.LocalFixedColorRoles
 import com.chatpataprani.reeldrop.ui.common.LocalWindowWidthState
-import com.chatpataprani.reeldrop.ui.component.ReeldropModalBottomSheet
+import com.chatpataprani.reeldrop.ui.component.SealModalBottomSheet
 import com.chatpataprani.reeldrop.ui.component.SelectionGroupDefaults
 import com.chatpataprani.reeldrop.ui.component.SelectionGroupItem
 import com.chatpataprani.reeldrop.ui.component.SelectionGroupRow
@@ -115,7 +115,7 @@ import com.chatpataprani.reeldrop.ui.page.downloadv2.configure.PlaylistSelection
 import com.chatpataprani.reeldrop.ui.page.downloadv2.configure.PreferencesMock
 import com.chatpataprani.reeldrop.ui.svg.DynamicColorImageVectors
 import com.chatpataprani.reeldrop.ui.svg.drawablevectors.download
-import com.chatpataprani.reeldrop.ui.theme.ReeldropTheme
+import com.chatpataprani.reeldrop.ui.theme.SealTheme
 import com.chatpataprani.reeldrop.util.DownloadUtil
 import com.chatpataprani.reeldrop.util.FileUtil
 import com.chatpataprani.reeldrop.util.getErrorReport
@@ -172,7 +172,7 @@ enum class Filter {
     }
 }
 
-reeldroped interface UiAction {
+sealed interface UiAction {
     data class OpenFile(val filePath: String?) : UiAction
 
     data class ShareFile(val filePath: String?) : UiAction
@@ -514,7 +514,7 @@ fun DownloadPageImplV2(
     if (selectedTask != null) {
         val task = selectedTask!!
         val (downloadState, _, viewState) = taskDownloadStateMap[task] ?: return
-        ReeldropModalBottomSheet(
+        SealModalBottomSheet(
             sheetState = sheetState,
             contentPadding = PaddingValues(),
             onDismissRequest = {
@@ -802,7 +802,7 @@ internal class DownloadPageV2Test {
     private fun Preview() {
 
         val downloader: DownloaderV2 = mockDownloader
-        ReeldropTheme {
+        SealTheme {
             Column() {
                 DownloadPageImplV2(
                     taskDownloadStateMap = downloader.getTaskStateMap(),

@@ -58,8 +58,8 @@ import com.chatpataprani.reeldrop.download.DownloaderV2
 import com.chatpataprani.reeldrop.download.TaskFactory
 import com.chatpataprani.reeldrop.ui.common.HapticFeedback.slightHapticFeedback
 import com.chatpataprani.reeldrop.ui.component.PlaylistItem
-import com.chatpataprani.reeldrop.ui.component.ReeldropModalBottomSheet
-import com.chatpataprani.reeldrop.ui.component.ReeldropModalBottomSheetM2Variant
+import com.chatpataprani.reeldrop.ui.component.SealModalBottomSheet
+import com.chatpataprani.reeldrop.ui.component.SealModalBottomSheetM2Variant
 import com.chatpataprani.reeldrop.ui.page.download.PlaylistSelectionDialog
 import com.chatpataprani.reeldrop.ui.page.downloadv2.configure.DownloadDialogViewModel.SelectionState
 import com.chatpataprani.reeldrop.ui.page.settings.format.AudioQuickSettingsDialog
@@ -113,7 +113,7 @@ fun PlaylistSelectionPage(
 
     val configureSheetState = rememberModalBottomSheetState(skipPartiallyExpanded = true)
 
-    ReeldropModalBottomSheetM2Variant(sheetState = sheetState, sheetGesturesEnabled = false) {
+    SealModalBottomSheetM2Variant(sheetState = sheetState, sheetGesturesEnabled = false) {
         PlaylistSelectionPageImpl(result = state.result, onDismissRequest = onBack) {
             taskList = it
             showConfigurationSheet = true
@@ -128,7 +128,7 @@ fun PlaylistSelectionPage(
 
     if (showConfigurationSheet) {
 
-        ReeldropModalBottomSheet(
+        SealModalBottomSheet(
             sheetState = configureSheetState,
             contentPadding = PaddingValues(),
             onDismissRequest = onDismissConfigurationSheet,

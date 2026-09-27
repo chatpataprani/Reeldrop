@@ -54,7 +54,7 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.chatpataprani.reeldrop.R
-import com.chatpataprani.reeldrop.ui.theme.ReeldropTheme
+import com.chatpataprani.reeldrop.ui.theme.SealTheme
 import com.chatpataprani.reeldrop.util.Format
 import com.chatpataprani.reeldrop.util.VideoInfo
 import com.chatpataprani.reeldrop.util.connectWithBlank
@@ -183,7 +183,7 @@ fun FormatVideoPreview(
 @Composable
 @Preview
 fun VideoInfoPreview() {
-    ReeldropTheme {
+    SealTheme {
         Surface {
             Column {
                 FormatVideoPreview(

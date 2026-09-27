@@ -31,7 +31,7 @@ import kotlinx.coroutines.delay
 
 /** @param contentDescription Text label of the `TextField` for the accessibility service */
 @Composable
-fun ReeldropTextField(
+fun SealTextField(
     value: String,
     onValueChange: (String) -> Unit,
     modifier: Modifier = Modifier,
@@ -97,7 +97,7 @@ fun ReeldropTextField(
 }
 
 @Composable
-fun ReeldropAutoFocusTextField(
+fun SealAutoFocusTextField(
     value: String,
     onValueChange: (String) -> Unit,
     modifier: Modifier = Modifier,
@@ -175,7 +175,7 @@ fun ReeldropAutoFocusTextField(
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun ReeldropTextField(
+fun SealTextField(
     value: TextFieldValue,
     onValueChange: (TextFieldValue) -> Unit,
     modifier: Modifier = Modifier,

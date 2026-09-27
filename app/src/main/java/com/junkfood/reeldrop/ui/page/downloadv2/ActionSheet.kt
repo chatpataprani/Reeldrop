@@ -64,10 +64,10 @@ import com.chatpataprani.reeldrop.download.Task.DownloadState.Running
 import com.chatpataprani.reeldrop.ui.common.LocalFixedColorRoles
 import com.chatpataprani.reeldrop.ui.component.ActionSheetItem
 import com.chatpataprani.reeldrop.ui.component.ActionSheetPrimaryButton
-import com.chatpataprani.reeldrop.ui.component.ReeldropModalBottomSheet
+import com.chatpataprani.reeldrop.ui.component.SealModalBottomSheet
 import com.chatpataprani.reeldrop.ui.page.downloadv2.configure.PreferencesMock
 import com.chatpataprani.reeldrop.ui.theme.ErrorTonalPalettes
-import com.chatpataprani.reeldrop.ui.theme.ReeldropTheme
+import com.chatpataprani.reeldrop.ui.theme.SealTheme
 import com.chatpataprani.reeldrop.util.Format
 import com.chatpataprani.reeldrop.util.toBitrateText
 import com.chatpataprani.reeldrop.util.toDurationText
@@ -409,9 +409,9 @@ private fun SheetPreview() {
             audioOnlyFormats = listOf(Format(acodec = "mp4a", abr = 129.0, fileSize = 114514.0)),
         )
 
-    ReeldropTheme {
+    SealTheme {
         Surface() {
-            ReeldropModalBottomSheet(
+            SealModalBottomSheet(
                 contentPadding = PaddingValues(),
                 onDismissRequest = {},
                 sheetState = sheetState,

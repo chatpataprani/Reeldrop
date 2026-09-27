@@ -52,8 +52,8 @@ import com.chatpataprani.reeldrop.ui.component.ClearButton
 import com.chatpataprani.reeldrop.ui.component.ConfirmButton
 import com.chatpataprani.reeldrop.ui.component.LinkButton
 import com.chatpataprani.reeldrop.ui.component.PasteFromClipBoardButton
-import com.chatpataprani.reeldrop.ui.component.ReeldropDialog
-import com.chatpataprani.reeldrop.ui.component.ReeldropTextField
+import com.chatpataprani.reeldrop.ui.component.SealDialog
+import com.chatpataprani.reeldrop.ui.component.SealTextField
 import com.chatpataprani.reeldrop.ui.component.ShortcutChip
 import com.chatpataprani.reeldrop.util.DatabaseUtil
 import kotlinx.coroutines.launch
@@ -165,7 +165,7 @@ fun OptionChipsDialog(onDismissRequest: () -> Unit = {}) {
             }
         }
     }
-    ReeldropDialog(
+    SealDialog(
         onDismissRequest = onDismissRequest,
         title = { Text(text = stringResource(id = R.string.edit_shortcuts)) },
         icon = { Icon(Icons.Outlined.Edit, null) },
@@ -195,7 +195,7 @@ fun OptionChipsDialog(onDismissRequest: () -> Unit = {}) {
                 val focusManager = LocalFocusManager.current
                 val softwareKeyboardController = LocalSoftwareKeyboardController.current
 
-                ReeldropTextField(
+                SealTextField(
                     modifier = Modifier.fillMaxWidth().padding(horizontal = 24.dp),
                     value = text,
                     onValueChange = { text = it },

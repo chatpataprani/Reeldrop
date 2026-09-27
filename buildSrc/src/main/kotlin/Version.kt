@@ -1,4 +1,4 @@
-reeldroped class Version(val major: Int, val minor: Int, val patch: Int, val build: Int = 0) {
+sealed class Version(val major: Int, val minor: Int, val patch: Int, val build: Int = 0) {
     abstract val name: String
     abstract val code: Long
 

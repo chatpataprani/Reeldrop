@@ -28,7 +28,7 @@ import androidx.compose.ui.unit.dp
 import com.chatpataprani.reeldrop.ui.common.LocalDarkTheme
 import com.chatpataprani.reeldrop.ui.common.SettingsProvider
 import com.chatpataprani.reeldrop.ui.component.FilledButtonWithIcon
-import com.chatpataprani.reeldrop.ui.theme.ReeldropTheme
+import com.chatpataprani.reeldrop.ui.theme.SealTheme
 
 class CrashReportActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -38,7 +38,7 @@ class CrashReportActivity : ComponentActivity() {
 
         setContent {
             SettingsProvider(WindowWidthSizeClass.Compact) {
-                ReeldropTheme(
+                SealTheme(
                     darkTheme = LocalDarkTheme.current.isDarkTheme(),
                     isHighContrastModeEnabled = LocalDarkTheme.current.isHighContrastModeEnabled,
                 ) {

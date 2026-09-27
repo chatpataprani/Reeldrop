@@ -48,8 +48,8 @@ import com.chatpataprani.reeldrop.ui.common.HapticFeedback.slightHapticFeedback
 import com.chatpataprani.reeldrop.ui.component.FilledTonalButtonWithIcon
 import com.chatpataprani.reeldrop.ui.component.LongTapTextButton
 import com.chatpataprani.reeldrop.ui.component.OutlinedButtonWithIcon
-import com.chatpataprani.reeldrop.ui.component.ReeldropModalBottomSheetM2
-import com.chatpataprani.reeldrop.ui.theme.ReeldropTheme
+import com.chatpataprani.reeldrop.ui.component.SealModalBottomSheetM2
+import com.chatpataprani.reeldrop.ui.theme.SealTheme
 import com.chatpataprani.reeldrop.util.FileUtil
 import com.chatpataprani.reeldrop.util.ToastUtil
 
@@ -114,7 +114,7 @@ fun VideoDetailDrawer(
 @Preview(uiMode = Configuration.UI_MODE_NIGHT_YES)
 @Composable
 private fun DrawerPreview() {
-    ReeldropTheme {
+    SealTheme {
         VideoDetailDrawerImpl(
             sheetState =
                 ModalBottomSheetState(
@@ -143,7 +143,7 @@ fun VideoDetailDrawerImpl(
 ) {
     val clipboardManager = LocalClipboardManager.current
     val context = LocalContext.current
-    ReeldropModalBottomSheetM2(
+    SealModalBottomSheetM2(
         sheetState = sheetState,
         contentPadding = PaddingValues(horizontal = 20.dp),
         sheetContent = {

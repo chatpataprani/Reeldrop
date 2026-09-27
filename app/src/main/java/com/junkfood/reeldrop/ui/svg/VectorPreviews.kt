@@ -12,13 +12,13 @@ import com.chatpataprani.reeldrop.ui.svg.drawablevectors.coder
 import com.chatpataprani.reeldrop.ui.svg.drawablevectors.download
 import com.chatpataprani.reeldrop.ui.svg.drawablevectors.videoFiles
 import com.chatpataprani.reeldrop.ui.svg.drawablevectors.videoSteaming
-import com.chatpataprani.reeldrop.ui.theme.ReeldropTheme
+import com.chatpataprani.reeldrop.ui.theme.SealTheme
 
 @Preview(name = "Light", uiMode = Configuration.UI_MODE_NIGHT_NO)
 @Preview(name = "Night", uiMode = Configuration.UI_MODE_NIGHT_YES)
 @Composable
 private fun Download() {
-    ReeldropTheme {
+    SealTheme {
         Surface {
             Column {
                 Image(

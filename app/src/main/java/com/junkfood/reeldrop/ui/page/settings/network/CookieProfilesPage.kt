@@ -84,9 +84,9 @@ import com.chatpataprani.reeldrop.ui.component.HelpDialog
 import com.chatpataprani.reeldrop.ui.component.PasteFromClipBoardButton
 import com.chatpataprani.reeldrop.ui.component.PreferenceItemVariant
 import com.chatpataprani.reeldrop.ui.component.PreferenceSwitchWithContainer
-import com.chatpataprani.reeldrop.ui.component.ReeldropDialog
+import com.chatpataprani.reeldrop.ui.component.SealDialog
 import com.chatpataprani.reeldrop.ui.component.TextButtonWithIcon
-import com.chatpataprani.reeldrop.ui.theme.ReeldropTheme
+import com.chatpataprani.reeldrop.ui.theme.SealTheme
 import com.chatpataprani.reeldrop.ui.theme.generateLabelColor
 import com.chatpataprani.reeldrop.util.COOKIES
 import com.chatpataprani.reeldrop.util.DownloadUtil
@@ -422,7 +422,7 @@ fun CookiesQuickSettingsDialog(
     isCookiesEnabled: Boolean = false,
     onCookiesToggled: (Boolean) -> Unit = {},
 ) {
-    ReeldropDialog(
+    SealDialog(
         onDismissRequest = onDismissRequest,
         confirmButton = {
             ConfirmButton(
@@ -495,7 +495,7 @@ fun CookiesQuickSettingsDialog(
 @Preview(name = "Dark Mode", uiMode = Configuration.UI_MODE_NIGHT_YES)
 @Composable
 private fun CookiesQuickSettingsDialogPreview() {
-    ReeldropTheme {
+    SealTheme {
         var isCookiesEnabled by remember { mutableStateOf(false) }
         CookiesQuickSettingsDialog(
             cookieProfiles =

@@ -74,7 +74,7 @@ import com.chatpataprani.reeldrop.ui.common.LocalDarkTheme
 import com.chatpataprani.reeldrop.ui.common.LocalFixedColorRoles
 import com.chatpataprani.reeldrop.ui.common.motion.materialSharedAxisY
 import com.chatpataprani.reeldrop.ui.component.GreenTonalPalettes
-import com.chatpataprani.reeldrop.ui.theme.ReeldropTheme
+import com.chatpataprani.reeldrop.ui.theme.SealTheme
 import com.chatpataprani.reeldrop.util.toDurationText
 import com.chatpataprani.reeldrop.util.toFileSizeText
 import kotlinx.coroutines.Job
@@ -181,7 +181,7 @@ fun VideoListItem(
 @Composable
 @Preview(name = "Dark Mode", uiMode = Configuration.UI_MODE_NIGHT_YES)
 private fun VideoListItemPreview() {
-    ReeldropTheme {
+    SealTheme {
         val fakeStateList =
             listOf(
                 Running(Job(), "", 0.58f),
@@ -269,7 +269,7 @@ fun VideoCardV2(
 @Preview
 @Preview(name = "Dark Mode", uiMode = Configuration.UI_MODE_NIGHT_YES)
 fun VideoCardV2Preview() {
-    ReeldropTheme {
+    SealTheme {
         val downloadState = Error(throwable = Throwable(), action = RestartableAction.Download)
         VideoCardV2(
             thumbnailModel = R.drawable.sample3,

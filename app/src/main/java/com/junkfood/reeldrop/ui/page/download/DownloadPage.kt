@@ -107,7 +107,7 @@ import com.chatpataprani.reeldrop.ui.page.downloadv2.configure.DownloadDialogVie
 import com.chatpataprani.reeldrop.ui.page.downloadv2.configure.DownloadDialogViewModel.Action
 import com.chatpataprani.reeldrop.ui.page.downloadv2.configure.FormatPage
 import com.chatpataprani.reeldrop.ui.theme.PreviewThemeLight
-import com.chatpataprani.reeldrop.ui.theme.ReeldropTheme
+import com.chatpataprani.reeldrop.ui.theme.SealTheme
 import com.chatpataprani.reeldrop.util.CELLULAR_DOWNLOAD
 import com.chatpataprani.reeldrop.util.CONFIGURE
 import com.chatpataprani.reeldrop.util.CUSTOM_COMMAND
@@ -730,7 +730,7 @@ fun ErrorMessage(
 @Preview
 @Composable
 private fun ErrorPreview() {
-    ReeldropTheme {
+    SealTheme {
         Surface {
             LazyColumn {
                 item {
