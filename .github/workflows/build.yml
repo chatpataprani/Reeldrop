@@ -21,26 +21,26 @@ jobs:
           distribution: temurin
           java-version: "21"
 
-      - name: Build debug APK
-        run: ./gradlew --no-daemon assembleDebug
+      - name: Build arm64 release APK
+        run: ./gradlew --no-daemon assembleGenericRelease -PnoSplits
 
       - name: Verify APK integrity
         run: |
           set -e
-          APK="$(find app/build/outputs/apk -type f -name '*arm64-v8a*.apk' | head -n 1)"
+          APK="$(find app/build/outputs/apk -type f -name '*Release.apk' | head -n 1)"
           test -n "$APK"
           echo "Using APK: $APK"
           ls -lh "$APK"
           file "$APK"
           unzip -t "$APK"
           sha256sum "$APK"
-          cp "$APK" yawr-debug.apk
+          cp "$APK" yawr.apk
 
       - name: Upload build artifact
         uses: actions/upload-artifact@v4
         with:
-          name: yawr-debug-apk
-          path: yawr-debug.apk
+          name: yawr-apk
+          path: yawr.apk
           if-no-files-found: error
           retention-days: 30
 
@@ -51,13 +51,13 @@ jobs:
           set -e
           TAG="yawr-latest"
           if ! gh release view "$TAG" >/dev/null 2>&1; then
-            gh release create "$TAG" yawr-debug.apk               --title "yawr Latest Build"               --notes "Automatically published from the latest successful main-branch build."               --prerelease
+            gh release create "$TAG" yawr.apk               --title "yawr Latest Build"               --notes "Automatically published from the latest successful main-branch build."               --prerelease
           else
-            gh release upload "$TAG" yawr-debug.apk --clobber
+            gh release upload "$TAG" yawr.apk --clobber
           fi
 
       - name: Write APK download link
         run: |
-          echo "## yawr APK" >> "$GITHUB_STEP_SUMMARY"
+          echo "## yawr APK (arm64 release)" >> "$GITHUB_STEP_SUMMARY"
           echo "" >> "$GITHUB_STEP_SUMMARY"
-          echo "[Download the latest yawr APK](https://github.com/chatpataprani/Reeldrop/releases/download/reeldrop-latest/yawr-debug.apk)" >> "$GITHUB_STEP_SUMMARY"
+          echo "[Download the latest yawr APK](https://github.com/chatpataprani/Reeldrop/releases/download/yawr-latest/yawr.apk)" >> "$GITHUB_STEP_SUMMARY"
