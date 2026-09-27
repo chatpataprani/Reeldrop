@@ -362,9 +362,6 @@ object DownloadUtil {
         }
     }
 
-    private fun YoutubeDLRequest.urlIsInstagramDownload(): Boolean =
-        this.toString().contains("instagram.com", ignoreCase = true)
-
     private fun YoutubeDLRequest.enableCookies(userAgentString: String): YoutubeDLRequest =
         this.addOption("--cookies", context.getCookiesFile().absolutePath).apply {
             if (userAgentString.isNotEmpty()) {
@@ -441,7 +438,8 @@ object DownloadUtil {
         this.addOption("--downloader", "libaria2c.so")
 
     private fun YoutubeDLRequest.addOptionsForVideoDownloads(
-        downloadPreferences: DownloadPreferences
+        downloadPreferences: DownloadPreferences,
+        sourceUrl: String,
     ): YoutubeDLRequest =
         this.apply {
             downloadPreferences.run {
@@ -452,7 +450,7 @@ object DownloadUtil {
                     if (mergeAudioStream) {
                         addOption("--audio-multistreams")
                     }
-                } else if (urlIsInstagramDownload()) {
+                } else if (sourceUrl.contains("instagram.com", ignoreCase = true)) {
                     // Instagram/WhatsApp works most reliably with H.264 + AAC in MP4.
                     // Prefer an AAC audio stream so players such as WhatsApp do not
                     // misinterpret an otherwise playable Opus/WebM audio track.
@@ -762,7 +760,7 @@ object DownloadUtil {
                     } else {
                         if (privateDirectory) pathBuilder.append(App.privateDownloadDir)
                         else pathBuilder.append(videoDownloadDir)
-                        addOptionsForVideoDownloads(downloadPreferences)
+                        addOptionsForVideoDownloads(downloadPreferences, url)
                     }
                     if (sponsorBlock) {
                         addOption("--sponsorblock-remove", sponsorBlockCategory)
