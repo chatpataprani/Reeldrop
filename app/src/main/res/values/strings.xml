@@ -450,4 +450,8 @@
         <item quantity="one">%d audio</item>
         <item quantity="other">%d audios</item>
     </plurals>
+    <string name="quick_setup_title">Quick setup</string>
+    <string name="quick_setup_message">Use simple defaults so tapping Download starts immediately:\n\n• Video download\n• Auto format / best available quality\n• Wi-Fi only\n• No extra processing\n• Battery stays system-optimized</string>
+    <string name="use_defaults">Use defaults</string>
+    <string name="customize_later">Customize later</string>
 </resources>
