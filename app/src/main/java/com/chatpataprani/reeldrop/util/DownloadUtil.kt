@@ -178,9 +178,13 @@ object DownloadUtil {
                     } else {
                         addOption("--dump-single-json")
                     }
-                    addOption("-R", "3")
+                    addOption("-R", "5")
+                    addOption("--retries", "5")
+                    addOption("--fragment-retries", "5")
+                    addOption("--extractor-retries", "5")
+                    addOption("--retry-sleep", "exponential:1:8")
                     addOption("--no-playlist")
-                    addOption("--socket-timeout", "15")
+                    addOption("--socket-timeout", "20")
                 }
             return getVideoInfo(request, taskKey)
         }
