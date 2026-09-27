@@ -47,7 +47,7 @@ android {
         applicationId = "com.chatpataprani.reeldrop"
         minSdk = 24
         targetSdk = 35
-        versionCode = 200_000_150
+        versionCode = 200_000_160
         check(versionCode == currentVersionCode)
 
         versionName = baseVersionName
