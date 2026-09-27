@@ -36,14 +36,14 @@ object NotificationUtil {
     private const val CHANNEL_ID = "download_notification"
     private const val SERVICE_CHANNEL_ID = "download_service"
     private const val FLIRTY_CHANNEL_ID = "flirty_reminders"
-    private val appLogo by lazy { BitmapFactory.decodeResource(context.resources, R.drawable.reeldrop_logo) }
+    private val appLogo by lazy { BitmapFactory.decodeResource(context.resources, R.drawable.yawr_logo) }
     private const val NOTIFICATION_GROUP_ID = "reeldrop.download.notification"
     private const val DEFAULT_NOTIFICATION_ID = 100
     const val SERVICE_NOTIFICATION_ID = 123
     private lateinit var serviceNotification: Notification
 
     private val commandNotificationBuilder =
-        NotificationCompat.Builder(context, CHANNEL_ID).setSmallIcon(R.drawable.ic_stat_reeldrop)
+        NotificationCompat.Builder(context, CHANNEL_ID).setSmallIcon(R.drawable.ic_stat_yawr)
                 .setLargeIcon(appLogo)
 
     @RequiresApi(Build.VERSION_CODES.O)
@@ -101,7 +101,7 @@ object NotificationUtil {
             )
 
         NotificationCompat.Builder(context, FLIRTY_CHANNEL_ID)
-            .setSmallIcon(R.drawable.ic_stat_reeldrop)
+            .setSmallIcon(R.drawable.ic_stat_yawr)
                 .setLargeIcon(appLogo)
             .setContentTitle(context.getString(R.string.flirty_reminders))
             .setContentText(message)
@@ -138,7 +138,7 @@ object NotificationUtil {
             }
 
         NotificationCompat.Builder(context, CHANNEL_ID)
-            .setSmallIcon(R.drawable.ic_stat_reeldrop)
+            .setSmallIcon(R.drawable.ic_stat_yawr)
                 .setLargeIcon(appLogo)
             .setContentTitle(title)
             .setProgress(PROGRESS_MAX, progress, progress <= 0)
@@ -165,7 +165,7 @@ object NotificationUtil {
 
         val builder =
             NotificationCompat.Builder(context, CHANNEL_ID)
-                .setSmallIcon(R.drawable.ic_stat_reeldrop)
+                .setSmallIcon(R.drawable.ic_stat_yawr)
                 .setLargeIcon(appLogo)
                 .setContentText(text)
                 .setOngoing(false)
@@ -183,7 +183,7 @@ object NotificationUtil {
         //        notificationManager.cancel(notificationId)
         val builder =
             NotificationCompat.Builder(context, CHANNEL_ID)
-                .setSmallIcon(R.drawable.ic_stat_reeldrop)
+                .setSmallIcon(R.drawable.ic_stat_yawr)
                 .setLargeIcon(appLogo)
                 .setContentText(text)
                 .setProgress(0, 0, false)
@@ -198,7 +198,7 @@ object NotificationUtil {
     fun makeServiceNotification(intent: PendingIntent, text: String? = null): Notification {
         serviceNotification =
             NotificationCompat.Builder(context, SERVICE_CHANNEL_ID)
-                .setSmallIcon(R.drawable.ic_stat_reeldrop)
+                .setSmallIcon(R.drawable.ic_stat_yawr)
                 .setLargeIcon(appLogo)
                 .setContentTitle(context.getString(R.string.service_title))
                 .setContentText(text)
@@ -246,7 +246,7 @@ object NotificationUtil {
                     PendingIntent.FLAG_UPDATE_CURRENT,
             )
         NotificationCompat.Builder(context, CHANNEL_ID)
-            .setSmallIcon(R.drawable.ic_stat_reeldrop)
+            .setSmallIcon(R.drawable.ic_stat_yawr)
                 .setLargeIcon(appLogo)
             .setContentTitle(title)
             .setContentText(context.getString(textId))
@@ -287,7 +287,7 @@ object NotificationUtil {
             )
 
         NotificationCompat.Builder(context, CHANNEL_ID)
-            .setSmallIcon(R.drawable.ic_stat_reeldrop)
+            .setSmallIcon(R.drawable.ic_stat_yawr)
                 .setLargeIcon(appLogo)
             .setContentTitle(
                 "[${templateName}_${taskUrl}] " +

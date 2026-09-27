@@ -2,5 +2,5 @@
     android:inset="18dp">
     <bitmap
         android:gravity="fill"
-        android:src="@drawable/reeldrop_logo" />
+        android:src="@drawable/yawr_logo" />
 </inset>
