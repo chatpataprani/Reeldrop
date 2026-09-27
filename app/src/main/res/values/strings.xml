@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name" translatable="false">Reeldrop</string>
+    <string name="app_name" translatable="false">yawr</string>
     <string name="video_directory">Video folder</string>
     <string name="extract_audio">Save as audio</string>
     <string name="create_thumbnail">Save thumbnail</string>
@@ -133,7 +133,7 @@
     <string name="permission_issue_desc">Directories outside Download/ and Documents/ are not supported</string>
     <string name="battery_configuration">Battery configuration</string>
     <string name="battery_configuration_desc">Ignore battery optimization for this app to download in the background</string>
-    <string name="service_title">Reeldrop is downloading…</string>
+    <string name="service_title">yawr is downloading…</string>
     <string name="unknown_error">Unknown error</string>
     <string name="translate">Translate</string>
     <string name="translate_desc">Help translate this app on Hosted Weblate</string>
@@ -288,7 +288,7 @@
     <string name="temporary_directory_desc">Store temporary files in the internal directory</string>
     <string name="sponsor">Sponsor</string>
     <string name="sponsor_desc">Support this app by sponsoring on GitHub</string>
-    <string name="sponsor_msg">Reeldrop will be always free and open source for everyone. If you like it, please consider sponsoring me on GitHub!</string>
+    <string name="sponsor_msg">yawr will be always free and open source for everyone. If you like it, please consider sponsoring me on GitHub!</string>
     <string name="feedback">Feedback</string>
     <string name="sponsors">Sponsors</string>
     <string name="audio_format">Audio format</string>
@@ -299,7 +299,7 @@
     <string name="clip_video_desc">Make video clips in the format selection page</string>
     <string name="embed_thumbnail" translatable="false">Embed thumbnail</string>
     <string name="embed_thumbnail_desc" translatable="false">Embed thumbnails into videos</string>
-    <string name="auto_update_disabled_msg">Auto-update is not available for %1$s builds. If you don\'t have %1$s installed on your device, or would like to preview upcoming new features in Reeldrop, please consider %2$s.</string>
+    <string name="auto_update_disabled_msg">Auto-update is not available for %1$s builds. If you don\'t have %1$s installed on your device, or would like to preview upcoming new features in yawr, please consider %2$s.</string>
     <string name="switch_to_github_builds">switching to GitHub builds</string>
     <string name="okay">Okay</string>
     <string name="got_it">Got it</string>
@@ -454,14 +454,14 @@
     <string name="quick_setup_message">Use simple defaults so tapping Download starts immediately:\n\n• Video download\n• Auto format / best available quality\n• Wi-Fi only\n• No extra processing\n• Battery stays system-optimized</string>
     <string name="use_defaults">Use defaults</string>
     <string name="customize_later">Customize later</string>
-    <string name="flirty_reminders">Reeldrop</string>
+    <string name="flirty_reminders">yawr</string>
     <string name="flirty_reminders_desc">Playful reminders to come back and download something.</string>
-    <string name="flirty_1">don&apos;t you wanna download something bbg? </string>
-    <string name="flirty_2">did you forget about me? </string>
-    <string name="flirty_3">psst… got something to download? </string>
-    <string name="flirty_4">your downloads are getting lonely </string>
-    <string name="flirty_5">you really opened your phone and forgot about me? </string>
-    <string name="flirty_6">no download today? betrayal fr </string>
-    <string name="flirty_7">got a reel? hand it over </string>
-    <string name="flirty_8">me waiting for you to paste a link: </string>
+    <string name="flirty_1">don&apos;t you wanna download something bbg? &#x1F440;</string>
+    <string name="flirty_2">did you forget about me? &#x1F972;</string>
+    <string name="flirty_3">psst… got something to download? &#x1F60F;</string>
+    <string name="flirty_4">your downloads are getting lonely &#x1F62D;</string>
+    <string name="flirty_5">you really opened your phone and forgot about me? &#x1F972;</string>
+    <string name="flirty_6">no download today? betrayal fr &#x1F494;</string>
+    <string name="flirty_7">got a reel? hand it over &#x1F60C;</string>
+    <string name="flirty_8">me waiting for you to paste a link: &#x1F9CD;</string>
 </resources>
