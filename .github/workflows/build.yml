@@ -9,17 +9,128 @@ jobs:
   build:
     runs-on: ubuntu-latest
     permissions:
-      contents: read
+      contents: write
 
     steps:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Set up JDK 17
+      - name: Replace project with Seal and rebrand
+        run: |
+          set -e
+          rm -rf /tmp/seal
+          git clone --depth 1 https://github.com/JunkFood02/Seal.git /tmp/seal
+          rm -rf /tmp/seal/.git /tmp/seal/.github /tmp/seal/.idea /tmp/seal/fastlane /tmp/seal/translations
+          find . -mindepth 1 -maxdepth 1 ! -name .git ! -name .github -exec rm -rf {} +
+          cp -a /tmp/seal/. .
+
+          python3 <<'PY'
+          from pathlib import Path
+
+          root = Path('.')
+          skip_dirs = {'.git', '.gradle', 'build'}
+          text_ext = {'.kt','.kts','.xml','.md','.txt','.json','.properties','.toml','.yml','.yaml','.pro','.gradle'}
+
+          for p in sorted(root.rglob('*'), key=lambda x: len(x.parts), reverse=True):
+              if not p.is_file() or any(part in skip_dirs for part in p.parts):
+                  continue
+              if p.suffix.lower() not in text_ext and p.name not in {'.gitignore','gradlew'}:
+                  continue
+              try:
+                  s = p.read_text(encoding='utf-8')
+              except UnicodeDecodeError:
+                  continue
+              replacements = [
+                  ('com.junkfood.seal','com.chatpataprani.reeldrop'),
+                  ('com/junkfood/seal','com/chatpataprani/reeldrop'),
+                  ('JunkFood02/Seal','chatpataprani/Reeldrop'),
+                  ('JunkFood02','chatpataprani'),
+                  ('https://t.me/seal_app','https://github.com/chatpataprani/Reeldrop'),
+                  ('https://matrix.to/#/#seal-space:matrix.org','https://github.com/chatpataprani/Reeldrop'),
+                  ('https://hosted.weblate.org/projects/seal/','https://github.com/chatpataprani/Reeldrop'),
+                  ('https://f-droid.org/packages/com.junkfood.seal/','https://github.com/chatpataprani/Reeldrop'),
+                  ('seal_app','reeldrop'),
+                  ('Seal','Reeldrop'),
+                  ('seal','reeldrop'),
+                  ('SEAL','REELDROP'),
+                  ('Video/Audio Downloader for Android','Video & Audio Downloader for Android'),
+              ]
+              for a,b in replacements:
+                  s=s.replace(a,b)
+              p.write_text(s,encoding='utf-8')
+
+          for p in sorted(root.rglob('*'), key=lambda x: len(x.parts), reverse=True):
+              if any(part in skip_dirs for part in p.parts):
+                  continue
+              new=p.name.replace('Seal','Reeldrop').replace('seal','reeldrop')
+              if new!=p.name:
+                  p.rename(p.with_name(new))
+
+          res=Path('app/src/main/res')
+          (res/'drawable').mkdir(parents=True,exist_ok=True)
+          (res/'mipmap-anydpi-v26').mkdir(parents=True,exist_ok=True)
+          (res/'drawable'/'ic_launcher_foreground.xml').write_text('''<vector xmlns:android="http://schemas.android.com/apk/res/android" android:width="108dp" android:height="108dp" android:viewportWidth="108" android:viewportHeight="108"><path android:fillColor="#FFFFFFFF" android:pathData="M27,27 L81,27 L81,81 L27,81 Z"/><path android:fillColor="#FFFF3D7F" android:pathData="M35,38 L73,38 L73,70 L35,70 Z"/><path android:fillColor="#FFFFFFFF" android:pathData="M43,44 L43,64 L64,54 Z"/><path android:fillColor="#FFFF3D7F" android:pathData="M50,78 C50,84 54,88 60,88 C66,88 70,84 70,78 Z"/></vector>''',encoding='utf-8')
+          (res/'drawable'/'ic_launcher_monochrome.xml').write_text('''<vector xmlns:android="http://schemas.android.com/apk/res/android" android:width="108dp" android:height="108dp" android:viewportWidth="108" android:viewportHeight="108"><path android:fillColor="#FF000000" android:pathData="M27,27 L81,27 L81,81 L27,81 Z"/><path android:fillColor="#FFFFFFFF" android:pathData="M35,38 L73,38 L73,70 L35,70 Z"/><path android:fillColor="#FF000000" android:pathData="M43,44 L43,64 L64,54 Z"/><path android:fillColor="#FFFFFFFF" android:pathData="M50,78 C50,84 54,88 60,88 C66,88 70,84 70,78 Z"/></vector>''',encoding='utf-8')
+          (res/'drawable'/'ic_stat_reeldrop.xml').write_text('''<vector xmlns:android="http://schemas.android.com/apk/res/android" android:width="24dp" android:height="24dp" android:viewportWidth="24" android:viewportHeight="24"><path android:fillColor="#FFFFFFFF" android:pathData="M4,4 L20,4 L20,16 L4,16 Z"/><path android:fillColor="#FFFF3D7F" android:pathData="M9,7 L9,13 L15,10 Z"/><path android:fillColor="#FFFF3D7F" android:pathData="M9,17 C9,20 11,21 12,21 C13,21 15,20 15,17 Z"/></vector>''',encoding='utf-8')
+          (res/'mipmap-anydpi-v26'/'ic_launcher.xml').write_text('''<adaptive-icon xmlns:android="http://schemas.android.com/apk/res/android"><background android:drawable="@color/ic_launcher_background"/><foreground android:drawable="@drawable/ic_launcher_foreground"/></adaptive-icon>''',encoding='utf-8')
+          (res/'mipmap-anydpi-v26'/'ic_launcher_round.xml').write_text('''<adaptive-icon xmlns:android="http://schemas.android.com/apk/res/android"><background android:drawable="@color/ic_launcher_background"/><foreground android:drawable="@drawable/ic_launcher_foreground"/></adaptive-icon>''',encoding='utf-8')
+
+          # Generate legacy launcher PNGs so older Android versions do not retain Seal branding.
+          Path('/tmp/icon.svg').write_text('''<svg xmlns="http://www.w3.org/2000/svg" width="108" height="108" viewBox="0 0 108 108"><rect x="15" y="15" width="78" height="78" rx="22" fill="#161616"/><rect x="31" y="30" width="46" height="40" rx="7" fill="#FF3D7F"/><path d="M44 38v24l25-12z" fill="white"/><path d="M44 73c0 8 5 12 10 12s10-4 10-12z" fill="#FF3D7F"/></svg>''',encoding='utf-8')
+          for density,size in [('mdpi',48),('hdpi',72),('xhdpi',96),('xxhdpi',144),('xxxhdpi',192)]:
+              d=res/f'mipmap-{density}'
+              d.mkdir(parents=True,exist_ok=True)
+              __import__('subprocess').run(['convert','-background','none','/tmp/icon.svg','-resize',f'{size}x{size}',str(d/'ic_launcher.png')],check=True)
+              __import__('subprocess').run(['convert','-background','none','/tmp/icon.svg','-resize',f'{size}x{size}',str(d/'ic_launcher_round.png')],check=True)
+
+          # Make sure the app uses the Reeldrop notification icon.
+          manifest=Path('app/src/main/AndroidManifest.xml')
+          if manifest.exists():
+              s=manifest.read_text(encoding='utf-8').replace('@drawable/ic_stat_reeldrop','@drawable/ic_stat_reeldrop')
+              manifest.write_text(s,encoding='utf-8')
+
+          Path('README.md').write_text('''# Reeldrop
+
+Reeldrop is a rebranded Android video/audio downloader based on the open-source Seal project and yt-dlp.
+
+## Features
+
+- Download video and audio from yt-dlp-supported sites
+- Playlist downloads
+- Audio extraction and metadata/thumbnail embedding
+- Subtitle support
+- Custom yt-dlp command templates
+- Download queue/history and settings
+- Material 3 interface
+- Android share-target support
+
+## Attribution
+
+This project is derived from Seal by JunkFood02. The source remains licensed under GPLv3. Original third-party attributions and dependency licenses are retained where applicable.
+
+Repository: https://github.com/chatpataprani/Reeldrop
+
+Use Reeldrop only for media you have permission to download or reuse.
+''',encoding='utf-8')
+
+          lic=Path('LICENSE')
+          if lic.exists():
+              s=lic.read_text(encoding='utf-8')
+              if 'modified derivative of Seal' not in s:
+                  lic.write_text(s+'\n\nReeldrop is a modified derivative of Seal by JunkFood02.\n',encoding='utf-8')
+          PY
+
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git commit -m "Convert Reeldrop to Seal base with Reeldrop branding [skip ci]" || true
+          git push origin HEAD:main
+
+      - name: Set up JDK 21
         uses: actions/setup-java@v4
         with:
           distribution: temurin
-          java-version: "17"
+          java-version: "21"
 
       - name: Set up Gradle
         uses: gradle/actions/setup-gradle@v4
