@@ -55,9 +55,9 @@ jobs:
               ]
               for a,b in replacements:
                   s=s.replace(a,b)
-              s=re.sub(r'\\bSeal\\b','Reeldrop',s)
-              s=re.sub(r'\\bseal\\b','reeldrop',s)
-              s=re.sub(r'\\bSEAL\\b','REELDROP',s)
+              s=re.sub(r'(?<![A-Za-z])Seal(?![A-Za-z])','Reeldrop',s)
+              s=re.sub(r'(?<![A-Za-z])seal(?![A-Za-z])','reeldrop',s)
+              s=re.sub(r'(?<![A-Za-z])SEAL(?![A-Za-z])','REELDROP',s)
               p.write_text(s,encoding='utf-8')
 
           for p in sorted(root.rglob('*'), key=lambda x: len(x.parts), reverse=True):
