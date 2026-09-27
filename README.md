@@ -1,21 +1,21 @@
 <div align="center">
 
-# Reeldrop
+# YAWR
 
-### A fast, clean Android downloader powered by yt-dlp.
+### yet another yt-dlp wrapper because apparently one wasn't enough.
 
 <p>
   <a href="https://github.com/chatpataprani/Reeldrop">
-    <img src="https://img.shields.io/github/stars/chatpataprani/Reeldrop?style=for-the-badge&logo=github&label=Stars" alt="GitHub Stars">
+    <img src="https://img.shields.io/github/stars/chatpataprani/Reeldrop?style=for-the-badge&logo=github&label=stars" alt="GitHub Stars">
   </a>
   <a href="https://github.com/chatpataprani/Reeldrop/releases">
-    <img src="https://img.shields.io/github/v/release/chatpataprani/Reeldrop?style=for-the-badge&logo=android&label=Release" alt="Latest Release">
+    <img src="https://img.shields.io/github/v/release/chatpataprani/Reeldrop?style=for-the-badge&logo=android&label=release" alt="Latest Release">
   </a>
   <a href="https://github.com/chatpataprani/Reeldrop/actions/workflows/build.yml">
-    <img src="https://img.shields.io/github/actions/workflow/status/chatpataprani/Reeldrop/build.yml?style=for-the-badge&logo=github-actions&label=Build" alt="Build Status">
+    <img src="https://img.shields.io/github/actions/workflow/status/chatpataprani/Reeldrop/build.yml?style=for-the-badge&logo=github-actions&label=build" alt="Build Status">
   </a>
   <a href="https://github.com/chatpataprani/Reeldrop/blob/main/LICENSE">
-    <img src="https://img.shields.io/github/license/chatpataprani/Reeldrop?style=for-the-badge&label=License" alt="License">
+    <img src="https://img.shields.io/github/license/chatpataprani/Reeldrop?style=for-the-badge&label=license" alt="License">
   </a>
 </p>
 
@@ -28,7 +28,7 @@
 
 <p>
   <a href="https://github.com/chatpataprani/Reeldrop/releases">
-    <img src="https://img.shields.io/badge/Download-Latest%20APK-2ea44f?style=for-the-badge&logo=android&logoColor=white" alt="Download Latest APK">
+    <img src="https://img.shields.io/badge/download-latest%20APK-2ea44f?style=for-the-badge&logo=android&logoColor=white" alt="Download Latest APK">
   </a>
 </p>
 
@@ -36,34 +36,50 @@
 
 ---
 
-## ✨ What is Reeldrop?
+## so... what is YAWR?
 
-**Reeldrop** is a lightweight Android downloader built around **yt-dlp**.
+**YAWR** = **Yet Another yt-dlp Wrapper**.
 
-Paste a supported URL, choose what you want, and download it — without turning a simple download into a side quest.
+yeah. the name is self-explanatory.
 
-> Built for people who want a downloader, not a 60 MB app with 14 screens of nonsense.
+it's an Android downloader built on top of **yt-dlp** because apparently pasting a link and downloading a file needed a whole app.
 
-## 🚀 Features
+paste link → pick what you want → download → pretend the 47 build errors never happened.
 
-| Feature | Description |
+> made with kotlin, caffeine, and an unreasonable amount of debugging.
+
+## what can this thing do?
+
+| thing | what it does |
 |---|---|
-| 🎬 Video downloads | Download supported videos through yt-dlp |
-| 🎵 Audio extraction | Extract supported media as audio |
-| 📚 Playlists | Download supported playlists |
-| 🖼️ Metadata | Preserve thumbnails and metadata when available |
-| 💬 Subtitles | Download and embed subtitles when supported |
-| ⚡ aria2c | Optional external downloader support |
-| 🧩 Custom commands | Advanced yt-dlp command support |
-| 🍪 Cookies | Support sites that require authentication |
-| 📥 Download manager | Queue, history and task management |
-| 🎨 Material 3 | Modern Android UI with dynamic theming |
-| 🔗 Share support | Send links directly to Reeldrop |
-| 🌐 Network controls | Proxy and IPv4 options |
+| 🎬 video downloads | downloads supported videos through yt-dlp |
+| 🎵 audio extraction | turns supported media into audio |
+| 📚 playlists | because downloading 1 video at a time is character development |
+| 🖼️ metadata | thumbnails + metadata when available |
+| 💬 subtitles | downloads/embeds subtitles when supported |
+| ⚡ aria2c | optional faster downloader support |
+| 🧩 custom commands | for people who enjoy touching things they shouldn't |
+| 🍪 cookies | handles sites that need authentication |
+| 📥 download manager | queue, history and task management |
+| 🎨 Material 3 | modern UI without 900 random buttons |
+| 🔗 share support | share a link straight into YAWR |
+| 🌐 network controls | proxy + IPv4 options |
 
-## 📱 Screenshots
+## the important part
 
-Screenshots coming soon.
+YAWR isn't trying to be the next super-app.
+
+it's a downloader.
+
+you give it a link.
+
+it downloads the thing.
+
+that's literally the lore.
+
+## 📱 screenshots
+
+coming soon™ because apparently screenshots are also a feature i haven't finished.
 
 <!-- Add screenshots here:
 <img src="docs/screenshots/home.png" width="240">
@@ -71,54 +87,62 @@ Screenshots coming soon.
 <img src="docs/screenshots/settings.png" width="240">
 -->
 
-## ⬇️ Download
+## ⬇️ download
 
-Get the latest APK from **GitHub Releases**:
+grab the latest APK from **GitHub Releases**:
 
-**[Download Reeldrop](https://github.com/chatpataprani/Reeldrop/releases)**
+**[download YAWR](https://github.com/chatpataprani/Reeldrop/releases)**
 
-> APK availability depends on the project's release/build status.
+> if there isn't an APK there, congrats — you found the part where i'm still fighting Gradle.
 
-## 🛠️ Build from source
+## 🛠️ build it yourself
 
-### Requirements
+### requirements
 
 - Android Studio
 - JDK 21
 - Android SDK
 - Git
+- basic patience
+- emotional support
 
-### Clone
+### clone
 
 ```bash
 git clone https://github.com/chatpataprani/Reeldrop.git
 cd Reeldrop
 ```
 
-### Build
+### build
 
 ```bash
 ./gradlew assembleDebug
 ```
 
-The generated APK will be under:
+then look here:
 
 ```text
 app/build/outputs/apk/
 ```
 
-## 🧱 Tech stack
+if it builds first try, screenshot it.
+
+i won't believe you otherwise.
+
+## 🧱 made with
 
 - **Kotlin**
 - **Jetpack Compose**
 - **Material 3**
 - **yt-dlp**
 - **Gradle**
-- **aria2c** (optional)
+- **aria2c** — optional
 
-## 🤝 Open-source credits
+basically a suspicious amount of tooling for something that downloads videos.
 
-Reeldrop uses and/or builds upon open-source projects including:
+## 🤝 open-source stuff
+
+YAWR stands on the shoulders of projects that are way more competent than me:
 
 - [yt-dlp](https://github.com/yt-dlp/yt-dlp)
 - [youtubedl-android](https://github.com/yausername/youtubedl-android)
@@ -129,34 +153,42 @@ Reeldrop uses and/or builds upon open-source projects including:
 - [Material Color Utilities](https://github.com/material-foundation/material-color-utilities)
 - [Monet](https://github.com/Kyant0/Monet)
 
-See the repository and individual projects for their respective licenses and attribution requirements.
+respect to the people who actually know what they're doing.
 
-## 👨‍💻 Developer
+## 👨‍💻 who made this?
 
 **Amir · [@chatpataprani](https://github.com/chatpataprani)**
 
-Built independently, with questionable amounts of debugging.
+self-taught.
 
-## 📄 License
+mostly powered by curiosity.
 
-This project is licensed under the **GNU General Public License v3.0**.
+occasionally powered by "why the hell is Gradle doing this".
 
-See [LICENSE](LICENSE) for the full license text.
+built independently, debugged irresponsibly.
 
-## ⚠️ Disclaimer
+## 📄 license
 
-Reeldrop is a downloading tool. Only download content you have the legal right or permission to download.
+YAWR is licensed under the **GNU General Public License v3.0**.
 
-You are responsible for complying with applicable copyright laws, website terms, privacy requirements, and other rules that apply to your use of the application.
+see [LICENSE](LICENSE) for the full license text.
 
----
+## ⚠️ don't be stupid
+
+YAWR is a downloading tool.
+
+only download content you have the legal right or permission to download.
+
+you are responsible for following copyright laws, website terms, privacy requirements, and whatever other rules apply where you live.
+
+## final boss
 
 <div align="center">
 
-### Reeldrop
+### YAWR
 
 **paste link. download. disappear.**
 
-⭐ If Reeldrop is useful to you, consider starring the repository.
+⭐ star the repo if it actually saved you from opening a suspicious website.
 
 </div>
