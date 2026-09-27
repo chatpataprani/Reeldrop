@@ -89,29 +89,7 @@ jobs:
               s=manifest.read_text(encoding='utf-8').replace('@drawable/ic_stat_reeldrop','@drawable/ic_stat_reeldrop')
               manifest.write_text(s,encoding='utf-8')
 
-          Path('README.md').write_text('''# Reeldrop
-
-Reeldrop is a rebranded Android video/audio downloader based on the open-source Seal project and yt-dlp.
-
-## Features
-
-- Download video and audio from yt-dlp-supported sites
-- Playlist downloads
-- Audio extraction and metadata/thumbnail embedding
-- Subtitle support
-- Custom yt-dlp command templates
-- Download queue/history and settings
-- Material 3 interface
-- Android share-target support
-
-## Attribution
-
-This project is derived from Seal by JunkFood02. The source remains licensed under GPLv3. Original third-party attributions and dependency licenses are retained where applicable.
-
-Repository: https://github.com/chatpataprani/Reeldrop
-
-Use Reeldrop only for media you have permission to download or reuse.
-''',encoding='utf-8')
+          Path('README.md').write_text("# Reeldrop\\n\\nReeldrop is a rebranded Android video/audio downloader based on the open-source Seal project and yt-dlp.\\n\\n## Features\\n\\n- Download video and audio from yt-dlp-supported sites\\n- Playlist downloads\\n- Audio extraction and metadata/thumbnail embedding\\n- Subtitle support\\n- Custom yt-dlp command templates\\n- Download queue/history and settings\\n- Material 3 interface\\n- Android share-target support\\n\\n## Attribution\\n\\nThis project is derived from Seal by JunkFood02. The source remains licensed under GPLv3. Original third-party attributions and dependency licenses are retained where applicable.\\n\\nRepository: https://github.com/chatpataprani/Reeldrop\\n\\nUse Reeldrop only for media you have permission to download or reuse.\\n",encoding='utf-8')
 
           lic=Path('LICENSE')
           if lic.exists():
