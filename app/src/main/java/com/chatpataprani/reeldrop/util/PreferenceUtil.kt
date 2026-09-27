@@ -221,7 +221,7 @@ private val BooleanPreferenceDefaults =
         USE_CUSTOM_AUDIO_PRESET to false,
     )
 
-private val IntPreferenceDefaults =
+private val IntPreferenceDefaults: Map<String, Int> =
     mapOf(
         TEMPLATE_ID to 0,
         CONCURRENT to 8,
@@ -229,7 +229,7 @@ private val IntPreferenceDefaults =
         PALETTE_STYLE to 0,
         DARK_THEME_VALUE to DarkThemePreference.FOLLOW_SYSTEM,
         WELCOME_DIALOG to 1,
-        FIRST_RUN_SETUP to false,
+        FIRST_RUN_SETUP to 0,
         AUDIO_CONVERSION_FORMAT to NOT_SPECIFIED,
         VIDEO_QUALITY to NOT_SPECIFIED,
         VIDEO_FORMAT to FORMAT_QUALITY,
