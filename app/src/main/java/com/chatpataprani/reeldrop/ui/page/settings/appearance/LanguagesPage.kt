@@ -57,6 +57,8 @@ import com.chatpataprani.reeldrop.util.setLanguage
 import com.chatpataprani.reeldrop.util.toDisplayName
 import java.util.Locale
 
+private val slangLocale = Locale("en", "ZZ")
+
 @Composable
 fun LanguagePage(onNavigateBack: () -> Unit = {}) {
     val selectedLocale = AppCompatDelegate.getApplicationLocales()[0] ?: Locale.getDefault()
@@ -87,8 +89,6 @@ fun LanguagePage(onNavigateBack: () -> Unit = {}) {
     }
 
     val supportedLocales = LocaleLanguageCodeMap.keys
-    val slangLocale = Locale("en", "ZZ")
-
     val suggestedLocales =
         remember(preferredLocales) {
             val localeSet = mutableSetOf<Locale>()
