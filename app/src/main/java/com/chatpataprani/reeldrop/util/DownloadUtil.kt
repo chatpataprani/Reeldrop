@@ -96,8 +96,8 @@ object DownloadUtil {
                 addOption("--flat-playlist")
                 addOption("--dump-single-json")
                 addOption("-o", BASENAME)
-                addOption("-R", "1")
-                addOption("--socket-timeout", "5")
+                addOption("-R", "3")
+                addOption("--socket-timeout", "15")
                 downloadPreferences.run {
                     if (extractAudio) {
                         addOption("-x")
@@ -160,7 +160,7 @@ object DownloadUtil {
                     if (proxy) {
                         enableProxy(proxyUrl)
                     }
-                    if (forceIpv4) {
+                    if (forceIpv4 || playlistURL.contains("instagram.com", ignoreCase = true)) {
                         addOption("-4")
                     }
                     /*            if (debug) {
@@ -178,9 +178,9 @@ object DownloadUtil {
                     } else {
                         addOption("--dump-single-json")
                     }
-                    addOption("-R", "1")
+                    addOption("-R", "3")
                     addOption("--no-playlist")
-                    addOption("--socket-timeout", "5")
+                    addOption("--socket-timeout", "15")
                 }
             return getVideoInfo(request, taskKey)
         }
@@ -694,7 +694,7 @@ object DownloadUtil {
                     if (proxy) {
                         enableProxy(proxyUrl)
                     }
-                    if (forceIpv4) {
+                    if (forceIpv4 || url.contains("instagram.com", ignoreCase = true)) {
                         addOption("-4")
                     }
                     if (debug) {
