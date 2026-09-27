@@ -30,6 +30,7 @@ import com.chatpataprani.reeldrop.util.FileUtil.createEmptyFile
 import com.chatpataprani.reeldrop.util.FileUtil.getCookiesFile
 import com.chatpataprani.reeldrop.util.FileUtil.getExternalDownloadDirectory
 import com.chatpataprani.reeldrop.util.FileUtil.getExternalPrivateDownloadDirectory
+import com.chatpataprani.reeldrop.util.FlirtyReminderScheduler
 import com.chatpataprani.reeldrop.util.NotificationUtil
 import com.chatpataprani.reeldrop.util.PreferenceUtil
 import com.chatpataprani.reeldrop.util.PreferenceUtil.getString
@@ -107,6 +108,7 @@ class App : Application() {
             COMMAND_DIRECTORY.updateString(videoDownloadDir)
         }
         if (Build.VERSION.SDK_INT >= 26) NotificationUtil.createNotificationChannel()
+        FlirtyReminderScheduler.schedule(this)
 
         Thread.setDefaultUncaughtExceptionHandler { _, e -> startCrashReportActivity(e) }
     }
