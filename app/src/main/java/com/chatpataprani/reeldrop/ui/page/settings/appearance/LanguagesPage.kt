@@ -109,7 +109,7 @@ fun LanguagePage(onNavigateBack: () -> Unit = {}) {
             return@remember localeSet
         }
 
-    val otherLocales = supportedLocales - suggestedLocales
+    val otherLocales = supportedLocales - suggestedLocales - slangLocale
 
     val isSystemLocaleSettingsAvailable =
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
