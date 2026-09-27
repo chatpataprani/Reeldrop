@@ -92,21 +92,52 @@ jobs:
           PY
           )"
 
+          ASSET="yawr-${VERSION}-arm64-v8a-${GITHUB_RUN_ID}.apk"
+
           echo "Publishing version: $VERSION"
+          echo "Publishing unique asset: $ASSET"
 
           if ! gh release view "$TAG" >/dev/null 2>&1; then
             gh release create "$TAG" yawr.apk               --title "$VERSION"               --notes "Automatically published from the latest successful main-branch build."               --latest
-          else
-            gh release edit "$TAG"               --title "$VERSION"               --prerelease=false               --latest
-
-            # GitHub requires the old asset to be removed before uploading
-            # another asset with the same filename.
             gh release delete-asset "$TAG" yawr.apk --yes >/dev/null 2>&1 || true
-            gh release upload "$TAG" yawr.apk
           fi
+
+          gh release edit "$TAG"               --title "$VERSION"               --prerelease=false               --latest
+
+          cp yawr.apk "$ASSET"
+          gh release upload "$TAG" "$ASSET"
+
+          LOCAL_SHA="$(sha256sum "$ASSET" | cut -d' ' -f1)"
+          echo "Published local SHA-256: $LOCAL_SHA"
+          echo "Published asset: $ASSET"
 
       - name: Write APK download link
         run: |
+          VERSION="$(python3 <<'PY'
+          import re
+          from pathlib import Path
+
+          s = Path("buildSrc/src/main/kotlin/Version.kt").read_text()
+          m = re.search(
+              r"currentVersion\s*:\s*Version\s*=\s*Version\.([A-Za-z]+)\s*\("
+              r"\s*versionMajor\s*=\s*(\d+)\s*,"
+              r"\s*versionMinor\s*=\s*(\d+)\s*,"
+              r"\s*versionPatch\s*=\s*(\d+)"
+              r"(?:\s*,\s*versionBuild\s*=\s*(\d+))?\s*\)",
+              s,
+              re.S,
+          )
+          if not m:
+              raise SystemExit("Could not read currentVersion from Version.kt")
+          kind, major, minor, patch, build = m.groups()
+          kind = kind.lower()
+          version = f"{major}.{minor}.{patch}"
+          if kind != "stable":
+              version += f"-{kind}.{build or 0}"
+          print(version)
+          PY
+          )"
+          ASSET="yawr-${VERSION}-arm64-v8a-${GITHUB_RUN_ID}.apk"
           echo "## yawr APK (arm64 release)" >> "$GITHUB_STEP_SUMMARY"
           echo "" >> "$GITHUB_STEP_SUMMARY"
-          echo "[Download the latest yawr APK](https://github.com/chatpataprani/Reeldrop/releases/download/yawr-latest/yawr.apk)" >> "$GITHUB_STEP_SUMMARY"
+          echo "[Download this build](https://github.com/chatpataprani/Reeldrop/releases/download/yawr-latest/$ASSET)" >> "$GITHUB_STEP_SUMMARY"
