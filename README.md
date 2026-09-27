@@ -17,6 +17,13 @@ No paste box. No second download button.
 - MediaStore saving to Movies/Reeldrop on Android 10+
 - Resolver isolated behind ResolverClient
 
+## Resolver order
+
+1. Configured Cobalt-compatible resolver (if `RESOLVER_BASE_URL` is set).
+2. Built-in backup API: `hostmyhosting.site/api/all_dl.php?url=`.
+
+The backup endpoint is queried with the shared URL URL-encoded. Because its live response could not be verified from the build environment, Reeldrop accepts either a direct media URL or several common JSON URL fields. If the endpoint changes its response format, only `ResolverClient.kt` needs updating.
+
 ## Important: media resolution
 
 The Android share/download flow is local, but an Instagram share URL is not itself a video file. Reeldrop therefore calls a media resolver.
