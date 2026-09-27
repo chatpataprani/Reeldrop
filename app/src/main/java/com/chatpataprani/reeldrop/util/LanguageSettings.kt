@@ -55,6 +55,7 @@ private const val KHMER = 44
 private const val KANNADA = 45
 private const val GREEK = 46
 private const val MONGOLIAN = 47
+private const val SLANG = 48
 
 val LocaleLanguageCodeMap =
     mapOf(
@@ -100,6 +101,7 @@ val LocaleLanguageCodeMap =
         Locale("si") to SINHALA,
         Locale("es") to SPANISH,
         Locale("sv") to SWEDISH,
+        Locale("en", "ZZ") to SLANG,
         Locale("ta") to TAMIL,
         Locale("th") to THAI,
         Locale("tr") to TURKISH,
