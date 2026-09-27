@@ -87,7 +87,7 @@
     <string name="convert_audio">Convert</string>
     <string name="start_download">Download</string>
     <string name="close">Close</string>
-    <string name="close_never_show_again">Don\'t show up again</string>
+    <string name="close_never_show_again">Don't show up again</string>
     <string name="user_guide">User guide</string>
     <string name="open_settings">Open settings</string>
     <string name="paste_desc">Click \"Paste\" to get video link from your clipboard.</string>
@@ -262,7 +262,7 @@
     <string name="share">Share</string>
     <string name="stable_channel">Stable</string>
     <string name="pre_release_channel">Preview</string>
-    <string name="update_channel_desc">Install pre-release builds to preview new features and changes.\n\nThere will be some instability in these versions, so please don\'t hesitate to give us feedback if you experience any problems to help us improve the app for the future.</string>
+    <string name="update_channel_desc">Install pre-release builds to preview new features and changes.\n\nThere will be some instability in these versions, so please don't hesitate to give us feedback if you experience any problems to help us improve the app for the future.</string>
     <string name="update_channel">Update channel</string>
     <string name="auto_update">Auto update</string>
     <string name="enable_auto_update">Enable auto update</string>
@@ -299,7 +299,7 @@
     <string name="clip_video_desc">Make video clips in the format selection page</string>
     <string name="embed_thumbnail" translatable="false">Embed thumbnail</string>
     <string name="embed_thumbnail_desc" translatable="false">Embed thumbnails into videos</string>
-    <string name="auto_update_disabled_msg">Auto-update is not available for %1$s builds. If you don\'t have %1$s installed on your device, or would like to preview upcoming new features in yawr, please consider %2$s.</string>
+    <string name="auto_update_disabled_msg">Auto-update is not available for %1$s builds. If you don't have %1$s installed on your device, or would like to preview upcoming new features in yawr, please consider %2$s.</string>
     <string name="switch_to_github_builds">switching to GitHub builds</string>
     <string name="okay">Okay</string>
     <string name="got_it">Got it</string>
@@ -368,7 +368,7 @@
     <string name="keep_subtitle_files">Keep subtitle files</string>
     <string name="allow_once">Allow once</string>
     <string name="allow_always">Allow always</string>
-    <string name="dont_allow">Don\'t allow</string>
+    <string name="dont_allow">Don't allow</string>
     <string name="download_with_cellular_request">Allow downloading with cellular?</string>
     <string name="merge_audiostream">Merge multiple audio stream</string>
     <string name="merge_audiostream_desc">Allow multiple audio streams to be merged into a single file</string>
@@ -400,8 +400,8 @@
     <string name="import_from">Import from</string>
     <string name="export_download_history">Export download history?</string>
     <string name="import_download_history">Import download history?</string>
-    <string name="import_download_history_msg">Downloaded files won\'t be imported. You\'ll need to download them back manually</string>
-    <string name="export_download_history_msg">Exporting %1$s from download history. Downloaded files and preferences won\'t be backed up.</string>
+    <string name="import_download_history_msg">Downloaded files won't be imported. You'll need to download them back manually</string>
+    <string name="export_download_history_msg">Exporting %1$s from download history. Downloaded files and preferences won't be backed up.</string>
     <string name="download_history">Download history</string>
     <string name="download_history_imported">Imported %1$s to download history</string>
     <string name="redownload">Redownload</string>
@@ -422,7 +422,7 @@
     <string name="edit_preset">Edit preset</string>
     <string name="best_quality_desc">Download the best available format</string>
     <string name="task_added">Task added to queue</string>
-    <string name="you_ll_find_your_downloads_here">You\'ll find your downloads here</string>
+    <string name="you_ll_find_your_downloads_here">You'll find your downloads here</string>
     <string name="download_hint">Tap on the download button or share a video link to this app to start a download</string>
     <string name="status_downloaded">Downloaded</string>
     <string name="all">All</string>
@@ -456,12 +456,12 @@
     <string name="customize_later">Customize later</string>
     <string name="flirty_reminders">yawr</string>
     <string name="flirty_reminders_desc">Playful reminders to come back and download something.</string>
-    <string name="flirty_1">don\u0027t you wanna download something bbg? \uD83D\uDC40</string>
-    <string name="flirty_2">did you forget about me? \uD83E\uDD72</string>
-    <string name="flirty_3">psst… got something to download? \uD83D\uDE0F</string>
-    <string name="flirty_4">your downloads are getting lonely \uD83D\uDE2D</string>
-    <string name="flirty_5">you really opened your phone and forgot about me? \uD83E\uDD72</string>
-    <string name="flirty_6">no download today? betrayal fr \uD83D\uDC94</string>
-    <string name="flirty_7">got a reel? hand it over \uD83D\uDE0C</string>
-    <string name="flirty_8">me waiting for you to paste a link: \uD83E\uDDCD</string>
+    <string name="flirty_1">don't you wanna download something bbg? 👀</string>
+    <string name="flirty_2">did you forget about me? 🥹</string>
+    <string name="flirty_3">psst… got something to download? 😏</string>
+    <string name="flirty_4">your downloads are getting lonely 😭</string>
+    <string name="flirty_5">you really opened your phone and forgot about me? 🥹</string>
+    <string name="flirty_6">no download today? betrayal fr 💔</string>
+    <string name="flirty_7">got a reel? hand it over 😌</string>
+    <string name="flirty_8">me waiting for you to paste a link: 🧍</string>
 </resources>
