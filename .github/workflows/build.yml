@@ -26,6 +26,7 @@ jobs:
 
           python3 <<'PY'
           from pathlib import Path
+          import re
 
           root = Path('.')
           skip_dirs = {'.git', '.gradle', 'build'}
@@ -50,13 +51,13 @@ jobs:
                   ('https://hosted.weblate.org/projects/seal/','https://github.com/chatpataprani/Reeldrop'),
                   ('https://f-droid.org/packages/com.junkfood.seal/','https://github.com/chatpataprani/Reeldrop'),
                   ('seal_app','reeldrop'),
-                  ('Seal','Reeldrop'),
-                  ('seal','reeldrop'),
-                  ('SEAL','REELDROP'),
                   ('Video/Audio Downloader for Android','Video & Audio Downloader for Android'),
               ]
               for a,b in replacements:
                   s=s.replace(a,b)
+              s=re.sub(r'\\bSeal\\b','Reeldrop',s)
+              s=re.sub(r'\\bseal\\b','reeldrop',s)
+              s=re.sub(r'\\bSEAL\\b','REELDROP',s)
               p.write_text(s,encoding='utf-8')
 
           for p in sorted(root.rglob('*'), key=lambda x: len(x.parts), reverse=True):
