@@ -110,7 +110,7 @@ android {
             }
             applicationIdSuffix = ".debug"
             versionNameSuffix = "-debug"
-            resValue("string", "app_name", "Reeldrop Debug")
+            resValue("string", "app_name", "yawr")
         }
     }
 
@@ -125,7 +125,7 @@ android {
         create("githubPreview") {
             dimension = "publishChannel"
             applicationIdSuffix = ".preview"
-            resValue("string", "app_name", "Reeldrop Preview")
+            resValue("string", "app_name", "yawr")
         }
 
         create("fdroid") {
@@ -139,7 +139,7 @@ android {
     applicationVariants.all {
         outputs.all {
             (this as com.android.build.gradle.internal.api.BaseVariantOutputImpl).outputFileName =
-                "Reeldrop-${defaultConfig.versionName}-${name}.apk"
+                "yawr-${defaultConfig.versionName}-${name}.apk"
         }
     }
 
