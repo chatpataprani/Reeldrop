@@ -44,9 +44,10 @@ object NotificationUtil {
 
     //    private var builder =
     //        NotificationCompat.Builder(context, CHANNEL_ID).setSmallIcon(R.drawable.ic_stat_reeldrop)
-            .setLargeIcon(appLogo)
+                .setLargeIcon(appLogo)
     private val commandNotificationBuilder =
         NotificationCompat.Builder(context, CHANNEL_ID).setSmallIcon(R.drawable.ic_stat_reeldrop)
+                .setLargeIcon(appLogo)
 
     @RequiresApi(Build.VERSION_CODES.O)
     fun createNotificationChannel() {
@@ -101,6 +102,7 @@ object NotificationUtil {
 
         NotificationCompat.Builder(context, FLIRTY_CHANNEL_ID)
             .setSmallIcon(R.drawable.ic_stat_reeldrop)
+                .setLargeIcon(appLogo)
             .setContentTitle(context.getString(R.string.flirty_reminders))
             .setContentText(message)
             .setStyle(NotificationCompat.BigTextStyle().bigText(message))
@@ -137,6 +139,7 @@ object NotificationUtil {
 
         NotificationCompat.Builder(context, CHANNEL_ID)
             .setSmallIcon(R.drawable.ic_stat_reeldrop)
+                .setLargeIcon(appLogo)
             .setContentTitle(title)
             .setProgress(PROGRESS_MAX, progress, progress <= 0)
             .setOngoing(true)
@@ -163,6 +166,7 @@ object NotificationUtil {
         val builder =
             NotificationCompat.Builder(context, CHANNEL_ID)
                 .setSmallIcon(R.drawable.ic_stat_reeldrop)
+                .setLargeIcon(appLogo)
                 .setContentText(text)
                 .setOngoing(false)
                 .setAutoCancel(true)
@@ -180,6 +184,7 @@ object NotificationUtil {
         val builder =
             NotificationCompat.Builder(context, CHANNEL_ID)
                 .setSmallIcon(R.drawable.ic_stat_reeldrop)
+                .setLargeIcon(appLogo)
                 .setContentText(text)
                 .setProgress(0, 0, false)
                 .setAutoCancel(true)
@@ -194,6 +199,7 @@ object NotificationUtil {
         serviceNotification =
             NotificationCompat.Builder(context, SERVICE_CHANNEL_ID)
                 .setSmallIcon(R.drawable.ic_stat_reeldrop)
+                .setLargeIcon(appLogo)
                 .setContentTitle(context.getString(R.string.service_title))
                 .setContentText(text)
                 .setOngoing(true)
@@ -241,6 +247,7 @@ object NotificationUtil {
             )
         NotificationCompat.Builder(context, CHANNEL_ID)
             .setSmallIcon(R.drawable.ic_stat_reeldrop)
+                .setLargeIcon(appLogo)
             .setContentTitle(title)
             .setContentText(context.getString(textId))
             .setOngoing(false)
@@ -281,6 +288,7 @@ object NotificationUtil {
 
         NotificationCompat.Builder(context, CHANNEL_ID)
             .setSmallIcon(R.drawable.ic_stat_reeldrop)
+                .setLargeIcon(appLogo)
             .setContentTitle(
                 "[${templateName}_${taskUrl}] " +
                     context.getString(R.string.execute_command_notification)
