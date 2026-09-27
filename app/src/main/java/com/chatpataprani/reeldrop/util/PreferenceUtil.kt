@@ -52,6 +52,7 @@ const val FORMAT_SORTING = "format_sorting"
 const val SORTING_FIELDS = "sorting_fields"
 
 const val WELCOME_DIALOG = "welcome_dialog"
+const val FIRST_RUN_SETUP = "first_run_setup"
 const val VIDEO_DIRECTORY = "download_dir"
 const val AUDIO_DIRECTORY = "audio_dir"
 const val COMMAND_DIRECTORY = "command_directory"
@@ -211,8 +212,8 @@ private val StringPreferenceDefaults =
 
 private val BooleanPreferenceDefaults =
     mapOf(
-        FORMAT_SELECTION to true,
-        CONFIGURE to true,
+        FORMAT_SELECTION to false,
+        CONFIGURE to false,
         CELLULAR_DOWNLOAD to false,
         YT_DLP_AUTO_UPDATE to true,
         NOTIFICATION to true,
@@ -228,6 +229,7 @@ private val IntPreferenceDefaults =
         PALETTE_STYLE to 0,
         DARK_THEME_VALUE to DarkThemePreference.FOLLOW_SYSTEM,
         WELCOME_DIALOG to 1,
+        FIRST_RUN_SETUP to false,
         AUDIO_CONVERSION_FORMAT to NOT_SPECIFIED,
         VIDEO_QUALITY to NOT_SPECIFIED,
         VIDEO_FORMAT to FORMAT_QUALITY,
