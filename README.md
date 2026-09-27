@@ -2,7 +2,7 @@
 
 # YAWR
 
-### yet another yt-dlp wrapper because apparently one wasn't enough.
+### yet another yt-dlp wrapper.
 
 <p>
   <a href="https://github.com/chatpataprani/Reeldrop">
@@ -32,54 +32,46 @@
   </a>
 </p>
 
+<p>
+  <a href="https://instagram.com/chatpataprani">
+    <img src="https://img.shields.io/badge/Instagram-@chatpataprani-E4405F?style=for-the-badge&logo=instagram&logoColor=white" alt="Instagram @chatpataprani">
+  </a>
+</p>
+
 </div>
 
 ---
 
-## so... what is YAWR?
+## what is YAWR?
 
-**YAWR** = **Yet Another yt-dlp Wrapper**.
+**YAWR** stands for **Yet Another yt-dlp Wrapper**.
 
-yeah. the name is self-explanatory.
+an Android downloader built around **yt-dlp**, with a clean UI and the features you actually need.
 
-it's an Android downloader built on top of **yt-dlp** because apparently pasting a link and downloading a file needed a whole app.
+paste a link, choose your options, and let it handle the rest.
 
-paste link → pick what you want → download → pretend the 47 build errors never happened.
+no unnecessary nonsense. just download and move on.
 
-> made with kotlin, caffeine, and an unreasonable amount of debugging.
+## features
 
-## what can this thing do?
-
-| thing | what it does |
+| feature | what you get |
 |---|---|
-| 🎬 video downloads | downloads supported videos through yt-dlp |
-| 🎵 audio extraction | turns supported media into audio |
-| 📚 playlists | because downloading 1 video at a time is character development |
-| 🖼️ metadata | thumbnails + metadata when available |
-| 💬 subtitles | downloads/embeds subtitles when supported |
-| ⚡ aria2c | optional faster downloader support |
-| 🧩 custom commands | for people who enjoy touching things they shouldn't |
-| 🍪 cookies | handles sites that need authentication |
+| 🎬 video downloads | download supported videos through yt-dlp |
+| 🎵 audio extraction | extract supported media as audio |
+| 📚 playlists | download supported playlists |
+| 🖼️ metadata | thumbnails and metadata when available |
+| 💬 subtitles | download and embed subtitles when supported |
+| ⚡ aria2c | optional external downloader support |
+| 🧩 custom commands | extra control for advanced yt-dlp usage |
+| 🍪 cookies | support for sites requiring authentication |
 | 📥 download manager | queue, history and task management |
-| 🎨 Material 3 | modern UI without 900 random buttons |
-| 🔗 share support | share a link straight into YAWR |
-| 🌐 network controls | proxy + IPv4 options |
-
-## the important part
-
-YAWR isn't trying to be the next super-app.
-
-it's a downloader.
-
-you give it a link.
-
-it downloads the thing.
-
-that's literally the lore.
+| 🎨 Material 3 | modern Android UI with dynamic theming |
+| 🔗 share support | send links directly to YAWR |
+| 🌐 network controls | proxy and IPv4 options |
 
 ## 📱 screenshots
 
-coming soon™ because apparently screenshots are also a feature i haven't finished.
+screenshots coming soon.
 
 <!-- Add screenshots here:
 <img src="docs/screenshots/home.png" width="240">
@@ -89,13 +81,11 @@ coming soon™ because apparently screenshots are also a feature i haven't finis
 
 ## ⬇️ download
 
-grab the latest APK from **GitHub Releases**:
-
 **[download YAWR](https://github.com/chatpataprani/Reeldrop/releases)**
 
-> if there isn't an APK there, congrats — you found the part where i'm still fighting Gradle.
+grab the latest available APK from GitHub Releases.
 
-## 🛠️ build it yourself
+## 🛠️ build from source
 
 ### requirements
 
@@ -103,8 +93,6 @@ grab the latest APK from **GitHub Releases**:
 - JDK 21
 - Android SDK
 - Git
-- basic patience
-- emotional support
 
 ### clone
 
@@ -119,17 +107,13 @@ cd Reeldrop
 ./gradlew assembleDebug
 ```
 
-then look here:
+the APK will be generated under:
 
 ```text
 app/build/outputs/apk/
 ```
 
-if it builds first try, screenshot it.
-
-i won't believe you otherwise.
-
-## 🧱 made with
+## 🧱 tech stack
 
 - **Kotlin**
 - **Jetpack Compose**
@@ -138,11 +122,9 @@ i won't believe you otherwise.
 - **Gradle**
 - **aria2c** — optional
 
-basically a suspicious amount of tooling for something that downloads videos.
+## 🤝 credits
 
-## 🤝 open-source stuff
-
-YAWR stands on the shoulders of projects that are way more competent than me:
+YAWR uses and/or builds upon these open-source projects:
 
 - [yt-dlp](https://github.com/yt-dlp/yt-dlp)
 - [youtubedl-android](https://github.com/yausername/youtubedl-android)
@@ -153,19 +135,7 @@ YAWR stands on the shoulders of projects that are way more competent than me:
 - [Material Color Utilities](https://github.com/material-foundation/material-color-utilities)
 - [Monet](https://github.com/Kyant0/Monet)
 
-respect to the people who actually know what they're doing.
-
-## 👨‍💻 who made this?
-
-**Amir · [@chatpataprani](https://github.com/chatpataprani)**
-
-self-taught.
-
-mostly powered by curiosity.
-
-occasionally powered by "why the hell is Gradle doing this".
-
-built independently, debugged irresponsibly.
+respect to the projects that make this possible.
 
 ## 📄 license
 
@@ -173,22 +143,22 @@ YAWR is licensed under the **GNU General Public License v3.0**.
 
 see [LICENSE](LICENSE) for the full license text.
 
-## ⚠️ don't be stupid
+## ⚠️ disclaimer
 
-YAWR is a downloading tool.
+YAWR is a downloading tool. only download content you have the legal right or permission to download.
 
-only download content you have the legal right or permission to download.
+you are responsible for complying with applicable copyright laws, website terms, and other rules that apply to your use of the app.
 
-you are responsible for following copyright laws, website terms, privacy requirements, and whatever other rules apply where you live.
-
-## final boss
+---
 
 <div align="center">
 
 ### YAWR
 
-**paste link. download. disappear.**
+**paste link. pick quality. download.**
 
-⭐ star the repo if it actually saved you from opening a suspicious website.
+<a href="https://instagram.com/chatpataprani">
+  <img src="https://img.shields.io/badge/follow-@chatpataprani-E4405F?style=for-the-badge&logo=instagram&logoColor=white" alt="Instagram @chatpataprani">
+</a>
 
 </div>
