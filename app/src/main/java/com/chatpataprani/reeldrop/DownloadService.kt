@@ -41,7 +41,7 @@ class DownloadService : Service() {
 
         executor.execute {
             try {
-                val result = ResolverClient(BuildConfig.RESOLVER_BASE_URL).resolve(source)
+                val result = ResolverClient("").resolve(source)
                 val mediaUrl = result.url ?: error(result.error ?: "Could not resolve media")
                 val filename = safeFilename(result.filename ?: ("reeldrop_" + System.currentTimeMillis() + ".mp4"))
                 val uri = createDestination(filename)
@@ -114,7 +114,7 @@ class DownloadService : Service() {
     }
 
     private fun safeFilename(name: String): String =
-        name.replace(Regex("[\\\\/:*?\"<>|]"), "_").take(120).ifBlank {
+        name.replace(Regex("[\\/:*?\"<>|]"), "_").take(120).ifBlank {
             "reeldrop_" + System.currentTimeMillis() + ".mp4"
         }
 
