@@ -32,7 +32,7 @@ jobs:
           text_ext = {'.kt','.kts','.xml','.md','.txt','.json','.properties','.toml','.yml','.yaml','.pro','.gradle'}
 
           for p in sorted(root.rglob('*'), key=lambda x: len(x.parts), reverse=True):
-              if not p.is_file() or any(part in skip_dirs for part in p.parts):
+              if not p.is_file() or '.github' in p.parts or any(part in skip_dirs for part in p.parts):
                   continue
               if p.suffix.lower() not in text_ext and p.name not in {'.gitignore','gradlew'}:
                   continue
@@ -60,7 +60,7 @@ jobs:
               p.write_text(s,encoding='utf-8')
 
           for p in sorted(root.rglob('*'), key=lambda x: len(x.parts), reverse=True):
-              if any(part in skip_dirs for part in p.parts):
+              if '.github' in p.parts or any(part in skip_dirs for part in p.parts):
                   continue
               new=p.name.replace('Seal','Reeldrop').replace('seal','reeldrop')
               if new!=p.name:
