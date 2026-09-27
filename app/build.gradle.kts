@@ -103,8 +103,10 @@ android {
             if (keystorePropertiesFile.exists()) {
                 signingConfig = signingConfigs.getByName("githubPublish")
             } else {
-                // CI fallback: keep the release APK installable when no private publish keystore is present.
-                signingConfig = signingConfigs.getByName("debug")
+                // Release builds must never silently use a temporary CI/debug key.
+                throw GradleException(
+                    "Release signing is not configured. Provide keystore.properties with the persistent yawr release keystore."
+                )
             }
         }
         debug {
