@@ -31,15 +31,16 @@ jobs:
 
       - name: Verify APK integrity
         run: |
-          ls -lh app/build/outputs/apk/debug/app-debug.apk
-          file app/build/outputs/apk/debug/app-debug.apk
-          unzip -t app/build/outputs/apk/debug/app-debug.apk
-          sha256sum app/build/outputs/apk/debug/app-debug.apk
+          set -e
+          APK="app/build/outputs/apk/debug/app-debug.apk"
+          ls -lh "$APK"
+          file "$APK"
+          unzip -t "$APK"
+          sha256sum "$APK"
 
-      - name: Upload APK
+      - name: Upload APK directly (no ZIP archive)
         uses: actions/upload-artifact@v4
         with:
-          name: reeldrop-debug-apk
           path: app/build/outputs/apk/debug/app-debug.apk
           if-no-files-found: error
-          compression-level: 0
+          archive: false
