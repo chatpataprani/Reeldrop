@@ -27,12 +27,28 @@ jobs:
       - name: Verify APK integrity
         run: |
           set -e
-          APK="$(find app/build/outputs/apk -type f -name '*Release.apk' | head -n 1)"
-          test -n "$APK"
+          mapfile -t APKS < <(find app/build/outputs/apk -type f -name '*.apk' | sort)
+          if [ "${#APKS[@]}" -ne 1 ]; then
+            echo "Expected exactly one APK, found ${#APKS[@]}"
+            printf '%s\n' "${APKS[@]}"
+            exit 1
+          fi
+          APK="${APKS[0]}"
           echo "Using APK: $APK"
           ls -lh "$APK"
           file "$APK"
-          unzip -t "$APK"
+          python3 - "$APK" <<'PY'
+import sys
+import zipfile
+
+apk = sys.argv[1]
+with zipfile.ZipFile(apk) as z:
+    bad = z.testzip()
+    if bad:
+        raise SystemExit(f"Corrupt APK entry: {bad}")
+print("Python ZIP integrity check: OK")
+PY
+          "$ANDROID_HOME/build-tools/35.0.0/apksigner" verify --verbose "$APK"
           sha256sum "$APK"
           cp "$APK" yawr.apk
 
