@@ -5,7 +5,9 @@ import androidx.lifecycle.viewModelScope
 import com.chatpataprani.reeldrop.database.objects.CommandTemplate
 import com.chatpataprani.reeldrop.download.DownloaderV2
 import com.chatpataprani.reeldrop.download.Task
+import com.chatpataprani.reeldrop.util.CONFIGURE
 import com.chatpataprani.reeldrop.util.DownloadUtil
+import com.chatpataprani.reeldrop.util.PreferenceUtil.getBoolean
 import com.chatpataprani.reeldrop.util.PlaylistResult
 import com.chatpataprani.reeldrop.util.VideoInfo
 import com.yausername.youtubedl_android.YoutubeDL
@@ -109,7 +111,14 @@ class DownloadDialogViewModel(private val downloader: DownloaderV2) : ViewModel(
     }
 
     private fun proceedWithUrls(action: Action.ProceedWithURLs) {
-        mSheetStateFlow.update { SheetState.Configure(action.urlList) }
+        if (!CONFIGURE.getBoolean()) {
+            downloadWithPreset(
+                urlList = action.urlList,
+                preferences = DownloadUtil.DownloadPreferences.createFromPreferences(),
+            )
+        } else {
+            mSheetStateFlow.update { SheetState.Configure(action.urlList) }
+        }
     }
 
     private fun fetchPlaylist(action: Action.FetchPlaylist) {
@@ -209,6 +218,13 @@ class DownloadDialogViewModel(private val downloader: DownloaderV2) : ViewModel(
 
     private fun showDialog(action: Action.ShowSheet) {
         val urlList = action.urlList
+        if (!urlList.isNullOrEmpty() && !CONFIGURE.getBoolean()) {
+            downloadWithPreset(
+                urlList = urlList,
+                preferences = DownloadUtil.DownloadPreferences.createFromPreferences(),
+            )
+            return
+        }
         if (!urlList.isNullOrEmpty()) {
             mSheetStateFlow.update { SheetState.Configure(urlList) }
         } else {
