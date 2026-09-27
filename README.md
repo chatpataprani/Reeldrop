@@ -2,7 +2,7 @@
 
 # YAWR
 
-### yet another downloader. simple as that.
+### yet another downloader, but actually useful.
 
 <p>
   <a href="https://github.com/chatpataprani/Reeldrop">
@@ -23,6 +23,7 @@
   <img src="https://img.shields.io/badge/Android-7.0%2B-3DDC84?style=flat-square&logo=android&logoColor=white" alt="Android 7.0+">
   <img src="https://img.shields.io/badge/Kotlin-100%25-7F52FF?style=flat-square&logo=kotlin&logoColor=white" alt="Kotlin">
   <img src="https://img.shields.io/badge/Jetpack%20Compose-Material%203-4285F4?style=flat-square&logo=jetpackcompose" alt="Jetpack Compose">
+  <img src="https://img.shields.io/badge/yt--dlp-powered-FF0000?style=flat-square&logo=youtube&logoColor=white" alt="yt-dlp">
 </p>
 
 <p>
@@ -38,34 +39,82 @@
 
 ---
 
-## what's YAWR?
+## 👀 what's YAWR?
 
-a clean Android downloader made to get the job done without doing 47 side quests.
+**YAWR** = **Yet Another yt-dlp Wrapper**.
 
-paste the link → pick what u want → download.
+a clean Android downloader for when u just wanna grab some media and dip.
 
-that's it.
+paste a link → choose ur options → hit download.
 
-## features
+no 17-page tutorial. no phd required. 💀
 
-| feature | details |
-|---|---|
-| 🎬 video | download supported videos |
-| 🎵 audio | extract audio from supported media |
-| 📚 playlists | batch download supported playlists |
-| 🖼️ metadata | thumbnails + metadata when available |
-| 💬 subtitles | download/embed subtitles when supported |
-| ⚡ aria2c | optional faster downloads |
-| 🧩 custom commands | extra control when u need it |
-| 🍪 cookies | support for authenticated sites |
-| 📥 manager | queue, history + downloads |
-| 🎨 Material 3 | clean modern UI + dynamic theme |
-| 🔗 share | send links straight to YAWR |
-| 🌐 network | proxy + IPv4 options |
+built w/ a proper UI, useful controls, and enough features to handle both quick downloads and nerdy setups.
+
+---
+
+## ✨ features
+
+### 🎬 video & audio
+
+- download supported videos
+- extract audio from supported media
+- choose available quality/format
+- download thumbnails + metadata when available
+- subtitle support when available
+- embed subtitles when supported
+
+### 📚 playlists
+
+- download supported playlists
+- handle multiple items in one go
+- queue downloads instead of babysitting them one by one
+
+### 📥 download manager
+
+- view active downloads
+- queue multiple tasks
+- check download history
+- manage individual download tasks
+
+### ⚡ faster downloads
+
+- optional **aria2c** support
+- useful when u want more speed and less waiting at 2%
+- proper downloader controls instead of just praying to the progress bar
+
+### 🧩 advanced controls
+
+- custom commands
+- cookies for sites requiring authentication
+- proxy support
+- IPv4 option
+- extra control for users who actually know what they're doing
+
+### 🔗 share support
+
+got a link?
+
+share it straight to YAWR.
+
+no copy → open app → paste → copy → paste → existential crisis.
+
+### 🎨 UI
+
+- Jetpack Compose
+- Material 3
+- dynamic theming
+- clean layouts
+- modern Android look
+- focused on keeping things simple without making the app look dead
+
+---
 
 ## 📱 screenshots
 
-coming soon. yeah, the app exists. screenshots are just late 💀
+screenshots coming soon.
+
+the app isn't imaginary, the screenshots are just still loading... 💀
 
 <!-- Add screenshots here:
 <img src="docs/screenshots/home.png" width="240">
@@ -73,13 +122,23 @@ coming soon. yeah, the app exists. screenshots are just late 💀
 <img src="docs/screenshots/settings.png" width="240">
 -->
 
+---
+
 ## ⬇️ download
 
-**[get YAWR](https://github.com/chatpataprani/Reeldrop/releases)**
+### latest APK
 
-latest APK → GitHub Releases.
+**[download YAWR](https://github.com/chatpataprani/Reeldrop/releases)**
 
-## 🛠️ build
+check **GitHub Releases** for the latest build.
+
+if u see a newer release, use that one.
+
+---
+
+## 🛠️ build it urself
+
+wanna build YAWR locally? bet.
 
 ### requirements
 
@@ -101,25 +160,32 @@ cd Reeldrop
 ./gradlew assembleDebug
 ```
 
-APK:
+APK output:
 
 ```text
 app/build/outputs/apk/
 ```
 
-if Gradle decides to be funny, that's between u two.
+if Gradle throws some random ancient error at u, check the logs before blaming the app 😭
 
-## 🧱 stack
+---
 
-- Kotlin
-- Jetpack Compose
-- Material 3
-- Gradle
-- aria2c
+## 🧱 tech stack
 
-## 🤝 credits
+- **Kotlin**
+- **Jetpack Compose**
+- **Material 3**
+- **Gradle**
+- **aria2c**
+- **yt-dlp**
 
-built with help from some solid open-source projects:
+basically enough tech for a downloader to have trust issues.
+
+---
+
+## 🤝 open-source credits
+
+YAWR uses and/or builds on these projects:
 
 - [yt-dlp](https://github.com/yt-dlp/yt-dlp)
 - [youtubedl-android](https://github.com/yausername/youtubedl-android)
@@ -130,17 +196,37 @@ built with help from some solid open-source projects:
 - [Material Color Utilities](https://github.com/material-foundation/material-color-utilities)
 - [Monet](https://github.com/Kyant0/Monet)
 
+big respect to the projects doing the heavy lifting.
+
+---
+
+## 🧠 why YAWR?
+
+because sometimes u don't need another bloated app with 50 buttons, 12 ads and a subscription popup waiting behind every tap.
+
+YAWR keeps the workflow simple:
+
+**link → options → download.**
+
+that's the whole point.
+
+---
+
 ## 📄 license
 
-GNU General Public License v3.0.
+YAWR is licensed under the **GNU General Public License v3.0**.
 
-see [LICENSE](LICENSE).
+see [LICENSE](LICENSE) for the full license text.
+
+---
 
 ## ⚠️ disclaimer
 
+YAWR is a downloading tool.
+
 only download content u have the legal right or permission to download.
 
-follow applicable copyright laws and website terms while using YAWR.
+u are responsible for following applicable copyright laws, website terms, privacy requirements, and other rules that apply to ur use of the app.
 
 ---
 
@@ -148,10 +234,10 @@ follow applicable copyright laws and website terms while using YAWR.
 
 ### YAWR
 
-**paste. pick. download. done.**
+**paste. pick. download. dip.**
 
 <a href="https://instagram.com/chatpataprani">
-  <img src="https://img.shields.io/badge/@chatpataprani-E4405F?style=for-the-badge&logo=instagram&logoColor=white" alt="Instagram @chatpataprani">
+  <img src="https://img.shields.io/badge/Instagram-@chatpataprani-E4405F?style=for-the-badge&logo=instagram&logoColor=white" alt="Instagram @chatpataprani">
 </a>
 
 </div>
