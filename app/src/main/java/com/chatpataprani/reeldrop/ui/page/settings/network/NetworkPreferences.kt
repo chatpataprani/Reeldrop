@@ -1,9 +1,16 @@
 package com.chatpataprani.reeldrop.ui.page.settings.network
 
+import android.content.Intent
+import android.net.Uri
+import android.os.Build
+import android.os.PowerManager
+import android.provider.Settings
+
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.Bolt
+import androidx.compose.material.icons.outlined.BatterySaver
 import androidx.compose.material.icons.outlined.Cookie
 import androidx.compose.material.icons.outlined.OfflineBolt
 import androidx.compose.material.icons.outlined.SettingsEthernet
@@ -23,6 +30,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.res.stringResource
 import com.chatpataprani.reeldrop.R
@@ -47,6 +55,8 @@ import com.chatpataprani.reeldrop.util.RATE_LIMIT
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun NetworkPreferences(navigateToCookieProfilePage: () -> Unit = {}, onNavigateBack: () -> Unit) {
+    val context = LocalContext.current
+
     val scrollBehavior =
         TopAppBarDefaults.exitUntilCollapsedScrollBehavior(
             rememberTopAppBarState(),
@@ -81,6 +91,33 @@ fun NetworkPreferences(navigateToCookieProfilePage: () -> Unit = {}, onNavigateB
                         )
                     }
                 item { PreferenceSubtitle(text = stringResource(R.string.general_settings)) }
+                item {
+                    val batteryOptimized =
+                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                            val powerManager = context.getSystemService(PowerManager::class.java)
+                            !powerManager.isIgnoringBatteryOptimizations(context.packageName)
+                        } else false
+
+                    PreferenceItem(
+                        title = stringResource(R.string.battery_configuration),
+                        description =
+                            if (batteryOptimized) {
+                                stringResource(R.string.battery_configuration_desc)
+                            } else {
+                                stringResource(R.string.service_title)
+                            },
+                        icon = Icons.Outlined.BatterySaver,
+                        onClick = {
+                            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                                val intent =
+                                    Intent(Settings.ACTION_REQUEST_IGNORE_BATTERY_OPTIMIZATIONS).apply {
+                                        data = Uri.parse("package:" + context.packageName)
+                                    }
+                                runCatching { context.startActivity(intent) }
+                            }
+                        },
+                    )
+                }
                 item {
                     var isRateLimitEnabled by remember { mutableStateOf(RATE_LIMIT.getBoolean()) }
 
