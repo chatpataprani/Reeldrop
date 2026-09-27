@@ -38,7 +38,10 @@ import androidx.compose.material.icons.outlined.FileDownload
 import androidx.compose.material.icons.outlined.GridView
 import androidx.compose.material.icons.outlined.Menu
 import androidx.compose.material.icons.outlined.MoreVert
+import androidx.compose.material3.AlertDialog
+import androidx.compose.material3.Button
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.ExtendedFloatingActionButton
 import androidx.compose.material3.FilledIconButton
 import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.HorizontalDivider
@@ -116,6 +119,14 @@ import com.chatpataprani.reeldrop.ui.page.downloadv2.configure.PreferencesMock
 import com.chatpataprani.reeldrop.ui.svg.DynamicColorImageVectors
 import com.chatpataprani.reeldrop.ui.svg.drawablevectors.download
 import com.chatpataprani.reeldrop.ui.theme.SealTheme
+import com.chatpataprani.reeldrop.util.CONFIGURE
+import com.chatpataprani.reeldrop.util.CELLULAR_DOWNLOAD
+import com.chatpataprani.reeldrop.util.EXTRACT_AUDIO
+import com.chatpataprani.reeldrop.util.FORMAT_SELECTION
+import com.chatpataprani.reeldrop.util.FIRST_RUN_SETUP
+import com.chatpataprani.reeldrop.util.PLAYLIST
+import com.chatpataprani.reeldrop.util.PreferenceUtil
+import com.chatpataprani.reeldrop.util.PreferenceUtil.updateBoolean
 import com.chatpataprani.reeldrop.util.DownloadUtil
 import com.chatpataprani.reeldrop.util.FileUtil
 import com.chatpataprani.reeldrop.util.getErrorReport
@@ -203,6 +214,54 @@ fun DownloadPageV2(
     val view = LocalView.current
     val context = LocalContext.current
     val scope = rememberCoroutineScope()
+    var showQuickSetup by remember {
+        mutableStateOf(!PreferenceUtil.containsKey(FIRST_RUN_SETUP))
+    }
+
+    if (showQuickSetup) {
+        AlertDialog(
+            onDismissRequest = {
+                FIRST_RUN_SETUP.updateBoolean(true)
+                showQuickSetup = false
+            },
+            title = { Text("Quick setup") },
+            text = {
+                Text(
+                    "Use simple defaults so tapping Download starts immediately:\n\n" +
+                        "• Video download\n" +
+                        "• Auto format / best available quality\n" +
+                        "• Wi-Fi only\n" +
+                        "• No extra processing\n" +
+                        "• Battery stays system-optimized"
+                )
+            },
+            confirmButton = {
+                Button(
+                    onClick = {
+                        EXTRACT_AUDIO.updateBoolean(false)
+                        FORMAT_SELECTION.updateBoolean(false)
+                        CONFIGURE.updateBoolean(false)
+                        PLAYLIST.updateBoolean(false)
+                        CELLULAR_DOWNLOAD.updateBoolean(false)
+                        FIRST_RUN_SETUP.updateBoolean(true)
+                        showQuickSetup = false
+                    }
+                ) {
+                    Text("Use defaults")
+                }
+            },
+            dismissButton = {
+                androidx.compose.material3.TextButton(
+                    onClick = {
+                        FIRST_RUN_SETUP.updateBoolean(true)
+                        showQuickSetup = false
+                    }
+                ) {
+                    Text("Customize later")
+                }
+            },
+        )
+    }
     val clipboardManager = LocalClipboardManager.current
     val uriHandler = LocalUriHandler.current
 
@@ -586,25 +645,15 @@ private fun HeaderExpanded(modifier: Modifier = Modifier) {
 fun FABs(modifier: Modifier = Modifier, downloadCallback: () -> Unit = {}) {
     val expanded = LocalWindowWidthState.current != WindowWidthSizeClass.Compact
     Column(modifier = modifier.padding(6.dp), horizontalAlignment = Alignment.End) {
-        FloatingActionButton(
+        ExtendedFloatingActionButton(
             onClick = downloadCallback,
-            content = {
-                if (expanded) {
-                    Row(
-                        modifier = Modifier.widthIn(min = 80.dp).padding(horizontal = 16.dp),
-                        verticalAlignment = Alignment.CenterVertically,
-                    ) {
-                        Icon(Icons.Outlined.FileDownload, contentDescription = null)
-                        Spacer(Modifier.width(12.dp))
-                        Text(stringResource(R.string.download))
-                    }
-                } else {
-                    Icon(
-                        Icons.Outlined.FileDownload,
-                        contentDescription = stringResource(R.string.download),
-                    )
-                }
+            icon = {
+                Icon(
+                    Icons.Outlined.FileDownload,
+                    contentDescription = stringResource(R.string.download),
+                )
             },
+            text = { Text(stringResource(R.string.download)) },
             modifier = Modifier.padding(vertical = 12.dp),
         )
     }
