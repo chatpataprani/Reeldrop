@@ -16,15 +16,31 @@ class ResolverClient(private val primaryBaseUrl: String) {
     companion object {
         // User-provided fallback endpoint. The source URL is appended as ?url=<encoded-url>.
         private const val BACKUP_API = "https://hostmyhosting.site/api/all_dl.php?url="
+
+        private val PUBLIC_COBALT_APIS = listOf(
+            "https://co.wuk.sh",
+            "https://co.tskau.team",
+            "https://cobalt-api.hyper.lol"
+        )
     }
 
     fun resolve(sourceUrl: String): ResolveResult {
         val errors = mutableListOf<String>()
 
         if (primaryBaseUrl.isNotBlank()) {
-            runCatching { resolveCobalt(sourceUrl) }
+            runCatching { resolveCobalt(primaryBaseUrl.trimEnd('/'), sourceUrl) }
                 .onSuccess { if (it.url != null) return it else errors += (it.error ?: "Primary resolver failed") }
                 .onFailure { errors += (it.message ?: "Primary resolver failed") }
+        }
+
+        for (api in PUBLIC_COBALT_APIS) {
+            runCatching { resolveCobalt(api, sourceUrl) }
+                .onSuccess { if (it.url != null) return it else errors += "$api: ${it.error ?: "no media URL"}" }
+                .onFailure { errors += "$api: ${it.message ?: "request failed"}" }
+
+            runCatching { resolveCobaltLegacy(api, sourceUrl) }
+                .onSuccess { if (it.url != null) return it else errors += "$api/api/json: ${it.error ?: "no media URL"}" }
+                .onFailure { errors += "$api/api/json: ${it.message ?: "request failed"}" }
         }
 
         runCatching { resolveBackup(sourceUrl) }
@@ -34,8 +50,8 @@ class ResolverClient(private val primaryBaseUrl: String) {
         return ResolveResult(null, null, errors.joinToString(" | "))
     }
 
-    private fun resolveCobalt(sourceUrl: String): ResolveResult {
-        val connection = (URL(primaryBaseUrl.trimEnd('/') + "/").openConnection() as HttpURLConnection).apply {
+    private fun resolveCobalt(baseUrl: String, sourceUrl: String): ResolveResult {
+        val connection = (URL(baseUrl.trimEnd('/') + "/").openConnection() as HttpURLConnection).apply {
             requestMethod = "POST"
             connectTimeout = 15000
             readTimeout = 30000
@@ -65,6 +81,54 @@ class ResolverClient(private val primaryBaseUrl: String) {
             )
             else -> ResolveResult(null, null, "Unsupported primary response")
         }
+    }
+
+    private fun resolveCobaltLegacy(baseUrl: String, sourceUrl: String): ResolveResult {
+        val connection = (URL(baseUrl.trimEnd('/') + "/api/json").openConnection() as HttpURLConnection).apply {
+            requestMethod = "POST"
+            connectTimeout = 10000
+            readTimeout = 25000
+            doOutput = true
+            instanceFollowRedirects = true
+            setRequestProperty("Accept", "application/json")
+            setRequestProperty("Content-Type", "application/json")
+            setRequestProperty("User-Agent", "Reeldrop/0.2 Android")
+        }
+
+        val request = JSONObject()
+            .put("url", sourceUrl)
+            .put("vQuality", "1080")
+            .put("aFormat", "mp3")
+            .put("filenamePattern", "basic")
+
+        connection.outputStream.use { it.write(request.toString().toByteArray(Charsets.UTF_8)) }
+        val response = readResponse(connection)
+        if (response.isBlank()) return ResolveResult(null, null, "empty response (${connection.responseCode})")
+
+        val json = runCatching { JSONObject(response) }
+            .getOrElse { return ResolveResult(null, null, "invalid JSON") }
+
+        if (json.optString("status") == "error") {
+            return ResolveResult(null, null, json.optString("text").ifBlank { "legacy resolver error" })
+        }
+
+        val direct = json.optString("url").trim()
+        if (direct.startsWith("http://") || direct.startsWith("https://")) {
+            return ResolveResult(direct, json.optString("filename").ifBlank { null })
+        }
+
+        val picker = json.optJSONArray("picker")
+        if (picker != null) {
+            for (i in 0 until picker.length()) {
+                val item = picker.optJSONObject(i) ?: continue
+                val itemUrl = item.optString("url").trim()
+                if (itemUrl.startsWith("http://") || itemUrl.startsWith("https://")) {
+                    return ResolveResult(itemUrl, item.optString("filename").ifBlank { null })
+                }
+            }
+        }
+
+        return ResolveResult(null, null, "unsupported legacy response")
     }
 
     private fun resolveBackup(sourceUrl: String): ResolveResult {
