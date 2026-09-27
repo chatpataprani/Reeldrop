@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name" translatable="false">Reeldrop</string>
+    <string name="app_name" translatable="false">yawr</string>
     <string name="video_directory">Vid folder</string>
     <string name="extract_audio">save it as audio</string>
     <string name="create_thumbnail">save it thumbnail</string>
@@ -15,7 +15,7 @@
     <string name="permission_denied">nope, permission denied</string>
     <string name="download_success_msg">W download</string>
     <string name="download_error_msg">download failed fr</string>
-    <string name="download_start_msg">Download \"%1$s\"</string>
+    <string name="download_start_msg">Download &quot;%1$s&quot;</string>
     <string name="fetch_info_error_msg">couldn't fetch the vid info</string>
     <string name="general_settings">General</string>
     <string name="language">App language</string>
@@ -27,7 +27,7 @@
     <string name="ytdlp_update">tap to install the latest yt-dlp version</string>
     <string name="ytdlp_update_action">Update yt-dlp</string>
     <string name="delete_info">yeet?</string>
-    <string name="delete_info_msg">yeet \"%1$s\" from your download history for good?
+    <string name="delete_info_msg">yeet &quot;%1$s&quot; from your download history for good?
     </string>
     <string name="confirm">yep</string>
     <string name="dismiss">nah</string>
@@ -90,8 +90,8 @@
     <string name="close_never_show_again">don't show up again</string>
     <string name="user_guide">User guide</string>
     <string name="open_settings">Open settings</string>
-    <string name="paste_desc">tap \"Paste\" to get vid link from your clipboard.</string>
-    <string name="download_desc">Then click \"Download\" after adjusting its settings.
+    <string name="paste_desc">tap &quot;Paste&quot; to get vid link from your clipboard.</string>
+    <string name="download_desc">Then click &quot;Download&quot; after adjusting its settings.
     </string>
     <string name="download_history_desc">Check and manage in-app downloads, including vids and audio files.</string>
     <string name="check_download_settings_desc">Take a look at the download settings and make sure
@@ -105,7 +105,7 @@
     <string name="video_url">vid link</string>
     <string name="download_finish_notification">W download. tap to open.</string>
     <string name="execute_command_notification">running custom commands…</string>
-    <string name="battery_settings_desc">"pls set battery usage of this app to \"Unrestricted\" in the system settings to download in the background."
+    <string name="battery_settings_desc">"pls set battery usage of this app to &quot;Unrestricted&quot; in the system settings to download in the background."
     </string>
     <string name="concurrent_download">Multi-threaded download</string>
     <string name="concurrent_download_desc">Download more parts of M3U8/MPD vids in parallel</string>
@@ -119,7 +119,7 @@
     <string name="download_notification_desc">"Notify of downloaded files and progress"</string>
     <string name="fetching_playlist_info">loading playlist info…</string>
     <string name="download_range_selection">playlist selection</string>
-    <string name="download_range_desc">"Specify the range of vids to download from the playlist \"%3$s\" (from %1$d to %2$d)."</string>
+    <string name="download_range_desc">"Specify the range of vids to download from the playlist &quot;%3$s&quot; (from %1$d to %2$d)."</string>
     <string name="from">start</string>
     <string name="to">End</string>
     <string name="invalid_index_range">Invalid index range</string>
@@ -133,7 +133,7 @@
     <string name="permission_issue_desc">Directories outside Download/ and Documents/ are not supported</string>
     <string name="battery_configuration">Battery configuration</string>
     <string name="battery_configuration_desc">Ignore battery optimization for this app to download in the background</string>
-    <string name="service_title">Reeldrop is downloading…</string>
+    <string name="service_title">yawr is downloading…</string>
     <string name="unknown_error">bruh, unknown error</string>
     <string name="translate">Translate</string>
     <string name="translate_desc">Help translate this app on Hosted Weblate</string>
@@ -143,7 +143,7 @@
     <string name="new_template">New template</string>
     <string name="template_label">Label</string>
     <string name="remove_template">yeet?</string>
-    <string name="remove_template_desc">yeet \"%1$s\" from command templates for good?</string>
+    <string name="remove_template_desc">yeet &quot;%1$s&quot; from command templates for good?</string>
     <string name="template_selection">Template selection</string>
     <string name="custom_command_template_desc">Edit and manage command templates</string>
     <string name="downloading_indicator_text">grabbing it…</string>
@@ -189,7 +189,7 @@
     <string name="clear_temp_files">Clear temporary files</string>
     <string name="clear_temp_files_desc">yeet all temporary files from the temporary directory</string>
     <string name="clear_temp_files_count">yeetd %1$d temporary file(s)</string>
-    <string name="clear_temp_files_info">Temporary files can be used to resume cancelled downloads. Are you sure to delete all of these files?\n\nYou can access these files in %1$s</string>
+    <string name="clear_temp_files_info">Temporary files can be used to resume cancelled downloads. Are you sure to delete all of these files?&#10;&#10;You can access these files in %1$s</string>
     <string name="multiselect_mode">Multiselect mode</string>
     <string name="private_mode">Incognito</string>
     <string name="private_mode_desc">Disable download history</string>
@@ -219,7 +219,7 @@
     <string name="private_directory_desc">Store downloads in a hidden directory</string>
     <string name="crop_artwork">Crop artwork</string>
     <string name="crop_artwork_desc">Crop embedded image into square</string>
-    <string name="download_selection_desc">Select vids to download from the playlist \"%1$s\"</string>
+    <string name="download_selection_desc">Select vids to download from the playlist &quot;%1$s&quot;</string>
     <string name="select_all">Select all</string>
     <string name="selected_item_count">%1$d selected</string>
     <string name="video_only">vid (no audio)</string>
@@ -228,11 +228,11 @@
     <string name="format_selection_desc">Select the format to download before starting the download</string>
     <string name="generate_new_cookies">Generate new cookies</string>
     <string name="use_cookies">Use Cookies</string>
-    <string name="remove_cookie_profile_desc">yeet this entry for \"%1$s\"? pls note that the cookies stored for this site will not be cleared.</string>
+    <string name="remove_cookie_profile_desc">yeet this entry for &quot;%1$s&quot;? pls note that the cookies stored for this site will not be cleared.</string>
     <string name="custom_command_enabled_hint">Some options are unavailable when using custom command</string>
     <string name="how_does_it_work">How does it work?</string>
-    <string name="cookies_usage_msg">grabbing from some sites requires account authentication information. tap \"Generate new cookies\", enter the URL of the website and then log in with your account in the browser page, the app will generate it for you.</string>
-    <string name="custom_command_usage_msg">yt-dlp is a powerful command-line tool for downloading vids. Reeldrop makes it easier to use yt-dlp by providing an intuitive GUI, presets for common commands, and other additional features.\n\nFor advanced usage of yt-dlp, Reeldrop allows you to create, save and execute custom command templates directly, just like in a terminal.\n\nWhen using custom commands, most of the GUI options and features would be disabled.</string>
+    <string name="cookies_usage_msg">grabbing from some sites requires account authentication information. tap &quot;Generate new cookies&quot;, enter the URL of the website and then log in with your account in the browser page, the app will generate it for you.</string>
+    <string name="custom_command_usage_msg">yt-dlp is a powerful command-line tool for downloading vids. yawr makes it easier to use yt-dlp by providing an intuitive GUI, presets for common commands, and other additional features.&#10;&#10;For advanced usage of yt-dlp, yawr allows you to create, save and execute custom command templates directly, just like in a terminal.&#10;&#10;When using custom commands, most of the GUI options and features would be disabled.</string>
     <string name="telegram_channel">Telegram channel</string>
     <string name="matrix_space">Matrix space</string>
     <string name="sdcard_directory">SD card folder</string>
@@ -262,7 +262,7 @@
     <string name="share">share</string>
     <string name="stable_channel">Stable</string>
     <string name="pre_release_channel">Preview</string>
-    <string name="update_channel_desc">Install pre-release builds to preview new features and changes.\n\nThere will be some instability in these versions, so please don\'t hesitate to give us feedback if you experience any problems to help us improve the app for the future.</string>
+    <string name="update_channel_desc">Install pre-release builds to preview new features and changes.&#10;&#10;There will be some instability in these versions, so please don&apos;t hesitate to give us feedback if you experience any problems to help us improve the app for the future.</string>
     <string name="update_channel">Update channel</string>
     <string name="auto_update">Auto update</string>
     <string name="enable_auto_update">Enable auto update</string>
@@ -288,7 +288,7 @@
     <string name="temporary_directory_desc">Store temporary files in the internal directory</string>
     <string name="sponsor">Sponsor</string>
     <string name="sponsor_desc">Support this app by sponsoring on GitHub</string>
-    <string name="sponsor_msg">Reeldrop will be always free and open source for everyone. If you like it, please consider sponsoring me on GitHub!</string>
+    <string name="sponsor_msg">yawr will be always free and open source for everyone. If you like it, please consider sponsoring me on GitHub!</string>
     <string name="feedback">Feedback</string>
     <string name="sponsors">Sponsors</string>
     <string name="audio_format">audio format</string>
@@ -299,7 +299,7 @@
     <string name="clip_video_desc">Make vid clips in the format selection page</string>
     <string name="embed_thumbnail" translatable="false">Embed thumbnail</string>
     <string name="embed_thumbnail_desc" translatable="false">Embed thumbnails into vids</string>
-    <string name="auto_update_disabled_msg">Auto-update is not available for %1$s builds. If you don\'t have %1$s installed on your device, or would like to preview upcoming new features in Reeldrop, please consider %2$s.</string>
+    <string name="auto_update_disabled_msg">Auto-update is not available for %1$s builds. If you don&apos;t have %1$s installed on your device, or would like to preview upcoming new features in yawr, please consider %2$s.</string>
     <string name="switch_to_github_builds">switching to GitHub builds</string>
     <string name="okay">aight</string>
     <string name="got_it">bet</string>
@@ -317,7 +317,7 @@
     <string name="expand">Expand</string>
     <string name="new_task">New download task</string>
     <string name="start">start</string>
-    <string name="edit_template">Edit \"%1$s\"</string>
+    <string name="edit_template">Edit &quot;%1$s&quot;</string>
     <string name="proxy">Proxy</string>
     <string name="proxy_desc">Use proxy for internet connections</string>
     <string name="legacy">Legacy</string>
@@ -400,8 +400,8 @@
     <string name="import_from">Import from</string>
     <string name="export_download_history">Export download history?</string>
     <string name="import_download_history">Import download history?</string>
-    <string name="import_download_history_msg">grabbed files won\'t be imported. You\'ll need to download them back manually</string>
-    <string name="export_download_history_msg">Exporting %1$s from download history. grabbed files and preferences won\'t be backed up.</string>
+    <string name="import_download_history_msg">grabbed files won&apos;t be imported. You&apos;ll need to download them back manually</string>
+    <string name="export_download_history_msg">Exporting %1$s from download history. grabbed files and preferences won&apos;t be backed up.</string>
     <string name="download_history">Download history</string>
     <string name="download_history_imported">Imported %1$s to download history</string>
     <string name="redownload">Redownload</string>
@@ -422,7 +422,7 @@
     <string name="edit_preset">Edit preset</string>
     <string name="best_quality_desc">Download the best available format</string>
     <string name="task_added">Task added to queue</string>
-    <string name="you_ll_find_your_downloads_here">You\'ll find your downloads here</string>
+    <string name="you_ll_find_your_downloads_here">You&apos;ll find your downloads here</string>
     <string name="download_hint">tap on the download button or share a vid link to this app to start a download</string>
     <string name="status_downloaded">grabbed</string>
     <string name="all">All</string>
@@ -451,7 +451,7 @@
         <item quantity="other">%d audios</item>
     </plurals>
     <string name="quick_setup_title">quick setup</string>
-    <string name="quick_setup_message">Use simple defaults so tapping Download starts immediately:\n\n• vid download\n• Auto format / best available quality\n• Wi-Fi only\n• No extra processing\n• Battery stays system-optimized</string>
+    <string name="quick_setup_message">Use simple defaults so tapping Download starts immediately:&#10;&#10;• vid download&#10;• Auto format / best available quality&#10;• Wi-Fi only&#10;• No extra processing&#10;• Battery stays system-optimized</string>
     <string name="use_defaults">use defaults</string>
     <string name="customize_later">customize later</string>
 </resources>
