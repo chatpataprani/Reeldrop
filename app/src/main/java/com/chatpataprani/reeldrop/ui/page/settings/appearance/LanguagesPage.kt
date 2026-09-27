@@ -86,6 +86,7 @@ fun LanguagePage(onNavigateBack: () -> Unit = {}) {
     }
 
     val supportedLocales = LocaleLanguageCodeMap.keys
+    val slangLocale = Locale("en", "ZZ")
 
     val suggestedLocales =
         remember(preferredLocales) {
@@ -203,6 +204,15 @@ private fun LanguagePageImpl(
                 }
 
                 item { PreferenceSubtitle(text = stringResource(id = R.string.all_languages)) }
+
+                item {
+                    PreferenceSingleChoiceItem(
+                        text = "English (Slang)",
+                        selected = selectedLocale == slangLocale,
+                    ) {
+                        onLanguageSelected(slangLocale)
+                    }
+                }
 
                 for (locale in otherLocales) {
                     item {
