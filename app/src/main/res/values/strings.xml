@@ -456,12 +456,12 @@
     <string name="customize_later">Customize later</string>
     <string name="flirty_reminders">yawr</string>
     <string name="flirty_reminders_desc">Playful reminders to come back and download something.</string>
-    <string name="flirty_1"><![CDATA[don't you wanna download something bbg? 👀]]></string>
-    <string name="flirty_2"><![CDATA[did you forget about me? 🥹]]></string>
-    <string name="flirty_3"><![CDATA[psst… got something to download? 😏]]></string>
-    <string name="flirty_4"><![CDATA[your downloads are getting lonely 😭]]></string>
-    <string name="flirty_5"><![CDATA[you really opened your phone and forgot about me? 🥹]]></string>
-    <string name="flirty_6"><![CDATA[no download today? betrayal fr 💔]]></string>
-    <string name="flirty_7"><![CDATA[got a reel? hand it over 😌]]></string>
-    <string name="flirty_8"><![CDATA[me waiting for you to paste a link: 🧍]]></string>
+    <string name="flirty_1">don\u0027t you wanna download something bbg? \uD83D\uDC40</string>
+    <string name="flirty_2">did you forget about me? \uD83E\uDD72</string>
+    <string name="flirty_3">psst… got something to download? \uD83D\uDE0F</string>
+    <string name="flirty_4">your downloads are getting lonely \uD83D\uDE2D</string>
+    <string name="flirty_5">you really opened your phone and forgot about me? \uD83E\uDD72</string>
+    <string name="flirty_6">no download today? betrayal fr \uD83D\uDC94</string>
+    <string name="flirty_7">got a reel? hand it over \uD83D\uDE0C</string>
+    <string name="flirty_8">me waiting for you to paste a link: \uD83E\uDDCD</string>
 </resources>
