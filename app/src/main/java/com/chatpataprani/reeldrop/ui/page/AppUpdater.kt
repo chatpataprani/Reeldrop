@@ -10,10 +10,7 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
-import androidx.compose.runtime.rememberCoroutineScope
-import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.platform.LocalContext
 import com.chatpataprani.reeldrop.R
@@ -21,7 +18,6 @@ import com.chatpataprani.reeldrop.util.PreferenceUtil
 import com.chatpataprani.reeldrop.util.ToastUtil
 import com.chatpataprani.reeldrop.util.UpdateUtil
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
@@ -30,13 +26,6 @@ fun AppUpdater() {
 
     val context = LocalContext.current
 
-    var showUpdateDialog by rememberSaveable { mutableStateOf(false) }
-    var currentDownloadStatus by remember {
-        mutableStateOf(UpdateUtil.DownloadStatus.NotYet as UpdateUtil.DownloadStatus)
-    }
-    val scope = rememberCoroutineScope()
-    var updateJob: Job? = null
-    var release by remember { mutableStateOf(UpdateUtil.Release()) }
     val settings =
         rememberLauncherForActivityResult(ActivityResultContracts.StartActivityForResult()) {
             UpdateUtil.installLatestApk()
@@ -64,50 +53,21 @@ fun AppUpdater() {
             !PreferenceUtil.isNetworkAvailableForDownload() || !PreferenceUtil.isAutoUpdateEnabled()
         )
             return@LaunchedEffect
+
         withContext(Dispatchers.IO) {
             runCatching {
-                    UpdateUtil.checkForUpdate()?.let {
-                        release = it
-                        showUpdateDialog = true
+                UpdateUtil.checkForUpdate()?.let { latestRelease ->
+                    UpdateUtil.downloadApk(release = latestRelease).collect { downloadStatus ->
+                        if (downloadStatus is UpdateUtil.DownloadStatus.Finished) {
+                            launcher.launch(Manifest.permission.REQUEST_INSTALL_PACKAGES)
+                        }
                     }
                 }
-                .onFailure { it.printStackTrace() }
+            }.onFailure {
+                it.printStackTrace()
+                ToastUtil.makeToastSuspend(context.getString(R.string.app_update_failed))
+            }
         }
     }
 
-    if (showUpdateDialog) {
-        UpdateDialogImpl(
-            onDismissRequest = {
-                showUpdateDialog = false
-                updateJob?.cancel()
-            },
-            title = release.name.toString(),
-            onConfirmUpdate = {
-                updateJob =
-                    scope.launch(Dispatchers.IO) {
-                        runCatching {
-                                UpdateUtil.downloadApk(release = release).collect { downloadStatus
-                                    ->
-                                    currentDownloadStatus = downloadStatus
-                                    if (downloadStatus is UpdateUtil.DownloadStatus.Finished) {
-                                        launcher.launch(
-                                            Manifest.permission.REQUEST_INSTALL_PACKAGES
-                                        )
-                                    }
-                                }
-                            }
-                            .onFailure {
-                                it.printStackTrace()
-                                currentDownloadStatus = UpdateUtil.DownloadStatus.NotYet
-                                ToastUtil.makeToastSuspend(
-                                    context.getString(R.string.app_update_failed)
-                                )
-                                return@launch
-                            }
-                    }
-            },
-            releaseNote = release.body.toString(),
-            downloadStatus = currentDownloadStatus,
-        )
-    }
 }
