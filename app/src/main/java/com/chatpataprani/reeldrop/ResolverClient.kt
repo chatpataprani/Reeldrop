@@ -79,6 +79,20 @@ class ResolverClient(private val primaryBaseUrl: String) {
                 json.optString("url").ifBlank { null },
                 json.optString("filename").ifBlank { null }
             )
+            "picker" -> {
+                val picker = json.optJSONArray("picker")
+                if (picker != null) {
+                    for (i in 0 until picker.length()) {
+                        val item = picker.optJSONObject(i) ?: continue
+                        if (item.optString("type") != "video") continue
+                        val itemUrl = item.optString("url").trim()
+                        if (itemUrl.startsWith("http://") || itemUrl.startsWith("https://")) {
+                            return ResolveResult(itemUrl, null)
+                        }
+                    }
+                }
+                ResolveResult(null, null, "Resolver returned no video")
+            }
             else -> ResolveResult(null, null, "Unsupported primary response")
         }
     }
