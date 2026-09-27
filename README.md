@@ -83,6 +83,8 @@ Screenshots can be added here as the interface evolves.
 
 Every successful build on the `main` branch publishes the latest APK to the `reeldrop-latest` release.
 
+> Latest APK is published automatically after the build finishes successfully.
+
 ### Build artifacts
 
 Each GitHub Actions build also uploads the APK as a workflow artifact for that specific run.
