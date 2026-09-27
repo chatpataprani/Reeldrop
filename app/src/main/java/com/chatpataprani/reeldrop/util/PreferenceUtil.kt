@@ -214,7 +214,7 @@ private val BooleanPreferenceDefaults =
     mapOf(
         FORMAT_SELECTION to false,
         CONFIGURE to false,
-        CELLULAR_DOWNLOAD to false,
+        CELLULAR_DOWNLOAD to true,
         YT_DLP_AUTO_UPDATE to true,
         NOTIFICATION to true,
         EMBED_METADATA to true,
