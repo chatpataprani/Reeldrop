@@ -163,10 +163,12 @@ object UpdateUtil {
 
             val targetUrl =
                 release.assets
-                    ?.find {
-                        return@find it.name?.contains(preferredArch) ?: false
-                    }
-                    ?.browserDownloadUrl ?: return@withContext emptyFlow()
+                    ?.find { it.name?.contains(preferredArch, ignoreCase = true) == true }
+                    ?.browserDownloadUrl
+                    ?: release.assets
+                        ?.find { it.name.equals("yawr.apk", ignoreCase = true) }
+                        ?.browserDownloadUrl
+                    ?: return@withContext emptyFlow()
             val request = Request.Builder().url(targetUrl).build()
             try {
                 val response = client.newCall(request).execute()
