@@ -1,3 +1,6 @@
-<bitmap xmlns:android="http://schemas.android.com/apk/res/android"
-    android:gravity="center"
-    android:src="@drawable/reeldrop_logo" />
+<inset xmlns:android="http://schemas.android.com/apk/res/android"
+    android:inset="18dp">
+    <bitmap
+        android:gravity="fill"
+        android:src="@drawable/reeldrop_logo" />
+</inset>
