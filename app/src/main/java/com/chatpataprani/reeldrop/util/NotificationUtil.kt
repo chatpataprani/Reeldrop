@@ -80,17 +80,20 @@ object NotificationUtil {
     fun showFlirtyReminder() {
         if (!NOTIFICATION.getBoolean()) return
 
-        val messages = listOf(
-            R.string.flirty_1,
-            R.string.flirty_2,
-            R.string.flirty_3,
-            R.string.flirty_4,
-            R.string.flirty_5,
-            R.string.flirty_6,
-            R.string.flirty_7,
-            R.string.flirty_8,
-        )
-        val message = context.getString(messages.random())
+        val prefs = context.getSharedPreferences("flirty_reminder_history", Context.MODE_PRIVATE)
+        val recent = prefs.getString("recent_messages", "")
+            .orEmpty()
+            .split("\u0000")
+            .filter { it.isNotEmpty() }
+
+        val available = FlirtyMessages.all.filterNot { it in recent }
+        val message = (available.ifEmpty { FlirtyMessages.all }).random()
+
+        val updatedHistory = (recent + message).takeLast(42)
+        prefs.edit()
+            .putString("recent_messages", updatedHistory.joinToString("\u0000"))
+            .apply()
+
         val intent = Intent(context, com.chatpataprani.reeldrop.MainActivity::class.java)
         val pendingIntent =
             PendingIntent.getActivity(
