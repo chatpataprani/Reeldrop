@@ -108,8 +108,7 @@ object UpdateUtil {
         context.run {
             kotlin
                 .runCatching {
-                    val contentUri =
-                        FileProvider.getUriForFile(this, getFileProvider(), getLatestApk())
+                    val contentUri = FileProvider.getUriForFile(this, getFileProvider(), getLatestApk())
                     val intent =
                         Intent(Intent.ACTION_VIEW).apply {
                             addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
@@ -144,36 +143,52 @@ object UpdateUtil {
         release: Release,
     ): Flow<DownloadStatus> =
         withContext(Dispatchers.IO) {
-            val apkVersion =
+            val latestApk = context.getLatestApk()
+            val currentApkVersion =
                 context.packageManager
-                    .getPackageArchiveInfo(context.getLatestApk().absolutePath, 0)
+                    .getPackageArchiveInfo(latestApk.absolutePath, 0)
                     ?.versionName
-                    .toVersion()
+                    ?.toVersion()
+                    ?: Version.Stable()
 
-            Log.d(TAG, apkVersion.toString())
+            Log.d(TAG, "Cached APK version: ${currentApkVersion.toVersionName()}")
 
-            if (apkVersion >= release.name.toVersion()) {
+            if (currentApkVersion >= release.name.toVersion()) {
                 return@withContext flow<DownloadStatus> {
-                    emit(DownloadStatus.Finished(context.getLatestApk()))
+                    emit(DownloadStatus.Finished(latestApk))
                 }
             }
 
-            val abiList = Build.SUPPORTED_ABIS
-            val preferredArch = abiList.firstOrNull() ?: return@withContext emptyFlow()
+            val preferredArch = Build.SUPPORTED_ABIS.firstOrNull() ?: return@withContext emptyFlow()
 
-            val targetUrl =
+            val targetAsset =
                 release.assets
-                    ?.find { it.name?.contains(preferredArch, ignoreCase = true) == true }
-                    ?.browserDownloadUrl
-                    ?: release.assets
-                        ?.find { it.name.equals("yawr.apk", ignoreCase = true) }
-                        ?.browserDownloadUrl
+                    ?.firstOrNull {
+                        it.name?.endsWith(".apk", ignoreCase = true) == true &&
+                            it.name.contains(preferredArch, ignoreCase = true)
+                    }
+                    ?: release.assets?.firstOrNull {
+                        it.name?.endsWith(".apk", ignoreCase = true) == true
+                    }
                     ?: return@withContext emptyFlow()
+
+            val targetUrl = targetAsset.browserDownloadUrl ?: return@withContext emptyFlow()
+            Log.d(TAG, "Downloading update asset: ${targetAsset.name}")
+
             val request = Request.Builder().url(targetUrl).build()
             try {
-                val response = client.newCall(request).execute()
-                val responseBody = response.body
-                return@withContext responseBody.downloadFileWithProgress(context.getLatestApk())
+                client.newCall(request).execute().use { response ->
+                    if (!response.isSuccessful) {
+                        throw Exception("Update download failed: HTTP ${response.code}")
+                    }
+                    val responseBody =
+                        response.body ?: throw Exception("Update download returned an empty body")
+                    responseBody.downloadFileWithProgress(latestApk).flowOn(Dispatchers.IO)
+                        .collect { }
+                    return@withContext flow<DownloadStatus> {
+                        emit(DownloadStatus.Finished(latestApk))
+                    }
+                }
             } catch (e: Exception) {
                 e.printStackTrace()
             }
@@ -200,22 +215,32 @@ object UpdateUtil {
                                     break
                                 }
 
-                                outputStream.channel
                                 outputStream.write(data, 0, bytes)
                                 progressBytes += bytes
-                                emit(
-                                    DownloadStatus.Progress(
-                                        percent = ((progressBytes * 100) / totalBytes).toInt()
-                                    )
+                                val percent =
+                                    if (totalBytes > 0L) {
+                                        ((progressBytes * 100) / totalBytes).toInt().coerceIn(0, 100)
+                                    } else {
+                                        0
+                                    }
+                                emit(DownloadStatus.Progress(percent))
+                            }
+
+                            if (totalBytes > 0L && progressBytes != totalBytes) {
+                                throw Exception(
+                                    "Update download size mismatch: received=$progressBytes expected=$totalBytes"
                                 )
                             }
 
-                            when {
-                                progressBytes < totalBytes -> throw Exception("missing bytes")
-                                progressBytes > totalBytes -> throw Exception("too many bytes")
-                                else -> deleteFile = false
-                            }
+                            deleteFile = false
                         }
+                    }
+
+                    // Make sure the downloaded file is actually a readable APK before installation.
+                    val packageInfo =
+                        context.packageManager.getPackageArchiveInfo(saveFile.absolutePath, 0)
+                    if (packageInfo == null) {
+                        throw Exception("Downloaded update is not a readable APK")
                     }
 
                     emit(DownloadStatus.Finished(saveFile))
@@ -260,7 +285,7 @@ object UpdateUtil {
         data class Finished(val file: File) : DownloadStatus()
     }
 
-    private val pattern = Pattern.compile("""v?(\d+)\.(\d+)\.(\d+)(-(\w+)\.(\d+))?""")
+    private val pattern = Pattern.compile("""v?(d+).(d+).(d+)(-(w+).(d+))?""")
     private val EMPTY_VERSION = Version.Stable()
 
     fun String?.toVersion(): Version =
@@ -283,7 +308,6 @@ object UpdateUtil {
     sealed class Version(val major: Int, val minor: Int, val patch: Int, val build: Int = 0) :
         Comparable<Version> {
         companion object {
-            // private const val ABI = 1L
             private const val BUILD = 10L
             private const val VARIANT = 100L
             private const val PATCH = 10_000L
@@ -297,7 +321,6 @@ object UpdateUtil {
         }
 
         abstract fun toVersionName(): String
-
         abstract fun toNumber(): Long
 
         class Alpha(
@@ -307,7 +330,6 @@ object UpdateUtil {
             versionBuild: Int = 0,
         ) : Version(versionMajor, versionMinor, versionPatch, versionBuild) {
             override fun toVersionName(): String = "${major}.${minor}.${patch}-alpha.$build"
-
             override fun toNumber(): Long =
                 major * MAJOR + minor * MINOR + patch * PATCH + build * BUILD + ALPHA
         }
@@ -315,7 +337,6 @@ object UpdateUtil {
         class Beta(versionMajor: Int, versionMinor: Int, versionPatch: Int, versionBuild: Int) :
             Version(versionMajor, versionMinor, versionPatch, versionBuild) {
             override fun toVersionName(): String = "${major}.${minor}.${patch}-beta.$build"
-
             override fun toNumber(): Long =
                 major * MAJOR + minor * MINOR + patch * PATCH + build * BUILD + BETA
         }
@@ -327,7 +348,6 @@ object UpdateUtil {
             versionBuild: Int,
         ) : Version(versionMajor, versionMinor, versionPatch, versionBuild) {
             override fun toVersionName(): String = "${major}.${minor}.${patch}-rc.$build"
-
             override fun toNumber(): Long =
                 major * MAJOR + minor * MINOR + patch * PATCH + build * BUILD + RELEASE_CANDIDATE
         }
@@ -335,11 +355,8 @@ object UpdateUtil {
         class Stable(versionMajor: Int = 0, versionMinor: Int = 0, versionPatch: Int = 0) :
             Version(versionMajor, versionMinor, versionPatch) {
             override fun toVersionName(): String = "${major}.${minor}.${patch}"
-
             override fun toNumber(): Long =
                 major * MAJOR + minor * MINOR + patch * PATCH + build * BUILD + STABLE
-            // Prioritize stable versions
-
         }
 
         override operator fun compareTo(other: Version): Int =
