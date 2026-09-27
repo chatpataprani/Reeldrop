@@ -34,6 +34,7 @@ object NotificationUtil {
     private const val PROGRESS_INITIAL = 0
     private const val CHANNEL_ID = "download_notification"
     private const val SERVICE_CHANNEL_ID = "download_service"
+    private const val FLIRTY_CHANNEL_ID = "flirty_reminders"
     private const val NOTIFICATION_GROUP_ID = "reeldrop.download.notification"
     private const val DEFAULT_NOTIFICATION_ID = 100
     const val SERVICE_NOTIFICATION_ID = 123
@@ -64,6 +65,47 @@ object NotificationUtil {
         notificationManager.createNotificationChannelGroup(channelGroup)
         notificationManager.createNotificationChannel(channel)
         notificationManager.createNotificationChannel(serviceChannel)
+        notificationManager.createNotificationChannel(
+            NotificationChannel(FLIRTY_CHANNEL_ID, context.getString(R.string.flirty_reminders), NotificationManager.IMPORTANCE_DEFAULT).apply {
+                description = context.getString(R.string.flirty_reminders_desc)
+                group = NOTIFICATION_GROUP_ID
+            }
+        )
+    }
+
+    fun showFlirtyReminder() {
+        if (!NOTIFICATION.getBoolean()) return
+
+        val messages = listOf(
+            R.string.flirty_1,
+            R.string.flirty_2,
+            R.string.flirty_3,
+            R.string.flirty_4,
+            R.string.flirty_5,
+            R.string.flirty_6,
+            R.string.flirty_7,
+            R.string.flirty_8,
+        )
+        val message = context.getString(messages.random())
+        val intent = Intent(context, com.chatpataprani.reeldrop.MainActivity::class.java)
+        val pendingIntent =
+            PendingIntent.getActivity(
+                context,
+                7000,
+                intent,
+                PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE,
+            )
+
+        NotificationCompat.Builder(context, FLIRTY_CHANNEL_ID)
+            .setSmallIcon(R.drawable.ic_stat_reeldrop)
+            .setContentTitle(context.getString(R.string.flirty_reminders))
+            .setContentText(message)
+            .setStyle(NotificationCompat.BigTextStyle().bigText(message))
+            .setContentIntent(pendingIntent)
+            .setAutoCancel(true)
+            .setCategory(NotificationCompat.CATEGORY_REMINDER)
+            .setPriority(NotificationCompat.PRIORITY_DEFAULT)
+            .run { notificationManager.notify((7000..7999).random(), build()) }
     }
 
     fun notifyProgress(
