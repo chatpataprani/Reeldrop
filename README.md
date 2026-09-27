@@ -2,7 +2,7 @@
 
 # YAWR
 
-### yet another yt-dlp wrapper.
+### yet another downloader. simple as that.
 
 <p>
   <a href="https://github.com/chatpataprani/Reeldrop">
@@ -23,16 +23,12 @@
   <img src="https://img.shields.io/badge/Android-7.0%2B-3DDC84?style=flat-square&logo=android&logoColor=white" alt="Android 7.0+">
   <img src="https://img.shields.io/badge/Kotlin-100%25-7F52FF?style=flat-square&logo=kotlin&logoColor=white" alt="Kotlin">
   <img src="https://img.shields.io/badge/Jetpack%20Compose-Material%203-4285F4?style=flat-square&logo=jetpackcompose" alt="Jetpack Compose">
-  <img src="https://img.shields.io/badge/yt--dlp-powered-FF0000?style=flat-square&logo=youtube&logoColor=white" alt="yt-dlp">
 </p>
 
 <p>
   <a href="https://github.com/chatpataprani/Reeldrop/releases">
     <img src="https://img.shields.io/badge/download-latest%20APK-2ea44f?style=for-the-badge&logo=android&logoColor=white" alt="Download Latest APK">
   </a>
-</p>
-
-<p>
   <a href="https://instagram.com/chatpataprani">
     <img src="https://img.shields.io/badge/Instagram-@chatpataprani-E4405F?style=for-the-badge&logo=instagram&logoColor=white" alt="Instagram @chatpataprani">
   </a>
@@ -42,36 +38,34 @@
 
 ---
 
-## what is YAWR?
+## what's YAWR?
 
-**YAWR** stands for **Yet Another yt-dlp Wrapper**.
+a clean Android downloader made to get the job done without doing 47 side quests.
 
-an Android downloader built around **yt-dlp**, with a clean UI and the features you actually need.
+paste the link → pick what u want → download.
 
-paste a link, choose your options, and let it handle the rest.
-
-no unnecessary nonsense. just download and move on.
+that's it.
 
 ## features
 
-| feature | what you get |
+| feature | details |
 |---|---|
-| 🎬 video downloads | download supported videos through yt-dlp |
-| 🎵 audio extraction | extract supported media as audio |
-| 📚 playlists | download supported playlists |
-| 🖼️ metadata | thumbnails and metadata when available |
-| 💬 subtitles | download and embed subtitles when supported |
-| ⚡ aria2c | optional external downloader support |
-| 🧩 custom commands | extra control for advanced yt-dlp usage |
-| 🍪 cookies | support for sites requiring authentication |
-| 📥 download manager | queue, history and task management |
-| 🎨 Material 3 | modern Android UI with dynamic theming |
-| 🔗 share support | send links directly to YAWR |
-| 🌐 network controls | proxy and IPv4 options |
+| 🎬 video | download supported videos |
+| 🎵 audio | extract audio from supported media |
+| 📚 playlists | batch download supported playlists |
+| 🖼️ metadata | thumbnails + metadata when available |
+| 💬 subtitles | download/embed subtitles when supported |
+| ⚡ aria2c | optional faster downloads |
+| 🧩 custom commands | extra control when u need it |
+| 🍪 cookies | support for authenticated sites |
+| 📥 manager | queue, history + downloads |
+| 🎨 Material 3 | clean modern UI + dynamic theme |
+| 🔗 share | send links straight to YAWR |
+| 🌐 network | proxy + IPv4 options |
 
 ## 📱 screenshots
 
-screenshots coming soon.
+coming soon. yeah, the app exists. screenshots are just late 💀
 
 <!-- Add screenshots here:
 <img src="docs/screenshots/home.png" width="240">
@@ -81,11 +75,11 @@ screenshots coming soon.
 
 ## ⬇️ download
 
-**[download YAWR](https://github.com/chatpataprani/Reeldrop/releases)**
+**[get YAWR](https://github.com/chatpataprani/Reeldrop/releases)**
 
-grab the latest available APK from GitHub Releases.
+latest APK → GitHub Releases.
 
-## 🛠️ build from source
+## 🛠️ build
 
 ### requirements
 
@@ -107,24 +101,25 @@ cd Reeldrop
 ./gradlew assembleDebug
 ```
 
-the APK will be generated under:
+APK:
 
 ```text
 app/build/outputs/apk/
 ```
 
-## 🧱 tech stack
+if Gradle decides to be funny, that's between u two.
 
-- **Kotlin**
-- **Jetpack Compose**
-- **Material 3**
-- **yt-dlp**
-- **Gradle**
-- **aria2c** — optional
+## 🧱 stack
+
+- Kotlin
+- Jetpack Compose
+- Material 3
+- Gradle
+- aria2c
 
 ## 🤝 credits
 
-YAWR uses and/or builds upon these open-source projects:
+built with help from some solid open-source projects:
 
 - [yt-dlp](https://github.com/yt-dlp/yt-dlp)
 - [youtubedl-android](https://github.com/yausername/youtubedl-android)
@@ -135,19 +130,17 @@ YAWR uses and/or builds upon these open-source projects:
 - [Material Color Utilities](https://github.com/material-foundation/material-color-utilities)
 - [Monet](https://github.com/Kyant0/Monet)
 
-respect to the projects that make this possible.
-
 ## 📄 license
 
-YAWR is licensed under the **GNU General Public License v3.0**.
+GNU General Public License v3.0.
 
-see [LICENSE](LICENSE) for the full license text.
+see [LICENSE](LICENSE).
 
 ## ⚠️ disclaimer
 
-YAWR is a downloading tool. only download content you have the legal right or permission to download.
+only download content u have the legal right or permission to download.
 
-you are responsible for complying with applicable copyright laws, website terms, and other rules that apply to your use of the app.
+follow applicable copyright laws and website terms while using YAWR.
 
 ---
 
@@ -155,10 +148,10 @@ you are responsible for complying with applicable copyright laws, website terms,
 
 ### YAWR
 
-**paste link. pick quality. download.**
+**paste. pick. download. done.**
 
 <a href="https://instagram.com/chatpataprani">
-  <img src="https://img.shields.io/badge/follow-@chatpataprani-E4405F?style=for-the-badge&logo=instagram&logoColor=white" alt="Instagram @chatpataprani">
+  <img src="https://img.shields.io/badge/@chatpataprani-E4405F?style=for-the-badge&logo=instagram&logoColor=white" alt="Instagram @chatpataprani">
 </a>
 
 </div>
