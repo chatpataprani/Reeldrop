@@ -21,6 +21,31 @@ jobs:
           distribution: temurin
           java-version: "21"
 
+      - name: Configure persistent release signing
+        env:
+          YAWR_KEYSTORE_BASE64: ${{ secrets.YAWR_KEYSTORE_BASE64 }}
+          YAWR_KEYSTORE_PASSWORD: ${{ secrets.YAWR_KEYSTORE_PASSWORD }}
+          YAWR_KEY_ALIAS: ${{ secrets.YAWR_KEY_ALIAS }}
+          YAWR_KEY_PASSWORD: ${{ secrets.YAWR_KEY_PASSWORD }}
+        run: |
+          set -euo pipefail
+          : "${YAWR_KEYSTORE_BASE64:?Missing GitHub secret YAWR_KEYSTORE_BASE64}"
+          : "${YAWR_KEYSTORE_PASSWORD:?Missing GitHub secret YAWR_KEYSTORE_PASSWORD}"
+          : "${YAWR_KEY_ALIAS:?Missing GitHub secret YAWR_KEY_ALIAS}"
+          : "${YAWR_KEY_PASSWORD:?Missing GitHub secret YAWR_KEY_PASSWORD}"
+
+          mkdir -p signing
+          printf '%s' "$YAWR_KEYSTORE_BASE64" | base64 --decode > signing/yawr-release.jks
+
+          cat > keystore.properties <<EOF
+          storeFile=signing/yawr-release.jks
+          storePassword=$YAWR_KEYSTORE_PASSWORD
+          keyAlias=$YAWR_KEY_ALIAS
+          keyPassword=$YAWR_KEY_PASSWORD
+          EOF
+
+          chmod 600 signing/yawr-release.jks keystore.properties
+
       - name: Build arm64 release APK
         run: ./gradlew --no-daemon assembleGenericRelease -PnoSplits
 
@@ -48,6 +73,7 @@ jobs:
                   raise SystemExit(f"Corrupt APK entry: {bad}")
           print("Python ZIP integrity check: OK")
           PY
+          "$ANDROID_HOME/build-tools/35.0.0/apksigner" verify --verbose --print-certs "$APK"
           "$ANDROID_HOME/build-tools/35.0.0/apksigner" verify --verbose "$APK"
           sha256sum "$APK"
           cp "$APK" yawr.apk
@@ -110,6 +136,11 @@ jobs:
           LOCAL_SHA="$(sha256sum "$ASSET" | cut -d' ' -f1)"
           echo "Published local SHA-256: $LOCAL_SHA"
           echo "Published asset: $ASSET"
+
+      - name: Clean signing material
+        if: always()
+        run: |
+          rm -f keystore.properties signing/yawr-release.jks
 
       - name: Write APK download link
         run: |
