@@ -26,13 +26,11 @@ jobs:
           YAWR_KEYSTORE_BASE64: ${{ secrets.YAWR_KEYSTORE_BASE64 }}
           YAWR_KEYSTORE_PASSWORD: ${{ secrets.YAWR_KEYSTORE_PASSWORD }}
           YAWR_KEY_ALIAS: ${{ secrets.YAWR_KEY_ALIAS }}
-          YAWR_KEY_PASSWORD: ${{ secrets.YAWR_KEY_PASSWORD }}
         run: |
           set -euo pipefail
           : "${YAWR_KEYSTORE_BASE64:?Missing GitHub secret YAWR_KEYSTORE_BASE64}"
           : "${YAWR_KEYSTORE_PASSWORD:?Missing GitHub secret YAWR_KEYSTORE_PASSWORD}"
           : "${YAWR_KEY_ALIAS:?Missing GitHub secret YAWR_KEY_ALIAS}"
-          : "${YAWR_KEY_PASSWORD:?Missing GitHub secret YAWR_KEY_PASSWORD}"
 
           mkdir -p signing
           printf '%s' "$YAWR_KEYSTORE_BASE64" | base64 --decode > signing/yawr-release.jks
@@ -41,7 +39,7 @@ jobs:
           storeFile=signing/yawr-release.jks
           storePassword=$YAWR_KEYSTORE_PASSWORD
           keyAlias=$YAWR_KEY_ALIAS
-          keyPassword=$YAWR_KEY_PASSWORD
+          keyPassword=$YAWR_KEYSTORE_PASSWORD
           EOF
 
           chmod 600 signing/yawr-release.jks keystore.properties
@@ -50,13 +48,12 @@ jobs:
         env:
           YAWR_KEYSTORE_PASSWORD: ${{ secrets.YAWR_KEYSTORE_PASSWORD }}
           YAWR_KEY_ALIAS: ${{ secrets.YAWR_KEY_ALIAS }}
-          YAWR_KEY_PASSWORD: ${{ secrets.YAWR_KEY_PASSWORD }}
         run: |
           set -euo pipefail
           keytool -list -keystore signing/yawr-release.jks \
             -storepass "$YAWR_KEYSTORE_PASSWORD" \
             -alias "$YAWR_KEY_ALIAS" \
-            -keypass "$YAWR_KEY_PASSWORD" \
+            -keypass "$YAWR_KEYSTORE_PASSWORD" \
             -v >/tmp/yawr-keystore.txt
           grep -E 'Alias name:|Entry type:|Certificate fingerprints:' /tmp/yawr-keystore.txt
 
