@@ -1,7 +1,6 @@
 package com.chatpataprani.reeldrop.ui.common
 
 object Route {
-
     const val HOME = "home"
     const val DOWNLOADS = "download_history"
     const val PLAYLIST = "playlist"
@@ -9,9 +8,8 @@ object Route {
     const val FORMAT_SELECTION = "format"
     const val TASK_LIST = "task_list"
     const val TASK_LOG = "task_log"
-
+    const val INSTAGRAM_PROFILE = "instagram_profile"
     const val SETTINGS_PAGE = "settings_page"
-
     const val APPEARANCE = "appearance"
     const val INTERACTION = "interaction"
     const val GENERAL_DOWNLOAD_PREFERENCES = "general_download_preferences"
@@ -31,11 +29,9 @@ object Route {
     const val AUTO_UPDATE = "auto_update"
     const val DONATE = "donate"
     const val TROUBLESHOOTING = "troubleshooting"
-
     const val TASK_HASHCODE = "task_hashcode"
     const val TEMPLATE_ID = "template_id"
 }
 
 infix fun String.arg(arg: String) = "$this/{$arg}"
-
 infix fun String.id(id: Int) = "$this/$id"
