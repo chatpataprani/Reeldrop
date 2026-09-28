@@ -46,6 +46,20 @@ jobs:
 
           chmod 600 signing/yawr-release.jks keystore.properties
 
+      - name: Validate release keystore
+        env:
+          YAWR_KEYSTORE_PASSWORD: ${{ secrets.YAWR_KEYSTORE_PASSWORD }}
+          YAWR_KEY_ALIAS: ${{ secrets.YAWR_KEY_ALIAS }}
+          YAWR_KEY_PASSWORD: ${{ secrets.YAWR_KEY_PASSWORD }}
+        run: |
+          set -euo pipefail
+          keytool -list -keystore signing/yawr-release.jks \
+            -storepass "$YAWR_KEYSTORE_PASSWORD" \
+            -alias "$YAWR_KEY_ALIAS" \
+            -keypass "$YAWR_KEY_PASSWORD" \
+            -v >/tmp/yawr-keystore.txt
+          grep -E 'Alias name:|Entry type:|Certificate fingerprints:' /tmp/yawr-keystore.txt
+
       - name: Build arm64 release APK
         run: ./gradlew --no-daemon assembleGenericRelease -PnoSplits
 
