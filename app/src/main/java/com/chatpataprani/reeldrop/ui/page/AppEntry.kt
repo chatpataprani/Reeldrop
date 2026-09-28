@@ -45,6 +45,7 @@ import com.chatpataprani.reeldrop.ui.page.command.TaskListPage
 import com.chatpataprani.reeldrop.ui.page.command.TaskLogPage
 import com.chatpataprani.reeldrop.ui.page.downloadv2.configure.DownloadDialogViewModel
 import com.chatpataprani.reeldrop.ui.page.downloadv2.DownloadPageV2
+import com.chatpataprani.reeldrop.ui.page.InstagramProfilePage
 import com.chatpataprani.reeldrop.ui.page.settings.SettingsPage
 import com.chatpataprani.reeldrop.ui.page.settings.about.AboutPage
 import com.chatpataprani.reeldrop.ui.page.settings.about.CreditsPage
@@ -153,6 +154,7 @@ fun AppEntry(dialogViewModel: DownloadDialogViewModel) {
                     )
                 }
                 animatedComposable(Route.DOWNLOADS) { VideoListPage { onNavigateBack() } }
+                animatedComposable(Route.INSTAGRAM_PROFILE) { InstagramProfilePage(onNavigateBack) }
                 animatedComposableVariant(Route.TASK_LIST) {
                     TaskListPage(
                         onNavigateBack = onNavigateBack,
