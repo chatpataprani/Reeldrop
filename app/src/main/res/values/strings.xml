@@ -464,4 +464,6 @@
     <string name="flirty_6">no download today? betrayal fr \uD83D\uDC94</string>
     <string name="flirty_7">got a reel? hand it over \uD83D\uDE0C</string>
     <string name="flirty_8">me waiting for you to paste a link: \uD83E\uDDCD</string>
+    <string name="instagram_profile">Instagram profile</string>
+    <string name="instagram_profile_desc">Analyze public profile information</string>
 </resources>
