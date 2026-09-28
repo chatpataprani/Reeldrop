@@ -47,7 +47,7 @@ android {
         applicationId = "com.chatpataprani.reeldrop"
         minSdk = 24
         targetSdk = 35
-        versionCode = 200_000_190
+        versionCode = 200_000_200
         check(versionCode == currentVersionCode)
 
         versionName = baseVersionName
@@ -152,7 +152,7 @@ android {
 
     packaging {
         resources { excludes += "/META-INF/{AL2.0,LGPL2.1}" }
-        jniLibs.useLegacyPackaging = true
+        jniLibs.useLegacyPackaging(true)
     }
     androidResources { generateLocaleConfig = true }
 
