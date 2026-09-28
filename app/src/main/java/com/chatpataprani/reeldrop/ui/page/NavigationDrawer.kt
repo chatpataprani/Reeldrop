@@ -23,6 +23,7 @@ import androidx.compose.material.icons.filled.Subscriptions
 import androidx.compose.material.icons.filled.Terminal
 import androidx.compose.material.icons.outlined.Download
 import androidx.compose.material.icons.outlined.Menu
+import androidx.compose.material.icons.outlined.PersonSearch
 import androidx.compose.material.icons.outlined.Settings
 import androidx.compose.material.icons.outlined.Subscriptions
 import androidx.compose.material.icons.outlined.Terminal
@@ -184,6 +185,12 @@ fun NavigationDrawerSheetContent(
                         .invokeOnCompletion { onNavigateToRoute(Route.HOME) }
                 },
                 selected = currentRoute == Route.HOME,
+            )
+            NavigationDrawerItem(
+                label = { Text(stringResource(R.string.instagram_profile)) },
+                icon = { Icon(Icons.Outlined.PersonSearch, null) },
+                onClick = { scope.launch { onDismissRequest() }.invokeOnCompletion { onNavigateToRoute(Route.INSTAGRAM_PROFILE) } },
+                selected = currentRoute == Route.INSTAGRAM_PROFILE,
             )
             NavigationDrawerItem(
                 label = { Text(stringResource(R.string.downloads_history)) },
