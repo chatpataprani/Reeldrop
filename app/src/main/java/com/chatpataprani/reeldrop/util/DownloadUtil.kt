@@ -219,14 +219,17 @@ object DownloadUtil {
                 }
 
             val versionsJson = extractJsonArray(body, "\"video_versions\"")
-                ?: error("Instagram did not expose a public video URL")
             val versions =
-                jsonFormat.decodeFromString<List<InstagramVideoVersion>>(versionsJson)
-                    .filter { it.url.isNotBlank() }
-            val best =
-                versions.maxWithOrNull(
-                    compareBy<InstagramVideoVersion> { it.width }.thenBy { it.height }
-                ) ?: error("Instagram did not expose a usable video URL")
+                versionsJson
+                    ?.let { jsonFormat.decodeFromString<List<InstagramVideoVersion>>(it) }
+                    ?.filter { it.url.isNotBlank() }
+                    .orEmpty()
+            val best = versions.maxWithOrNull(
+                compareBy<InstagramVideoVersion> { it.width }.thenBy { it.height }
+            )
+
+            val directUrl = best?.url ?: extractInstagramEmbedVideoUrl(url)
+                ?: error("Instagram did not expose a public video URL")
 
             VideoInfo(
                 id = extractInstagramShortcode(url),
@@ -238,26 +241,57 @@ object DownloadUtil {
                             ext = "mp4",
                             acodec = "mp4a.40.2",
                             vcodec = "avc1",
-                            url = best.url,
-                            width = best.width.toDouble(),
-                            height = best.height.toDouble(),
+                            url = directUrl,
+                            width = best?.width?.toDouble() ?: 0.0,
+                            height = best?.height?.toDouble() ?: 0.0,
                         )
                     ),
                 webpageUrl = url,
-                originalUrl = best.url,
+                originalUrl = directUrl,
                 extractor = "Instagram",
                 extractorKey = "Instagram",
                 ext = "mp4",
                 protocol = "https",
                 vcodec = "avc1",
                 acodec = "mp4a.40.2",
-                width = best.width.toDouble(),
-                height = best.height.toDouble(),
+                width = best?.width?.toDouble() ?: 0.0,
+                height = best?.height?.toDouble() ?: 0.0,
                 format = "instagram-direct",
                 formatId = "instagram-direct",
                 filename = "Instagram Reel.mp4",
             )
         }
+
+    // The embed fallback follows the public-content extraction approach used by
+    // Orang-Studio/InstaDownload (GPLv3): request Instagram's public embed page
+    // and extract its video_url when the normal metadata is unavailable.
+    private fun extractInstagramEmbedVideoUrl(url: String): String? {
+        val shortcode = extractInstagramShortcode(url).takeIf { it != "instagram" } ?: return null
+        val embedUrl = "https://www.instagram.com/p/$shortcode/embed/captioned/"
+        val userAgent =
+            "Mozilla/5.0 (iPhone; CPU iPhone OS 17_0 like Mac OS X) " +
+                "AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.0 Mobile/15E148 Safari/604.1"
+        val request = Request.Builder()
+            .url(embedUrl)
+            .header("User-Agent", userAgent)
+            .header("Accept", "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8")
+            .header("Referer", "https://www.instagram.com/")
+            .build()
+
+        return runCatching {
+            httpClient.newCall(request).execute().use { response ->
+                if (!response.isSuccessful) return@use null
+                val html = response.body.string()
+                val encoded = Regex("""\\"video_url\\":\\"(https:(?:(?!\\").)*)""")
+                    .find(html)?.groupValues?.getOrNull(1)
+                encoded?.replace("\\\\/", "/")
+                    ?.replace("\\u0026", "&")
+                    ?.replace("&amp;", "&")
+                    ?: Regex("""<meta[^>]+property=["']og:video["'][^>]+content=["']([^"']+)["']""", RegexOption.IGNORE_CASE)
+                        .find(html)?.groupValues?.getOrNull(1)
+            }
+        }.getOrNull()
+    }
 
     @Serializable
     private data class InstagramVideoVersion(
