@@ -6,6 +6,8 @@ import android.media.MediaCodecList
 import android.os.Build
 import android.util.Log
 import android.webkit.CookieManager
+import okhttp3.OkHttpClient
+import okhttp3.Request
 import androidx.annotation.CheckResult
 import com.chatpataprani.reeldrop.App
 import com.chatpataprani.reeldrop.App.Companion.audioDownloadDir
@@ -56,6 +58,7 @@ object DownloadUtil {
     }
 
     private val jsonFormat = Json { ignoreUnknownKeys = true }
+    private val httpClient = OkHttpClient()
 
     private const val TAG = "DownloadUtil"
 
@@ -185,8 +188,118 @@ object DownloadUtil {
                     addOption("--no-playlist")
                     addOption("--socket-timeout", "20")
                 }
-            return getVideoInfo(request, taskKey)
+            val result = getVideoInfo(request, taskKey)
+            if (
+                result.isFailure &&
+                    url.contains("instagram.com", ignoreCase = true) &&
+                    result.exceptionOrNull()?.message?.contains("empty media response", ignoreCase = true) == true
+            ) {
+                return fetchInstagramPublicInfo(url)
+            }
+            return result
         }
+    }
+
+    private fun fetchInstagramPublicInfo(url: String): Result<VideoInfo> =
+        runCatching {
+            val userAgent =
+                "Mozilla/5.0 (Linux; Android ${Build.VERSION.RELEASE}; ${Build.MODEL}) AppleWebKit/537.36 Chrome/140.0 Mobile Safari/537.36"
+            val cookie = CookieManager.getInstance().getCookie(url)
+            val request =
+                Request.Builder()
+                    .url(url)
+                    .header("User-Agent", userAgent)
+                    .header("Referer", "https://www.instagram.com/")
+                    .apply { if (!cookie.isNullOrBlank()) header("Cookie", cookie) }
+                    .build()
+            val body =
+                httpClient.newCall(request).execute().use { response ->
+                    check(response.isSuccessful) { "Instagram page request failed: HTTP ${response.code}" }
+                    response.body.string()
+                }
+
+            val versionsJson = extractJsonArray(body, "\"video_versions\"")
+                ?: error("Instagram did not expose a public video URL")
+            val versions =
+                jsonFormat.decodeFromString<List<InstagramVideoVersion>>(versionsJson)
+                    .filter { it.url.isNotBlank() }
+            val best =
+                versions.maxWithOrNull(
+                    compareBy<InstagramVideoVersion> { it.width }.thenBy { it.height }
+                ) ?: error("Instagram did not expose a usable video URL")
+
+            VideoInfo(
+                id = extractInstagramShortcode(url),
+                title = "Instagram Reel",
+                formats =
+                    listOf(
+                        Format(
+                            formatId = "instagram-direct",
+                            ext = "mp4",
+                            acodec = "mp4a.40.2",
+                            vcodec = "avc1",
+                            url = best.url,
+                            width = best.width.toDouble(),
+                            height = best.height.toDouble(),
+                        )
+                    ),
+                webpageUrl = url,
+                originalUrl = best.url,
+                extractor = "Instagram",
+                extractorKey = "Instagram",
+                ext = "mp4",
+                protocol = "https",
+                vcodec = "avc1",
+                acodec = "mp4a.40.2",
+                width = best.width.toDouble(),
+                height = best.height.toDouble(),
+                format = "instagram-direct",
+                formatId = "instagram-direct",
+                filename = "Instagram Reel.mp4",
+            )
+        }
+
+    @Serializable
+    private data class InstagramVideoVersion(
+        val url: String = "",
+        val width: Int = 0,
+        val height: Int = 0,
+    )
+
+    private fun extractInstagramShortcode(url: String): String =
+        Regex("/(?:reel|reels)/([^/?#]+)/?", RegexOption.IGNORE_CASE)
+            .find(url)
+            ?.groupValues
+            ?.getOrNull(1)
+            ?: "instagram"
+
+    private fun extractJsonArray(source: String, marker: String): String? {
+        val markerIndex = source.indexOf(marker)
+        if (markerIndex < 0) return null
+        val start = source.indexOf('[', markerIndex + marker.length)
+        if (start < 0) return null
+
+        var depth = 0
+        var inString = false
+        var escaped = false
+        for (index in start until source.length) {
+            val ch = source[index]
+            if (inString) {
+                if (escaped) escaped = false
+                else if (ch == '\\') escaped = true
+                else if (ch == '"') inString = false
+                continue
+            }
+            when (ch) {
+                '"' -> inString = true
+                '[' -> depth++
+                ']' -> {
+                    depth--
+                    if (depth == 0) return source.substring(start, index + 1)
+                }
+            }
+        }
+        return null
     }
 
     @Serializable
