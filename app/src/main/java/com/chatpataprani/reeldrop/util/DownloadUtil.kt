@@ -301,7 +301,7 @@ object DownloadUtil {
     )
 
     private fun extractInstagramShortcode(url: String): String =
-        Regex("/(?:reel|reels)/([^/?#]+)/?", RegexOption.IGNORE_CASE)
+        Regex("/(?:reel|reels|p|tv)/([^/?#]+)/?", RegexOption.IGNORE_CASE)
             .find(url)
             ?.groupValues
             ?.getOrNull(1)
