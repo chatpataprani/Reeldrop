@@ -292,7 +292,7 @@ object UpdateUtil {
         data class Finished(val file: File) : DownloadStatus()
     }
 
-    private val pattern = Pattern.compile("""v?(d+).(d+).(d+)(-(w+).(d+))?""")
+    private val pattern = Pattern.compile("""v?(\d+)\.(\d+)\.(\d+)(-(\w+)\.(\d+))?""")
     private val EMPTY_VERSION = Version.Stable()
 
     fun String?.toVersion(): Version =
